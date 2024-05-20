@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/App.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1716217784487,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716219447225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import './App.scss';\n+import './scripts/main';\n import { Footer } from './components/Footer/Footer';\n import { Header } from './components/Header/Header';\n \n export const App = () => (\n"
+                }
+            ],
+            "date": 1716217784487,
+            "name": "Commit-0",
+            "content": "import './App.scss';\nimport { Footer } from './components/Footer/Footer';\nimport { Header } from './components/Header/Header';\n\nexport const App = () => (\n  <div className=\"App\">\n    <Header />\n    <Footer />\n  </div>\n);\n"
+        }
+    ]
+}
