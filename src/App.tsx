@@ -1,7 +1,13 @@
+import React from 'react';
+import BurgerMenu from './components/BurgerMenu/BurgerMenu';
 import './App.scss';
 
-export const App = () => (
-  <div className="App">
-    <h1>Product Catalog</h1>
-  </div>
-);
+const App: React.FC = () => {
+  return (
+    <div className="App">
+      <BurgerMenu />
+    </div>
+  );
+};
+
+export default App;
