@@ -1,6 +1,9 @@
 @use '../../utils/mixins' as *;
 @import '../../utils/vars';
-
+@font-face {
+  font-family: 'Mont';
+  src: url(../../../public/fonts/Mont-SemiBold.otf);
+}
 .footer {
   @include flex-col;
   align-items: flex-start;
