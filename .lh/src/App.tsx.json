@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/App.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1716293989657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716294683467,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,13 @@\n   handleClick: (id: number) => void;\n };\n const Item: React.FC<Props> = ({ id, addedIDS, handleClick }) => {\n   return (\n+    <>\n     <button onClick={() => handleClick(id)}>\n       {addedIDS.includes(id) ? `Add to cart` : `Added to cart`}\n     </button>\n+    </>\n   );\n };\n export const App = () => {\n   const [addedIDS, setAddedIDS] = useState<number[]>([]); //dodajemy telefony, ktorych przycisk został naciśnięty po ID\n"
+                },
+                {
+                    "date": 1716294693718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n     <>\n       <button onClick={() => handleClick(id)}>\n         {addedIDS.includes(id) ? `Add to cart` : `Added to cart`}\n       </button>\n+      {id * 10}\n     </>\n   );\n };\n export const App = () => {\n"
+                },
+                {
+                    "date": 1716294714179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,10 @@\n   addedIDS: number[];\n   handleClick: (id: number) => void;\n };\n const Item: React.FC<Props> = ({ id, addedIDS, handleClick }) => {\n+\n+  const price = id * 10;\n   return (\n     <>\n       <button onClick={() => handleClick(id)}>\n         {addedIDS.includes(id) ? `Add to cart` : `Added to cart`}\n"
+                }
+            ],
+            "date": 1716293989657,
+            "name": "Commit-0",
+            "content": "import React, { useState } from 'react';\nimport './App.scss';\ntype Props = {\n  id: number;\n  addedIDS: number[];\n  handleClick: (id: number) => void;\n};\nconst Item: React.FC<Props> = ({ id, addedIDS, handleClick }) => {\n  return (\n    <button onClick={() => handleClick(id)}>\n      {addedIDS.includes(id) ? `Add to cart` : `Added to cart`}\n    </button>\n  );\n};\nexport const App = () => {\n  const [addedIDS, setAddedIDS] = useState<number[]>([]); //dodajemy telefony, ktorych przycisk został naciśnięty po ID\n  const [cartValue, setCartValue] = useState(0);\n  const handleClick = (id: number) => {\n    if (addedIDS.includes(id)) {\n      setAddedIDS(prev => prev.filter(searched => searched !== id));\n    } else {\n      setAddedIDS(prev => [...prev, id]);\n    }\n  };\n\n  return (\n    <div className=\"App\">\n      <h1>Product Catalog</h1>\n      <Item id={2} addedIDS={addedIDS} handleClick={handleClick} />\n      <Item id={3} addedIDS={addedIDS} handleClick={handleClick} />\n      {cartValue}\n    </div>\n  );\n};\n"
+        }
+    ]
+}
