@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.c6d1466c.css","mappings":"AACA,EACE,sBCFF,MACE,aACA,sBACA","sources":["App.scss","components/Page/Page.scss"],"sourcesContent":["// not empty\n* {\n  box-sizing: border-box;\n}\n",".page {\n  display: flex;\n  flex-direction: column;\n  gap: 24px;\n}\n"],"names":[],"sourceRoot":""}
