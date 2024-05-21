@@ -16,6 +16,7 @@ export const Cart = () => {
         <div className="cart__summary">
           <span className="cart__summary-total">$2657</span>
           <span className="cart__summary-label">Total for 3 items</span>
+          <div className="cart__summary-diveder"></div>
           <button className="cart__checkout">Checkout</button>
         </div>
       </div>
