@@ -5,15 +5,23 @@
 .cart {
   padding: 16px;
 
+  &__icon {
+    height: 16px;
+    width: 16px;
+  }
+
   &__back {
     color: #89939A;
-    margin-bottom: 24px;
     font-size: 12px;
+    font-weight: 700;
+    line-height: 15.34px;
   }
 
   &__title {
     font-size: 32px;
-    margin-bottom: 32px;
+    font-weight: 800;
+    line-height: 41px;
+    margin-bottom: 24px;
   }
 
   &__items {
@@ -37,25 +45,36 @@
     align-items: center;
     padding: 20px;
     border: 1px solid #E2E6E9;
-    margin-bottom: 20px;
+    margin-bottom: 52px;
 
     &-total {
       font-size: 32px;
-      font-weight: bold;
+      font-weight: 800;
+      margin-bottom: 8px;
+      line-height: 41px;
+      text-align: center;
     }
 
     &-label {
-      color: #666;
+      margin-bottom: 16px;
+      color: #89939A;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 21px;
+      text-align: center;
     }
   }
 
   &__checkout {
     width: 100%;
-    padding: 10px;
-    background: #333;
+    padding: 13px;
+    background: #313237;
     border: none;
     color: #fff;
-    font-size: 18px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 21px;
+    text-align: center;
     cursor: pointer;
   }
 
@@ -63,19 +82,14 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 20px 0;
-    margin-top: 20px;
+    padding: 20px 16px;
     border-top: 1px solid #E2E6E9;
 
     &-logo {
-      display: flex;
-      align-items: center;
-      font-weight: bold;
       margin-bottom: 20px;
-
-      span {
-        margin-right: 5px;
-      }
+      border: 1px solid red;
+      width: 89px;
+      height: 32px;
     }
 
     &-link {
@@ -91,7 +105,7 @@
     justify-content: center;
     color: #89939A;
     cursor: pointer;
-    margin-top: 20px;
+    margin-bottom: 20px;
     padding: 5px 10px;
   }
 }

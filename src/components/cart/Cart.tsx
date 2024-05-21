@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import './Cart.scss';
 
 export const Cart = () => {
   return (
     <>
       <div className="cart">
+        <img className="cart__icon" src="./src/icons/left.svg" />
         <a className="cart__back">Back</a>
         <h1 className="cart__title">Cart</h1>
         <div className="cart__items">
@@ -11,17 +13,13 @@ export const Cart = () => {
         </div>
         <div className="cart__summary">
           <span className="cart__summary-total">$2657</span>
-          <span className="cart__summary-label">Total for 3 items</span>
+          <span className="cart__summary-label">Total for items</span>
           <button className="cart__checkout">Checkout</button>
         </div>
       </div>
       <footer className="cart__footer">
         <div className="cart__footer-logo">
-          <span>Nice</span>
-          <span role="img" aria-label="emoji">
-            👌
-          </span>
-          <span>Gadgets</span>
+          <img src={require('../../icons/logo.png').default} alt="" />
         </div>
         <a href="github-link" className="cart__footer-link">
           GITHUB
@@ -33,7 +31,10 @@ export const Cart = () => {
           RIGHTS
         </a>
       </footer>
-      <a className="cart__back-to-top">Back to top</a>
+      <a className="cart__back-to-top">
+        Back to top
+        <img className="cart__icon" src="./src/icons/up.svg" />
+      </a>
     </>
   );
 };
