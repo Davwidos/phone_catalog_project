@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './CatalogPage.scss';
+import styles from './CatalogPage.module.scss';
 
 export const CatalogPage: React.FC = () => {
   return (
