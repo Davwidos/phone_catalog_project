@@ -5,7 +5,7 @@ import './Header.scss';
 export const Header = () => {
   return (
     <div className="header">
-      <a href="*">
+      <a href="#">
         <img src={Logo} alt="nice-gadgets-logo" className="header__logo logo" />
       </a>
 
