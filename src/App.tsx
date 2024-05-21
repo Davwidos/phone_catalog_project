@@ -2,7 +2,6 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import { Page } from './components/Page';
 import BurgerMenu from './components/BurgerMenu/BurgerMenu';
-import React from 'react';
 import { NotFoundPage } from './components/NotFoundPage/NotFoundPage';
 
 export const App = () => (
