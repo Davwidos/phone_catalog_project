@@ -5,3 +5,7 @@
   font-size: 32px;
   grid-column: span 4;
 }
+
+.itemsContainer {
+  @include pageGrid;
+}
