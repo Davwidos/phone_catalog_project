@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './BurgerMenu.scss';
 
 const BurgerMenu: React.FC = () => {
@@ -31,16 +32,24 @@ const BurgerMenu: React.FC = () => {
           </div>
           <ul>
             <li>
-              <a href="#home">Home</a>
+              <Link to="/" onClick={toggleMenu}>
+                Home
+              </Link>
             </li>
             <li>
-              <a href="#phones">Phones</a>
+              <Link to="/phones" onClick={toggleMenu}>
+                Phones
+              </Link>
             </li>
             <li>
-              <a href="#tablets">Tablets</a>
+              <Link to="/tablets" onClick={toggleMenu}>
+                Tablets
+              </Link>
             </li>
             <li>
-              <a href="#accessories">Accessories</a>
+              <Link to="/accessories" onClick={toggleMenu}>
+                Accessories
+              </Link>
             </li>
           </ul>
           <div className="bottom">
