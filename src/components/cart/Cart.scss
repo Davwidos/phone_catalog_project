@@ -1,13 +1,17 @@
+@font-face { font-family: Mont; src: url(../../../public/fonts/Mont-Bold.otf); }
+
 * {
   margin: 0;
+  font-family: Mont, Arial;
 }
 
 .cart {
   padding: 16px;
 
   &__icon {
-    height: 16px;
-    width: 16px;
+    height: 10px;
+    width: 10px;
+    padding-right: 5px;
   }
 
   &__back {
@@ -76,36 +80,5 @@
     line-height: 21px;
     text-align: center;
     cursor: pointer;
-  }
-
-  &__footer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px 16px;
-    border-top: 1px solid #E2E6E9;
-
-    &-logo {
-      margin-bottom: 20px;
-      border: 1px solid red;
-      width: 89px;
-      height: 32px;
-    }
-
-    &-link {
-      color: #89939A;
-      font-size: 12px;
-      text-decoration: none;
-      margin-bottom: 10px;
-    }
-  }
-
-  &__back-to-top {
-    display: flex;
-    justify-content: center;
-    color: #89939A;
-    cursor: pointer;
-    margin-bottom: 20px;
-    padding: 5px 10px;
   }
 }
