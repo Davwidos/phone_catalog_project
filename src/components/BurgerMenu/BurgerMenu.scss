@@ -1,13 +1,14 @@
 @font-face {
-  font-family: 'Mont';
-  src: url(../../../public/fonts/Mont-Regular.otf);
+  font-family: Mont;
+  src: url(../../../public/fonts/Mont-Bold.otf);
 }
+
 .burger-menu-container {
   width: 320px;
   height: 639px;
   position: relative;
   overflow: hidden;
-  font-family: 'Mont';
+  font-family: Mont, serif;
 }
 
 .menu-icon {
@@ -17,14 +18,14 @@
   background-color: #fff;
   color: #333;
   position: absolute;
-  top: 0px;
+  top: 0;
   left: 280px;
 }
 
 .menu {
   position: absolute;
   top: 0;
-  right: -320px;
+  right: -350px;
   width: 320px;
   height: 100vh;
   background-color: #fff;
@@ -48,37 +49,37 @@
 .menu ul {
   list-style: none;
   padding: 0;
-  padding-top: 72px;
-  padding-bottom: 190px;
+  padding-bottom: 360px;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  margin: 0px;
+  margin: 0;
 }
 
 .menu ul li {
-  margin: 20px 0;
+  margin: 8px 0;
 }
 
 .menu ul li a {
-  color: #666;
+  color: #89939A;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
+}
 
-  &:hover {
-   text-decoration: underline;
-
-  }
+.menu ul li a:hover {
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  color: black;
 }
 
 .bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  height: 64px;
   width: 320px;
   margin: 0;
 
