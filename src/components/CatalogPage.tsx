@@ -6,5 +6,14 @@ export const CatalogPage: React.FC = () => {
     <div className={styles.container}>
       <h1 className={styles.title}>Mobile phones</h1>
     </div>
+    <div className={styles.itemsContainer}>
+      <div className={styles.card} />
+      <div className={styles.card} />        
+      <div className={styles.card} />
+      <div className={styles.card} />
+      <div className={styles.card} />
+      <div className={styles.card} />
+      <div className={styles.card} />
+    </div>
   );
 };
