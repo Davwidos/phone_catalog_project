@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1716218705102,
@@ -40,6 +40,26 @@
                 {
                     "date": 1716221120770,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n @use '../../utils/mixins' as *;\n @import '../../utils/vars';\n-\n+@font-face {\n+  font-family: 'Mont';\n+  src: url(../../../public/fonts/Mont-SemiBold.otf);\n+}\n .footer {\n   @include flex-col;\n   align-items: flex-start;\n   gap: 32px;\n"
+                },
+                {
+                    "date": 1716275902748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n-      color: black;\n+      transform: rotate(90deg);\n     }\n   }\n   &__text {\n     @include smalltext;\n"
+                },
+                {
+                    "date": 1716275919055,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n-      transform: rotate(90deg);\n+      transform: rotate(180deg);\n     }\n   }\n   &__text {\n     @include smalltext;\n"
+                },
+                {
+                    "date": 1716275938159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,11 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n-      transform: rotate(180deg);\n+      &img {\n+        transform: rotate(180deg);\n+      }\n     }\n   }\n   &__text {\n     @include smalltext;\n"
+                },
+                {
+                    "date": 1716275966561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n-      &img {\n+      img {\n         transform: rotate(180deg);\n       }\n     }\n   }\n"
+                },
+                {
+                    "date": 1716276008672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,11 +28,8 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n-      img {\n-        transform: rotate(180deg);\n-      }\n     }\n   }\n   &__text {\n     @include smalltext;\n"
                 }
             ],
             "date": 1716218705102,

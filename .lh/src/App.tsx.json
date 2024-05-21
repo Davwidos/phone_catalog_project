@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1716217784487,
@@ -12,6 +12,10 @@
                 {
                     "date": 1716219447225,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import './App.scss';\n+import './scripts/main';\n import { Footer } from './components/Footer/Footer';\n import { Header } from './components/Header/Header';\n \n export const App = () => (\n"
+                },
+                {
+                    "date": 1716275691480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n import './App.scss';\n-import './scripts/main';\n import { Footer } from './components/Footer/Footer';\n import { Header } from './components/Header/Header';\n \n export const App = () => (\n"
                 }
             ],
             "date": 1716217784487,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1716217782751,
@@ -28,6 +28,14 @@
                 {
                     "date": 1716220729740,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n       <div className=\"footer__scrollup\">\n         <p className=\"footer__text text\">Back to top</p>\n \n         <a className=\"footer__link link\">\n-          <img src={Slider} alt=\"slider-icon\" className=\"footer__icon icon\" />\n+          <img src={Slider} alt=\"slider-icon\" className=\"footer__icon icon slider-icon\" />\n         </a>\n       </div>\n     </div>\n   );\n"
+                },
+                {
+                    "date": 1716274982349,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n \n       <div className=\"footer__scrollup\">\n         <p className=\"footer__text text\">Back to top</p>\n \n-        <a className=\"footer__link link\">\n+        <a className=\"footer__link link img-container\">\n           <img\n             src={Slider}\n             alt=\"slider-icon\"\n             className=\"footer__icon icon slider-icon\"\n"
+                },
+                {
+                    "date": 1716275124587,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n \n       <div className=\"footer__scrollup\">\n         <p className=\"footer__text text\">Back to top</p>\n \n-        <a className=\"footer__link link img-container\">\n+        <a className=\"footer__link link\">\n           <img\n             src={Slider}\n             alt=\"slider-icon\"\n             className=\"footer__icon icon slider-icon\"\n"
                 }
             ],
             "date": 1716217782751,
