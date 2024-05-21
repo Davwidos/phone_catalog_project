@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 13,
+            "activePatchIndex": 19,
             "patches": [
                 {
                     "date": 1716218705102,
@@ -60,6 +60,30 @@
                 {
                     "date": 1716276008672,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,11 +28,8 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n-      img {\n-        transform: rotate(180deg);\n-      }\n     }\n   }\n   &__text {\n     @include smalltext;\n"
+                },
+                {
+                    "date": 1716276117665,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,11 @@\n   &__scrollup {\n     @include flex-row;\n     margin: 0 auto;\n     gap: 16px;\n+    img {\n+      transition: transform 0.3s ease;\n+    }\n     &:hover {\n       cursor: pointer;\n     }\n   }\n"
+                },
+                {
+                    "date": 1716276160599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n   &__scrollup {\n     @include flex-row;\n     margin: 0 auto;\n     gap: 16px;\n-    img {\n+    a img {\n       transition: transform 0.3s ease;\n     }\n     &:hover {\n       cursor: pointer;\n"
+                },
+                {
+                    "date": 1716276209231,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,11 +26,8 @@\n   &__scrollup {\n     @include flex-row;\n     margin: 0 auto;\n     gap: 16px;\n-    a img {\n-      transition: transform 0.3s ease;\n-    }\n     &:hover {\n       cursor: pointer;\n     }\n   }\n"
+                },
+                {
+                    "date": 1716285578490,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n+      color: red;\n     }\n   }\n   &__text {\n     @include smalltext;\n"
+                },
+                {
+                    "date": 1716285592731,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,8 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n-      color: red;\n     }\n   }\n   &__text {\n     @include smalltext;\n"
+                },
+                {
+                    "date": 1716285927894,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-@use '../../utils/mixins' as *;\n+@use '../../styles/utils/mixins' as *;\n @import '../../utils/vars';\n @font-face {\n   font-family: 'Mont';\n   src: url(../../../public/fonts/Mont-SemiBold.otf);\n"
                 }
             ],
             "date": 1716218705102,

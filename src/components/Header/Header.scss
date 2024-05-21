@@ -1,5 +1,5 @@
-@use '../../utils/mixins' as *;
-@import '../../utils/vars';
+@use '../../styles/utils/mixins' as *;
+@import '../../styles/utils/vars';
 
 .header {
   @include flex-row;

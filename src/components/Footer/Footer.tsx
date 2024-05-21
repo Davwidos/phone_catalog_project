@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import Logo from '../../images/Logo.svg';
-import Slider from '../../images/slider-button-up.svg';
-import SliderHover from '../../images/slider-button-up_hover.svg';
+import Logo from '../../icons/Logo.svg';
+import Slider from '../../icons/slider-button-up.svg';
+import SliderHover from '../../icons/slider-button-up_hover.svg';
+import './Footer.scss';
 
 export const Footer = () => {
   useEffect(() => {
