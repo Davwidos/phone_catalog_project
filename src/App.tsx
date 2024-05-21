@@ -1,7 +1,8 @@
 import './App.scss';
+import { CatalogPage } from './components/CatalogPage';
 
 export const App = () => (
   <div className="App">
-    <h1>Product Catalog</h1>
+    <CatalogPage />
   </div>
 );
