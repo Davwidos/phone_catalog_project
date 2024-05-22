@@ -67,3 +67,11 @@
   letter-spacing: 0.04em;
   text-align: left;
 }
+
+@mixin bodytext14 {
+  font-family: Mont;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: left;
+}

@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/components/Shop-by-category/Shop-by-category.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1716373460620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716373487991,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+import './Shop-by-category.scss'\n+\n export const ShopByCategory = () => {\n   return (\n     <div className=\"main__shop-by-category shop-by-category\">\n       <div className=\"product-category\">\n"
+                },
+                {
+                    "date": 1716374392383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,25 @@\n import './Shop-by-category.scss';\n-\n+import Phones from '../../images/main/product-category/Phones.svg';\n+import Accessories from '../../images/main/product-category/Accessories.svg';\n+import Tablets from '../../images/main/product-category/Tablets.svg';\n export const ShopByCategory = () => {\n   return (\n     <div className=\"main__shop-by-category shop-by-category\">\n       <div className=\"product-category\">\n-        <img className=\"product-category__image\" src=\"\" alt=\"mobile-phones\" />\n+        <img className=\"product-category__image\" src={Phones} alt=\"mobile-phones\" />\n \n         <p className=\"product-category__category\">Mobile phones</p>\n         <p className=\"product-category__models\">95 models</p>\n       </div>\n       <div className=\"product-category\">\n-        <img className=\"product-category__image\" src=\"\" alt=\"tablets\" />\n+        <img className=\"product-category__image\" src={Tablets} alt=\"tablets\" />\n \n         <p className=\"product-category__category\">Tablets</p>\n         <p className=\"product-category__models\">24 models</p>\n       </div>\n       <div className=\"product-category\">\n-        <img className=\"product-category__image\" src=\"\" alt=\"accessories\" />\n+        <img className=\"product-category__image\" src={Accessories} alt=\"accessories\" />\n \n         <p className=\"product-category__category\">Accessories</p>\n         <p className=\"product-category__models\">100 models</p>\n       </div>\n"
+                },
+                {
+                    "date": 1716374591756,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n import Tablets from '../../images/main/product-category/Tablets.svg';\n export const ShopByCategory = () => {\n   return (\n     <div className=\"main__shop-by-category shop-by-category\">\n+      <h1 className=\"shop-by-category__title\">Shop by category</h1>\n       <div className=\"product-category\">\n         <img\n           className=\"product-category__image\"\n           src={Phones}\n"
+                }
+            ],
+            "date": 1716373460620,
+            "name": "Commit-0",
+            "content": "export const ShopByCategory = () => {\n  return (\n    <div className=\"main__shop-by-category shop-by-category\">\n      <div className=\"product-category\">\n        <img className=\"product-category__image\" src=\"\" alt=\"mobile-phones\" />\n\n        <p className=\"product-category__category\">Mobile phones</p>\n        <p className=\"product-category__models\">95 models</p>\n      </div>\n      <div className=\"product-category\">\n        <img className=\"product-category__image\" src=\"\" alt=\"tablets\" />\n\n        <p className=\"product-category__category\">Tablets</p>\n        <p className=\"product-category__models\">24 models</p>\n      </div>\n      <div className=\"product-category\">\n        <img className=\"product-category__image\" src=\"\" alt=\"accessories\" />\n\n        <p className=\"product-category__category\">Accessories</p>\n        <p className=\"product-category__models\">100 models</p>\n      </div>\n    </div>\n  )\n}"
+        }
+    ]
+}

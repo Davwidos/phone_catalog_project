@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/components/Homepage/Homepage.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1716372245220,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716372358118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,7 +6,7 @@\n }\n \n .main {\n   &__title {\n-    @include;\n+    @include h1;\n   }\n }\n"
+                },
+                {
+                    "date": 1716372896469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-@use '../../styles/utils/mixins' as *;\n-@import '../../styles/utils/vars';\n+@use '../../styles/utils' as *;\n+\n @font-face {\n   font-family: 'Mont';\n   src: url(../../../public/fonts/Mont-SemiBold.otf);\n }\n"
+                }
+            ],
+            "date": 1716372245220,
+            "name": "Commit-0",
+            "content": "@use '../../styles/utils/mixins' as *;\n@import '../../styles/utils/vars';\n@font-face {\n  font-family: 'Mont';\n  src: url(../../../public/fonts/Mont-SemiBold.otf);\n}\n\n.main {\n  &__title {\n    @include\n  }\n}"
+        }
+    ]
+}

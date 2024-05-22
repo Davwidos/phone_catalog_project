@@ -3,11 +3,19 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1716285916335,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716373676267,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,4 +66,12 @@\n   line-height: 11px;\n   letter-spacing: 0.04em;\n   text-align: left;\n }\n+\n+@mixin bodytext14 {\n+font-family: Mont;\n+font-size: 14px;\n+font-weight: 500;\n+line-height: 21px;\n+text-align: left;\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716374439469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,10 +68,10 @@\n   text-align: left;\n }\n \n @mixin bodytext14 {\n-font-family: Mont;\n-font-size: 14px;\n-font-weight: 500;\n-line-height: 21px;\n-text-align: left;\n-}\n\\ No newline at end of file\n+  font-family: Mont;\n+  font-size: 14px;\n+  font-weight: 500;\n+  line-height: 21px;\n+  text-align: left;\n+}\n"
                 }
             ],
             "date": 1716285916335,

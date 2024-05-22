@@ -1,0 +1,78 @@
+{
+    "sourceFile": "src/components/Shop-by-category/Shop-by-category.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 15,
+            "patches": [
+                {
+                    "date": 1716373545686,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716373595379,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,17 @@\n+@use '../../styles/utils/mixins' as *;\n+@import '../../styles/utils/vars';\n+@font-face {\n+  font-family: 'Mont';\n+  src: url(../../../public/fonts/Mont-SemiBold.otf);\n+}\n+\n .shop-by-category {\n   &__image {\n     width: 100%;\n     height: 100%;\n     background-color: red;\n   }\n+  &__category{\n+    @include h4;\n+  }\n }\n"
+                },
+                {
+                    "date": 1716373615153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,8 @@\n     width: 100%;\n     height: 100%;\n     background-color: red;\n   }\n-  &__category{\n+  &__category {\n     @include h4;\n   }\n\\ No newline at end of file\n-}\n+}\n"
+                },
+                {
+                    "date": 1716373692476,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,5 +13,8 @@\n   }\n   &__category {\n     @include h4;\n   }\n+  &__models {\n+    @include bodytext14;\n+  }\n }\n"
+                },
+                {
+                    "date": 1716373729960,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   font-family: 'Mont';\n   src: url(../../../public/fonts/Mont-SemiBold.otf);\n }\n \n-.shop-by-category {\n+.product-category {\n   &__image {\n     width: 100%;\n     height: 100%;\n     background-color: red;\n"
+                },
+                {
+                    "date": 1716373762401,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,6 +15,7 @@\n     @include h4;\n   }\n   &__models {\n     @include bodytext14;\n+    color: $secondary;\n   }\n }\n"
+                },
+                {
+                    "date": 1716373834661,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n }\n \n .product-category {\n   &__image {\n-    width: 100%;\n+    width: 100vw;\n     height: 100%;\n     background-color: red;\n   }\n   &__category {\n"
+                },
+                {
+                    "date": 1716373843089,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n }\n \n .product-category {\n   &__image {\n+    display: inline-block;\n     width: 100vw;\n     height: 100%;\n     background-color: red;\n   }\n"
+                },
+                {
+                    "date": 1716373850059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \n .product-category {\n   &__image {\n     display: inline-block;\n-    width: 100vw;\n+    width: 100%;\n     height: 100%;\n     background-color: red;\n   }\n   &__category {\n"
+                },
+                {
+                    "date": 1716373856094,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n }\n \n .product-category {\n   &__image {\n-    display: inline-block;\n+    display: block;\n     width: 100%;\n     height: 100%;\n     background-color: red;\n   }\n"
+                },
+                {
+                    "date": 1716374051292,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n   src: url(../../../public/fonts/Mont-SemiBold.otf);\n }\n \n .product-category {\n+  gap: 32px;\n   &__image {\n     display: block;\n     width: 100%;\n     height: 100%;\n"
+                },
+                {
+                    "date": 1716374097026,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,11 @@\n @font-face {\n   font-family: 'Mont';\n   src: url(../../../public/fonts/Mont-SemiBold.otf);\n }\n-\n+.shop-by-category {\n+  gap: 32px;\n+}\n .product-category {\n   gap: 32px;\n   &__image {\n     display: block;\n"
+                },
+                {
+                    "date": 1716374104490,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   font-family: 'Mont';\n   src: url(../../../public/fonts/Mont-SemiBold.otf);\n }\n .shop-by-category {\n-  gap: 32px;\n+  margin-bottom: 32px;\n }\n .product-category {\n   gap: 32px;\n   &__image {\n"
+                },
+                {
+                    "date": 1716374114997,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,12 +4,12 @@\n   font-family: 'Mont';\n   src: url(../../../public/fonts/Mont-SemiBold.otf);\n }\n .shop-by-category {\n-  margin-bottom: 32px;\n+  margin-bottom: ;\n }\n .product-category {\n-  gap: 32px;\n+  margin-bottom: 32px;\n   &__image {\n     display: block;\n     width: 100%;\n     height: 100%;\n"
+                },
+                {
+                    "date": 1716374123589,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,9 @@\n @font-face {\n   font-family: 'Mont';\n   src: url(../../../public/fonts/Mont-SemiBold.otf);\n }\n-// .shop-by-category {\n \n-// }\n .product-category {\n   margin-bottom: 32px;\n   &__image {\n     display: block;\n"
+                },
+                {
+                    "date": 1716374416021,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,12 +7,12 @@\n \n .product-category {\n   margin-bottom: 32px;\n   &__image {\n-    display: block;\n-    width: 100%;\n-    height: 100%;\n-    background-color: red;\n+    // display: block;\n+    // width: 100%;\n+    // height: 100%;\n+    // background-color: red;\n   }\n   &__category {\n     @include h4;\n   }\n"
+                }
+            ],
+            "date": 1716373545686,
+            "name": "Commit-0",
+            "content": ".shop-by-category {\n  &__image {\n    width: 100%;\n    height: 100%;\n    background-color: red;\n  }\n}"
+        }
+    ]
+}

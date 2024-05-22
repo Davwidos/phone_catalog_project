@@ -1,0 +1,25 @@
+@use '../../styles/utils/mixins' as *;
+@import '../../styles/utils/vars';
+@font-face {
+  font-family: 'Mont';
+  src: url(../../../public/fonts/Mont-SemiBold.otf);
+}
+.shop-by-category {
+  &__title {
+    @include h1;
+    margin-bottom: 24px;
+  }
+}
+.product-category {
+  margin-bottom: 24px;
+  &__image {
+    margin-bottom: 24px;
+  }
+  &__category {
+    @include h4;
+  }
+  &__models {
+    @include bodytext14;
+    color: $secondary;
+  }
+}
