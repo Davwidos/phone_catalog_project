@@ -1,0 +1,54 @@
+{
+    "sourceFile": "src/components/Header/Header.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1716217788892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716217802086,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n       <a href=\"*\">\n         <img src={Logo} alt=\"\" className=\"header__logo logo\" />\n       </a>\n \n-      <p>123</p>\n       <div className=\"header__burger-container\">\n         <img src={Burger} alt=\"\" className=\"header__burger burger\" />\n       </div>\n     </div>\n"
+                },
+                {
+                    "date": 1716218643072,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n       <a href=\"*\">\n         <img src={Logo} alt=\"\" className=\"header__logo logo\" />\n       </a>\n \n-      <div className=\"header__burger-container\">\n+      <div className=\"header__buttons\">\n         <img src={Burger} alt=\"\" className=\"header__burger burger\" />\n       </div>\n     </div>\n   );\n"
+                },
+                {
+                    "date": 1716219058071,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,13 +4,13 @@\n export const Header = () => {\n   return (\n     <div className=\"header\">\n       <a href=\"*\">\n-        <img src={Logo} alt=\"\" className=\"header__logo logo\" />\n+        <img src={Logo} alt=\"nice-gadgets-logo\" className=\"header__logo logo\" />\n       </a>\n \n       <div className=\"header__buttons\">\n-        <img src={Burger} alt=\"\" className=\"header__burger burger\" />\n+        <img src={Burger} alt=\"burger-icon\" className=\"header__burger burger\" />\n       </div>\n     </div>\n   );\n };\n"
+                },
+                {
+                    "date": 1716220018825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,11 @@\n         <img src={Logo} alt=\"nice-gadgets-logo\" className=\"header__logo logo\" />\n       </a>\n \n       <div className=\"header__buttons\">\n-        <img src={Burger} alt=\"burger-icon\" className=\"header__burger burger\" />\n+        <div className=\"header__burger-container\">\n+          <img src={Burger} alt=\"burger-icon\" className=\"header__burger burger\" />\n+          </div>\n       </div>\n     </div>\n   );\n };\n"
+                },
+                {
+                    "date": 1716285795033,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-import Burger from '../../images/icon_burger.svg';\n-import Logo from '../../images/Logo.svg';\n+import Burger from '../../icons/icon_burger.svg';\n+import Logo from '../../icons/Logo.svg';\n \n export const Header = () => {\n   return (\n     <div className=\"header\">\n"
+                },
+                {
+                    "date": 1716286161205,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import Burger from '../../icons/icon_burger.svg';\n import Logo from '../../icons/Logo.svg';\n+import './Header.scss';\n \n export const Header = () => {\n   return (\n     <div className=\"header\">\n"
+                },
+                {
+                    "date": 1716289926171,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,13 @@\n+import { Link } from 'react-router-dom';\n import Burger from '../../icons/icon_burger.svg';\n import Logo from '../../icons/Logo.svg';\n import './Header.scss';\n \n export const Header = () => {\n   return (\n     <div className=\"header\">\n+      <Link to='/'></Link>\n       <a href=\"*\">\n         <img src={Logo} alt=\"nice-gadgets-logo\" className=\"header__logo logo\" />\n       </a>\n \n"
+                },
+                {
+                    "date": 1716289933214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,12 +5,11 @@\n \n export const Header = () => {\n   return (\n     <div className=\"header\">\n-      <Link to=\"/\"></Link>\n-      <a href=\"*\">\n+      <Link to=\"/\">\n         <img src={Logo} alt=\"nice-gadgets-logo\" className=\"header__logo logo\" />\n-      </a>\n+      </Link>\n \n       <div className=\"header__buttons\">\n         <div className=\"header__burger-container\">\n           <img\n"
+                },
+                {
+                    "date": 1716289955017,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,15 @@\n-import { Link } from 'react-router-dom';\n+import { NavLink } from 'react-router-dom';\n import Burger from '../../icons/icon_burger.svg';\n import Logo from '../../icons/Logo.svg';\n import './Header.scss';\n \n export const Header = () => {\n   return (\n     <div className=\"header\">\n-      <Link to=\"/\">\n+      <NavLink to=\"/\">\n         <img src={Logo} alt=\"nice-gadgets-logo\" className=\"header__logo logo\" />\n-      </Link>\n+      </NavLink>\n \n       <div className=\"header__buttons\">\n         <div className=\"header__burger-container\">\n           <img\n"
+                }
+            ],
+            "date": 1716217788892,
+            "name": "Commit-0",
+            "content": "import Burger from '../../images/icon_burger.svg';\nimport Logo from '../../images/Logo.svg';\n\nexport const Header = () => {\n  return (\n    <div className=\"header\">\n      <a href=\"*\">\n        <img src={Logo} alt=\"\" className=\"header__logo logo\" />\n      </a>\n\n      <p>123</p>\n      <div className=\"header__burger-container\">\n        <img src={Burger} alt=\"\" className=\"header__burger burger\" />\n      </div>\n    </div>\n  );\n};\n"
+        }
+    ]
+}
