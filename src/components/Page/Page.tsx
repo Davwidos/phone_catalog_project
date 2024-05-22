@@ -4,8 +4,6 @@ import './Page.scss';
 
 export const Page: FC = () => (
   <div className="page">
-    <header>header</header>
     <Outlet />
-    <footer>footer</footer>
   </div>
 );
