@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Logo from '../../icons/Logo.svg';
+import Logo from '../../icons/logo.png';
 import Slider from '../../icons/slider-button-up.svg';
 import SliderHover from '../../icons/slider-button-up_hover.svg';
 import './Footer.scss';

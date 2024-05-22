@@ -1,5 +1,5 @@
 import Burger from '../../icons/icon_burger.svg';
-import Logo from '../../icons/Logo.svg';
+import Logo from '../../icons/logo.png';
 import './Header.scss';
 
 export const Header = () => {
