@@ -24,12 +24,17 @@
     line-height: 15.34px;
   }
 
+  &__back-link {
+    text-decoration: none;
+  }
+
   &__title {
     font-size: 32px;
     font-weight: 800;
     line-height: 41px;
     margin-bottom: 24px;
     margin-top: 24px;
+    color: #313237;
   }
 
   &__items {

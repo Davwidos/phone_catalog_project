@@ -21,10 +21,10 @@ export const Cart = () => {
   return (
     <>
       <div className="cart">
-        <NavLink to="#">
+        <NavLink to="#" className="cart__back-link">
           <img className="cart__icon" src={LeftIcon} alt="left" />
+          <span className="cart__back">Back</span>
         </NavLink>
-        <a className="cart__back">Back</a>
         <h1 className="cart__title">Cart</h1>
         <div className="cart__items">
           <div className="cart__item"></div>
