@@ -2,9 +2,11 @@ import './Cart.scss';
 import LeftIcon from '../../icons/left.svg';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { CartItem } from '../CartItem';
 
 export const Cart = () => {
-  const [cartItems, setCartItems] = useState([]);
+  // const { addedIDS } = useContext<ContextValueType>(MyContext);
+  const [cartItems, setCartItems] = useState([1, 2, 3]);
   const navigate = useNavigate();
 
   const handleCheckout = () => {
@@ -27,7 +29,9 @@ export const Cart = () => {
         </NavLink>
         <h1 className="cart__title">Cart</h1>
         <div className="cart__items">
-          <div className="cart__item"></div>
+          {cartItems.map(id => (
+            <CartItem id={id} key={id} />
+          ))}
         </div>
         <div className="cart__summary">
           <span className="cart__summary-total">

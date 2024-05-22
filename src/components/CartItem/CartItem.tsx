@@ -2,7 +2,11 @@ import './CartItem.scss';
 import img from '../../images/Product.png';
 import Delete from '../../icons/Close.svg';
 
-export const CartItem: React.FC = () => {
+type Props = {
+  id: number;
+};
+
+export const CartItem: React.FC<Props> = ({ id }) => {
   return (
     <div className="cartItem">
       <div className="cartItem__mobail-top">
@@ -13,7 +17,7 @@ export const CartItem: React.FC = () => {
         <img src={img} alt="Phone" className="cartItem__img" />
 
         <span className="cartItem__title">
-          Apple iPhone 14 Pro 128GB Silver (MQ023)
+          Apple iPhone 14 Pro 128GB Silver (MQ023) | id: {id}
         </span>
       </div>
 
