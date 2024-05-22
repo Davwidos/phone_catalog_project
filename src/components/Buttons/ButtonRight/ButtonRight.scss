@@ -1,0 +1,16 @@
+.ButtonRight {
+ &__icon {
+  mask-image: url('../../../icons/rightArrow.svg');
+  background-color: #313237;
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  width: 5px;
+  height: 9px;
+
+  &.active {
+    background-color: white;
+  }
+ }
+}
