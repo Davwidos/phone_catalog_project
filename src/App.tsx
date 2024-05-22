@@ -9,10 +9,9 @@ import { Homepage } from './components/Homepage/Homepage';
 export const App = () => (
   <>
     <Header />
-    <Homepage />
     <Routes>
       <Route element={<Page />}>
-        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/" element={<Homepage />} />
         <Route path="/phones" element={<h1>phones</h1>} />
         <Route path="/tablets" element={<h1>tablets</h1>} />
         <Route path="/accessories" element={<h1>accessories</h1>} />
