@@ -1,0 +1,74 @@
+{
+    "sourceFile": "src/components/About/About.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 14,
+            "patches": [
+                {
+                    "date": 1716377512170,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716377528441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,7 @@\n+@use '../../styles/utils/mixins' as *;\n+@import '../../styles/utils/vars';\n+\n .about {\n   &__text {\n     @include bodytext14;\n   }\n"
+                },
+                {
+                    "date": 1716377542771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,11 @@\n @use '../../styles/utils/mixins' as *;\n @import '../../styles/utils/vars';\n \n .about {\n+  &__subtitle {\n+    @include h4;\n+  }\n   &__text {\n     @include bodytext14;\n   }\n }\n"
+                },
+                {
+                    "date": 1716377568353,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,11 @@\n @use '../../styles/utils/mixins' as *;\n @import '../../styles/utils/vars';\n \n .about {\n+  &__title {\n+    height: 42px;\n+  }\n   &__subtitle {\n     @include h4;\n   }\n   &__text {\n"
+                },
+                {
+                    "date": 1716377575165,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n @import '../../styles/utils/vars';\n \n .about {\n   &__title {\n+    @include h3;\n     height: 42px;\n   }\n   &__subtitle {\n     @include h4;\n"
+                },
+                {
+                    "date": 1716377595354,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n .about {\n   &__title {\n     @include h3;\n     height: 42px;\n+    border-bottom: 1px solid $secondary;\n   }\n   &__subtitle {\n     @include h4;\n   }\n"
+                },
+                {
+                    "date": 1716377637809,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,5 +12,5 @@\n   }\n   &__text {\n     @include bodytext14;\n   }\n-}\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1716377660182,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,7 +10,7 @@\n   &__subtitle {\n     @include h4;\n   }\n   &__text {\n-    @include bodytext14;\n+    // @include bodytext14;\n   }\n }\n"
+                },
+                {
+                    "date": 1716377683061,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n .about {\n   &__title {\n     @include h3;\n     height: 42px;\n-    border-bottom: 1px solid $secondary;\n+    border-bottom: 1px solid $elements;\n   }\n   &__subtitle {\n     @include h4;\n   }\n"
+                },
+                {
+                    "date": 1716377708460,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,7 +10,8 @@\n   &__subtitle {\n     @include h4;\n   }\n   &__text {\n+    color: $secondary;\n     // @include bodytext14;\n   }\n }\n"
+                },
+                {
+                    "date": 1716377791916,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n     border-bottom: 1px solid $elements;\n   }\n   &__subtitle {\n     @include h4;\n+    font-weight: 500;\n   }\n   &__text {\n     color: $secondary;\n     // @include bodytext14;\n"
+                },
+                {
+                    "date": 1716377814475,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n @use '../../styles/utils/mixins' as *;\n @import '../../styles/utils/vars';\n \n .about {\n+  @include flex-col;\n+  gap: 32px;\n   &__title {\n     @include h3;\n     height: 42px;\n     border-bottom: 1px solid $elements;\n"
+                },
+                {
+                    "date": 1716377823971,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n @use '../../styles/utils/mixins' as *;\n @import '../../styles/utils/vars';\n \n .about {\n-  @include flex-col;\n+  @include flex-row;\n   gap: 32px;\n   &__title {\n     @include h3;\n     height: 42px;\n"
+                },
+                {
+                    "date": 1716377833262,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n @import '../../styles/utils/vars';\n \n .about {\n   @include flex-col;\n+  align-items: flex-start;\n   gap: 32px;\n   &__title {\n     @include h3;\n     height: 42px;\n"
+                },
+                {
+                    "date": 1716377843208,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n   align-items: flex-start;\n   gap: 32px;\n   &__title {\n     @include h3;\n+    width: 100%;\n     height: 42px;\n     border-bottom: 1px solid $elements;\n   }\n   &__subtitle {\n"
+                }
+            ],
+            "date": 1716377512170,
+            "name": "Commit-0",
+            "content": ".about {\n  &__text {\n    @include bodytext14;\n  }\n}"
+        }
+    ]
+}

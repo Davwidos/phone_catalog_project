@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/components/About/About.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1716377388856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716377395049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n       \n       <div className=\"about__section\">\n         <h4 className=\"about__subtitle\">And then there was Pro</h4>\n         <p className=\"about__text\">A transformative triple‑camera system that adds tons of capability without complexity. \n-</br>\n+<br/>\n An unprecedented leap in battery life. And a mind‑blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.</p>\n       </div>\n \n       <div className=\"about__section\">\n"
+                },
+                {
+                    "date": 1716377407658,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,10 +16,12 @@\n         </p>\n       </div>\n \n       <div className=\"about__section\">\n-        <h4 className=\"about__subtitle\"></h4>\n-        <p className=\"about__text\"></p>\n+        <h4 className=\"about__subtitle\">Camera</h4>\n+        <p className=\"about__text\">A transformative triple‑camera system that adds tons of capability without complexity. \n+<br/>\n+An unprecedented leap in battery life. And a mind‑blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.</p>\n       </div>\n \n       <div className=\"about__section\">\n         <h4 className=\"about__subtitle\"></h4>\n"
+                },
+                {
+                    "date": 1716377418289,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,10 +29,10 @@\n         </p>\n       </div>\n \n       <div className=\"about__section\">\n-        <h4 className=\"about__subtitle\"></h4>\n-        <p className=\"about__text\"></p>\n+        <h4 className=\"about__subtitle\">Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.</h4>\n+        <p className=\"about__text\">iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.</p>\n       </div>\n     </div>\n   );\n };\n"
+                }
+            ],
+            "date": 1716377388856,
+            "name": "Commit-0",
+            "content": "export const About = () => {\n  return (\n    <div className=\"about\">\n      <h1 className=\"about__title title\">About</h1>\n      \n      <div className=\"about__section\">\n        <h4 className=\"about__subtitle\">And then there was Pro</h4>\n        <p className=\"about__text\">A transformative triple‑camera system that adds tons of capability without complexity. \n</br>\nAn unprecedented leap in battery life. And a mind‑blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.</p>\n      </div>\n\n      <div className=\"about__section\">\n        <h4 className=\"about__subtitle\"></h4>\n        <p className=\"about__text\"></p>\n      </div>\n\n      <div className=\"about__section\">\n        <h4 className=\"about__subtitle\"></h4>\n        <p className=\"about__text\"></p>\n      </div>\n    </div>\n  )\n}"
+        }
+    ]
+}
