@@ -1,11 +1,11 @@
 import React, { createContext, useState } from 'react';
 
-const MyContext = createContext<any>(null);
+const MyContext = createContext<ContextValueType | null>(null);
 
 type ContextValueType = {
   addedIDS: number[];
   cartValue: number;
-  handleClick: (id: number) => void;
+  handleAddToCart: (id: number) => void;
 };
 
 type MyContextProviderProps = {
@@ -18,7 +18,7 @@ export const MyContextProvider: React.FC<MyContextProviderProps> = ({
   const [addedIDS, setAddedIDS] = useState<number[]>([]);
   const [cartValue, setCartValue] = useState<number>(0);
 
-  const handleClick = (id: number) => {
+  const handleAddToCart = (id: number) => {
     const price = id * 10;
 
     if (addedIDS.includes(id)) {
@@ -33,7 +33,7 @@ export const MyContextProvider: React.FC<MyContextProviderProps> = ({
   const contextValue: ContextValueType = {
     addedIDS,
     cartValue,
-    handleClick,
+    handleAddToCart,
   };
 
   return (

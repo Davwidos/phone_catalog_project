@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import MyContext from '../provider/Provider';
+import MyContext from '../provider/CartProvider';
 
 type Props = {
   id: number;
