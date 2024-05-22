@@ -1,0 +1,54 @@
+{
+    "sourceFile": "src/components/TechSpecs/TechSpecs.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1716378773617,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716378782013,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,5 +4,5 @@\n .techSpecs {\n   &__row {\n     @include flex-row;\n   }\n-}\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1716378812112,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,6 +3,7 @@\n \n .techSpecs {\n   &__row {\n     @include flex-row;\n+    justify-content: space-between;\n   }\n }\n"
+                },
+                {
+                    "date": 1716378837123,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,6 +4,7 @@\n .techSpecs {\n   &__row {\n     @include flex-row;\n     justify-content: space-between;\n+    height: 21px;\n   }\n }\n"
+                },
+                {
+                    "date": 1716378863084,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,6 +5,9 @@\n   &__row {\n     @include flex-row;\n     justify-content: space-between;\n     height: 21px;\n+    &--title {\n+      // @include bodytext14;\n+    }\n   }\n }\n"
+                },
+                {
+                    "date": 1716378870925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,7 +7,8 @@\n     justify-content: space-between;\n     height: 21px;\n     &--title {\n       // @include bodytext14;\n+      color: $secondary\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1716378889184,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n @use '../../styles/utils/mixins' as *;\n @import '../../styles/utils/vars';\n \n .techSpecs {\n+  gap: 8px;\n   &__row {\n     @include flex-row;\n     justify-content: space-between;\n     height: 21px;\n"
+                },
+                {
+                    "date": 1716378896327,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n @use '../../styles/utils/mixins' as *;\n @import '../../styles/utils/vars';\n \n .techSpecs {\n+  @include flex-col;\n   gap: 8px;\n   &__row {\n     @include flex-row;\n     justify-content: space-between;\n"
+                },
+                {
+                    "date": 1716378903179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n @use '../../styles/utils/mixins' as *;\n @import '../../styles/utils/vars';\n \n .techSpecs {\n-  @include flex-row;\n+  @include flex-col;\n   gap: 8px;\n   &__row {\n     @include flex-row;\n     justify-content: space-between;\n"
+                },
+                {
+                    "date": 1716378908733,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n @import '../../styles/utils/vars';\n \n .techSpecs {\n   @include flex-col;\n+  justify-content: flex-start;\n   gap: 8px;\n   &__row {\n     @include flex-row;\n     justify-content: space-between;\n"
+                }
+            ],
+            "date": 1716378773617,
+            "name": "Commit-0",
+            "content": "@use '../../styles/utils/mixins' as *;\n@import '../../styles/utils/vars';\n\n.techSpecs {\n  &__row {\n    @include flex-row;\n  }\n}"
+        }
+    ]
+}
