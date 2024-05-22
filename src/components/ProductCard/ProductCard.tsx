@@ -1,8 +1,15 @@
 import './ProductCard.scss';
 import img from '../../images/Product.png';
 import favorites from '../../images/icons/favorites.svg';
+import { useNavigate } from 'react-router-dom';
 
 export const ProductCard: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleCardClick = (id: number) => () => {
+    navigate(`/product/${id}`);
+  };
+
   return (
     <div className="productCard">
       <img
@@ -11,7 +18,7 @@ export const ProductCard: React.FC = () => {
         alt="Apple iPhone 14 Pro 128GB Silver (MQ023)"
       />
 
-      <h2 className="productCard__title">
+      <h2 className="productCard__title" onClick={handleCardClick(12)}>
         Apple iPhone 14 Pro 128GB Silver (MQ023)
       </h2>
 
