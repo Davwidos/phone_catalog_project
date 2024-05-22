@@ -5,10 +5,12 @@ import BurgerMenu from './components/BurgerMenu/BurgerMenu';
 import { NotFoundPage } from './components/NotFoundPage/NotFoundPage';
 import { Cart } from './components/Cart/Cart';
 import { ProductList } from './components/ProductList/ProductList';
+import Slider from './components/Slider/Slider';
 
 export const App = () => (
   <>
     <BurgerMenu />
+    <Slider />
     <Routes>
       <Route element={<Page />}>
         <Route path="/" element={<h1>Home</h1>} />
