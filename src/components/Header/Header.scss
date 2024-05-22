@@ -1,0 +1,36 @@
+@use '../../styles/utils/mixins' as *;
+@import '../../styles/utils/vars';
+
+.header {
+  @include flex-row;
+
+  justify-content: space-between;
+  padding: 0 16px;
+  height: 48px;
+  box-shadow: 0 1px 0 0 #e2e6e9;
+
+  &__buttons {
+    @include flex-row;
+
+    justify-content: flex-end;
+    height: 48px;
+    width: 100%;
+  }
+  &__burger {
+    &-container {
+      padding-left: 16px;
+      box-shadow: -1px 0 0 0 #e2e6e9;
+
+      @include flex-col;
+
+      height: 48px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__logo {
+    height: 22px;
+  }
+}
