@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1716217784487,
@@ -20,10 +20,6 @@
                 {
                     "date": 1716304271998,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,17 +5,18 @@\n import { Page } from './components/Page';\n import { NotFoundPage } from './components/NotFoundPage';\n \n export const App = () => (\n+    <><Header />\n   <Routes>\n-    <Header />\n     <Route element={<Page />}>\n       <Route path=\"/\" element={<h1>Home</h1>} />\n       <Route path=\"/phones\" element={<h1>phones</h1>} />\n       <Route path=\"/tablets\" element={<h1>tablets</h1>} />\n       <Route path=\"/accessories\" element={<h1>accessories</h1>} />\n       <Route path=\"/home\" element={<Navigate to=\"/\" />} />\n       <Route path=\"*\" element={<NotFoundPage />} />\n     </Route>\n+  </Routes>\n     <Footer />\n-  </Routes>\n-);\n+    </>\n+    );\n"
-                },
-                {
-                    "date": 1716378691655,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,12 +4,14 @@\n import { Header } from './components/Header/Header';\n import { Page } from './components/Page';\n import { ProductList } from './components/ProductList/ProductList';\n import { NotFoundPage } from './components/NotFoundPage';\n+import { TechSpecs } from './components/TechSpecs/TechSpecs';\n \n export const App = () => (\n   <>\n     <Header />\n+    <TechSpecs/>\n     <Routes>\n       <Route element={<Page />}>\n         <Route path=\"/\" element={<h1>Home</h1>} />\n         <Route path=\"/phones\" element={<ProductList />} />\n"
                 }
             ],
             "date": 1716217784487,
