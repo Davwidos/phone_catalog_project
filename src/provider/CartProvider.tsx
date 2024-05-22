@@ -1,12 +1,16 @@
 import React, { createContext, useState } from 'react';
 
-const MyContext = createContext<ContextValueType | null>(null);
-
-type ContextValueType = {
+export type ContextValueType = {
   addedIDS: number[];
   cartValue: number;
   handleAddToCart: (id: number) => void;
 };
+
+const MyContext = createContext<ContextValueType>({
+  cartValue: 0,
+  addedIDS: [],
+  handleAddToCart: () => {},
+});
 
 type MyContextProviderProps = {
   children: React.ReactNode;

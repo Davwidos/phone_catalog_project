@@ -1,10 +1,14 @@
 import { useContext } from 'react';
 import './App.scss';
 import Item from './components/Item';
-import MyContext, { MyContextProvider } from './provider/CartProvider';
+import MyContext, {
+  MyContextProvider,
+  ContextValueType,
+} from './provider/CartProvider';
 
 const TotalCost = () => {
-  const { cartValue } = useContext(MyContext);
+  const { cartValue } = useContext<ContextValueType>(MyContext);
+
   return <div>Total cost: {cartValue}</div>;
 };
 
