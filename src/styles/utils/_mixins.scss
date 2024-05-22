@@ -1,0 +1,69 @@
+@mixin grid {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin h1 {
+  font-family: Mont, arial, sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 41px;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+
+@mixin h2 {
+  font-family: Mont, arial, sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 30.8px;
+  text-align: left;
+}
+
+@mixin h3 {
+  font-family: Mont, arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 25.56px;
+  text-align: left;
+}
+
+@mixin h4 {
+  font-family: Mont, arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20.45px;
+  text-align: left;
+}
+
+@mixin smalltext {
+  font-family: Mont, arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15.34px;
+  text-align: left;
+}
+
+@mixin uppercase {
+  font-family: Mont, arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 11px;
+  letter-spacing: 0.04em;
+  text-align: left;
+}
