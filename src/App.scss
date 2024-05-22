@@ -1,1 +1,9 @@
-// not empty
+@import './generalStyles/fonts';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Mont, sans-serif;
+}

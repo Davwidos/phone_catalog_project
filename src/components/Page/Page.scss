@@ -1,0 +1,15 @@
+@import './container';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .container {
+    padding: 24px 16px 56px;
+    font-size: 12px;
+    font-weight: 600;
+
+    @include page-grid;
+  }
+}

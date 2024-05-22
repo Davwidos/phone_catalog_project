@@ -1,25 +1,25 @@
-import { useContext } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.scss';
-import Item from './components/Item';
-import MyContext, { MyContextProvider } from './provider/Provider';
+import { Footer } from './components/Footer/Footer';
+import { Header } from './components/Header/Header';
+import { Page } from './components/Page';
+import { ProductList } from './components/ProductList/ProductList';
+import { NotFoundPage } from './components/NotFoundPage';
 
-const TotalCost = () => {
-  const { cartValue } = useContext(MyContext);
-  return <div>Total cost: {cartValue}</div>;
-};
+export const App = () => (
+  <>
+    <Header />
+    <Routes>
+      <Route element={<Page />}>
+        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/phones" element={<ProductList />} />
+        <Route path="/tablets" element={<ProductList />} />
+        <Route path="/accessories" element={<ProductList />} />
+        <Route path="/home" element={<Navigate to="/" />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
+    <Footer />
+  </>
+);
 
-export const App = () => {
-  return (
-    <MyContextProvider>
-      <div className="App">
-        <h1>Product Catalog</h1>
-        <Item id={3} />
-        <Item id={5} />
-        <br />
-        <TotalCost />
-      </div>
-    </MyContextProvider>
-  );
-};
-
-export default App;
