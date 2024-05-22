@@ -6,25 +6,25 @@
             "activePatchIndex": 3,
             "patches": [
                 {
-                    "date": 1716293989657,
+                    "date": 1716217784487,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
                 },
                 {
-                    "date": 1716294683467,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,13 @@\n   handleClick: (id: number) => void;\n };\n const Item: React.FC<Props> = ({ id, addedIDS, handleClick }) => {\n   return (\n+    <>\n     <button onClick={() => handleClick(id)}>\n       {addedIDS.includes(id) ? `Add to cart` : `Added to cart`}\n     </button>\n+    </>\n   );\n };\n export const App = () => {\n   const [addedIDS, setAddedIDS] = useState<number[]>([]); //dodajemy telefony, ktorych przycisk został naciśnięty po ID\n"
+                    "date": 1716219447225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import './App.scss';\n+import './scripts/main';\n import { Footer } from './components/Footer/Footer';\n import { Header } from './components/Header/Header';\n \n export const App = () => (\n"
                 },
                 {
-                    "date": 1716294693718,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n     <>\n       <button onClick={() => handleClick(id)}>\n         {addedIDS.includes(id) ? `Add to cart` : `Added to cart`}\n       </button>\n+      {id * 10}\n     </>\n   );\n };\n export const App = () => {\n"
+                    "date": 1716275691480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n import './App.scss';\n-import './scripts/main';\n import { Footer } from './components/Footer/Footer';\n import { Header } from './components/Header/Header';\n \n export const App = () => (\n"
                 },
                 {
-                    "date": 1716294714179,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,10 @@\n   addedIDS: number[];\n   handleClick: (id: number) => void;\n };\n const Item: React.FC<Props> = ({ id, addedIDS, handleClick }) => {\n+\n+  const price = id * 10;\n   return (\n     <>\n       <button onClick={() => handleClick(id)}>\n         {addedIDS.includes(id) ? `Add to cart` : `Added to cart`}\n"
+                    "date": 1716304271998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,17 +5,18 @@\n import { Page } from './components/Page';\n import { NotFoundPage } from './components/NotFoundPage';\n \n export const App = () => (\n+    <><Header />\n   <Routes>\n-    <Header />\n     <Route element={<Page />}>\n       <Route path=\"/\" element={<h1>Home</h1>} />\n       <Route path=\"/phones\" element={<h1>phones</h1>} />\n       <Route path=\"/tablets\" element={<h1>tablets</h1>} />\n       <Route path=\"/accessories\" element={<h1>accessories</h1>} />\n       <Route path=\"/home\" element={<Navigate to=\"/\" />} />\n       <Route path=\"*\" element={<NotFoundPage />} />\n     </Route>\n+  </Routes>\n     <Footer />\n-  </Routes>\n-);\n+    </>\n+    );\n"
                 }
             ],
-            "date": 1716293989657,
+            "date": 1716217784487,
             "name": "Commit-0",
-            "content": "import React, { useState } from 'react';\nimport './App.scss';\ntype Props = {\n  id: number;\n  addedIDS: number[];\n  handleClick: (id: number) => void;\n};\nconst Item: React.FC<Props> = ({ id, addedIDS, handleClick }) => {\n  return (\n    <button onClick={() => handleClick(id)}>\n      {addedIDS.includes(id) ? `Add to cart` : `Added to cart`}\n    </button>\n  );\n};\nexport const App = () => {\n  const [addedIDS, setAddedIDS] = useState<number[]>([]); //dodajemy telefony, ktorych przycisk został naciśnięty po ID\n  const [cartValue, setCartValue] = useState(0);\n  const handleClick = (id: number) => {\n    if (addedIDS.includes(id)) {\n      setAddedIDS(prev => prev.filter(searched => searched !== id));\n    } else {\n      setAddedIDS(prev => [...prev, id]);\n    }\n  };\n\n  return (\n    <div className=\"App\">\n      <h1>Product Catalog</h1>\n      <Item id={2} addedIDS={addedIDS} handleClick={handleClick} />\n      <Item id={3} addedIDS={addedIDS} handleClick={handleClick} />\n      {cartValue}\n    </div>\n  );\n};\n"
+            "content": "import './App.scss';\nimport { Footer } from './components/Footer/Footer';\nimport { Header } from './components/Header/Header';\n\nexport const App = () => (\n  <div className=\"App\">\n    <Header />\n    <Footer />\n  </div>\n);\n"
         }
     ]
 }

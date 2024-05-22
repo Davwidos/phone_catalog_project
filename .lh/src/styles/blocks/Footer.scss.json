@@ -1,0 +1,94 @@
+{
+    "sourceFile": "src/styles/blocks/Footer.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 19,
+            "patches": [
+                {
+                    "date": 1716218705102,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716218731999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n @import '../../utils/vars';\n \n .footer {\n   @include flex-col;\n-  justify-content: flex-start;\n+  align-items: flex-start;\n   gap: 32px;\n   padding: 0 16px;\n   &__links {\n     @include flex-col;\n"
+                },
+                {
+                    "date": 1716218764993,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n   @include flex-col;\n   align-items: flex-start;\n   gap: 32px;\n   padding: 0 16px;\n+  margin: 16px 0;\n   &__links {\n     @include flex-col;\n     justify-content: space-between;\n     height: 65px;\n"
+                },
+                {
+                    "date": 1716218779925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   @include flex-col;\n   align-items: flex-start;\n   gap: 32px;\n   padding: 0 16px;\n-  margin: 16px 0;\n+  margin: 32px 0;\n   &__links {\n     @include flex-col;\n     justify-content: space-between;\n     height: 65px;\n"
+                },
+                {
+                    "date": 1716219122806,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n     text-decoration: none;\n   }\n   &__scrollup {\n     margin: 0 auto;\n+    gap: 16px;\n   }\n   &__text {\n     @include smalltext;\n     color: $secondary;\n"
+                },
+                {
+                    "date": 1716219156570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n     color: $secondary;\n     text-decoration: none;\n   }\n   &__scrollup {\n+    @include flex-row;\n     margin: 0 auto;\n     gap: 16px;\n   }\n   &__text {\n"
+                },
+                {
+                    "date": 1716219180772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,11 @@\n   &__scrollup {\n     @include flex-row;\n     margin: 0 auto;\n     gap: 16px;\n+    &:hover {\n+      cursor: pointer;\n+    }\n   }\n   &__text {\n     @include smalltext;\n     color: $secondary;\n"
+                },
+                {
+                    "date": 1716219257879,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n+      color: black;\n     }\n   }\n   &__text {\n     @include smalltext;\n"
+                },
+                {
+                    "date": 1716221120770,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n @use '../../utils/mixins' as *;\n @import '../../utils/vars';\n-\n+@font-face {\n+  font-family: 'Mont';\n+  src: url(../../../public/fonts/Mont-SemiBold.otf);\n+}\n .footer {\n   @include flex-col;\n   align-items: flex-start;\n   gap: 32px;\n"
+                },
+                {
+                    "date": 1716275902748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n-      color: black;\n+      transform: rotate(90deg);\n     }\n   }\n   &__text {\n     @include smalltext;\n"
+                },
+                {
+                    "date": 1716275919055,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n-      transform: rotate(90deg);\n+      transform: rotate(180deg);\n     }\n   }\n   &__text {\n     @include smalltext;\n"
+                },
+                {
+                    "date": 1716275938159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,11 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n-      transform: rotate(180deg);\n+      &img {\n+        transform: rotate(180deg);\n+      }\n     }\n   }\n   &__text {\n     @include smalltext;\n"
+                },
+                {
+                    "date": 1716275966561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n-      &img {\n+      img {\n         transform: rotate(180deg);\n       }\n     }\n   }\n"
+                },
+                {
+                    "date": 1716276008672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,11 +28,8 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n-      img {\n-        transform: rotate(180deg);\n-      }\n     }\n   }\n   &__text {\n     @include smalltext;\n"
+                },
+                {
+                    "date": 1716276117665,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,11 @@\n   &__scrollup {\n     @include flex-row;\n     margin: 0 auto;\n     gap: 16px;\n+    img {\n+      transition: transform 0.3s ease;\n+    }\n     &:hover {\n       cursor: pointer;\n     }\n   }\n"
+                },
+                {
+                    "date": 1716276160599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n   &__scrollup {\n     @include flex-row;\n     margin: 0 auto;\n     gap: 16px;\n-    img {\n+    a img {\n       transition: transform 0.3s ease;\n     }\n     &:hover {\n       cursor: pointer;\n"
+                },
+                {
+                    "date": 1716276209231,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,11 +26,8 @@\n   &__scrollup {\n     @include flex-row;\n     margin: 0 auto;\n     gap: 16px;\n-    a img {\n-      transition: transform 0.3s ease;\n-    }\n     &:hover {\n       cursor: pointer;\n     }\n   }\n"
+                },
+                {
+                    "date": 1716285578490,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n+      color: red;\n     }\n   }\n   &__text {\n     @include smalltext;\n"
+                },
+                {
+                    "date": 1716285592731,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,8 @@\n     margin: 0 auto;\n     gap: 16px;\n     &:hover {\n       cursor: pointer;\n-      color: red;\n     }\n   }\n   &__text {\n     @include smalltext;\n"
+                },
+                {
+                    "date": 1716285927894,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-@use '../../utils/mixins' as *;\n+@use '../../styles/utils/mixins' as *;\n @import '../../utils/vars';\n @font-face {\n   font-family: 'Mont';\n   src: url(../../../public/fonts/Mont-SemiBold.otf);\n"
+                }
+            ],
+            "date": 1716218705102,
+            "name": "Commit-0",
+            "content": "@use '../../utils/mixins' as *;\n@import '../../utils/vars';\n\n.footer {\n  @include flex-col;\n  justify-content: flex-start;\n  gap: 32px;\n  padding: 0 16px;\n  &__links {\n    @include flex-col;\n    justify-content: space-between;\n    height: 65px;\n    &--link {\n      @include uppercase;\n      color: $secondary;\n    }\n  }\n  &__link {\n    color: $secondary;\n    text-decoration: none;\n  }\n  &__scrollup {\n    margin: 0 auto;\n  }\n  &__text {\n    @include smalltext;\n    color: $secondary;\n  }\n}\n"
+        }
+    ]
+}
