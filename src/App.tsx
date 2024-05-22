@@ -4,10 +4,12 @@ import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header/Header';
 import { Page } from './components/Page';
 import { NotFoundPage } from './components/NotFoundPage';
+import { Homepage } from './components/Homepage/Homepage';
 
 export const App = () => (
   <>
     <Header />
+    <Homepage />
     <Routes>
       <Route element={<Page />}>
         <Route path="/" element={<h1>Home</h1>} />
