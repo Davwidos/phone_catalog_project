@@ -5,6 +5,7 @@ import { Header } from './components/Header/Header';
 import { Page } from './components/Page';
 import { ProductList } from './components/ProductList/ProductList';
 import { NotFoundPage } from './components/NotFoundPage';
+import { Cart } from './components/cart/Cart';
 
 export const App = () => (
   <>
@@ -15,6 +16,7 @@ export const App = () => (
         <Route path="/phones" element={<ProductList />} />
         <Route path="/tablets" element={<ProductList />} />
         <Route path="/accessories" element={<ProductList />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/home" element={<Navigate to="/" />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
