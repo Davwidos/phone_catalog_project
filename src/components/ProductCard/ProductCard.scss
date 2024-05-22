@@ -1,0 +1,121 @@
+.productCard {
+  box-sizing: border-box;
+  width: 288px;
+  padding: 32px;
+  border: 1px solid #e2e6e9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover {
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  &__img {
+    display: block;
+    width: 224px;
+    height: 130px;
+    object-fit: contain;
+  }
+
+  &__title {
+    color: #313237;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    margin-top: 25px;
+  }
+
+  &__prices {
+    display: flex;
+    color: #313237;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 140%;
+  }
+
+  &__old-price {
+    position: relative;
+    color: #89939a;
+    font-weight: 500;
+    margin-left: 8px;
+  }
+
+  &__line-through {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #89939a;
+    color: #fff;
+    overflow: hidden;
+    line-height: 1.2px;
+  }
+
+  &__divider {
+    width: 100%;
+    height: 1px;
+    background-color: #e2e6e9;
+    margin-top: 6px;
+  }
+
+  &__info {
+    color: #89939a;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: normal;
+    margin-block: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__info-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__info-value {
+    color: #313237;
+  }
+
+  &__btns {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    height: 40px;
+  }
+
+  &__btn {
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
+  &__addToCart {
+    width: 176px;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    background-color: #313237;
+    border: none;
+    transition: all 0.3s;
+    &:hover {
+      box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.26);
+    }
+  }
+
+  &__favorites {
+    width: 40px;
+    background-color: #fff;
+    transition: all 0.3s;
+    border: 1px solid #b4bdc3;
+
+    &:hover {
+      border: 1px solid #313237;
+    }
+  }
+}
