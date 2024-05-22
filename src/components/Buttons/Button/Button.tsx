@@ -3,12 +3,11 @@ import './Button.scss';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-interface Props
+export interface Props
   extends ButtonHTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
   active?: true;
   primary?: true;
   square?: true;
-  width?: number;
   to?: string;
   children?: React.ReactNode;
 }
@@ -17,7 +16,6 @@ export const Button: FC<Props> = ({
   active,
   primary,
   square,
-  width,
   to,
   children,
   className,
@@ -27,12 +25,11 @@ export const Button: FC<Props> = ({
     return (
       <Link
         to={to}
-        style={{ width }}
         className={classNames(
-          'button',
-          { 'button--primary': primary },
+          'Button',
+          { 'Button--primary': primary },
           { active },
-          { 'button--square': square },
+          { 'Button--square': square },
           className,
         )}
         {...props}
@@ -44,12 +41,11 @@ export const Button: FC<Props> = ({
 
   return (
     <button
-      style={{ width }}
       className={classNames(
-        'button',
-        { 'button--primary': primary },
+        'Button',
+        { 'Button--primary': primary },
         { active },
-        { 'button--square': square },
+        { 'Button--square': square },
         className,
       )}
       {...props}
