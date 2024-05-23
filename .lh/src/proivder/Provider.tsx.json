@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/proivder/Provider.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1716370154864,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716370437765,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,34 +1,39 @@\n-import React from 'react';\n-import ReactDOM from 'react-dom';\n+import React, { createContext, useState } from 'react';\n \n-const MyContext = React.createContext({\n+\n+type MyContextType = {\n+  addedIDS: number[];\n+  cartValue: number;\n+  handleClick: (id: number) => void;\n+};\n+\n+const MyContext = createContext<MyContextType>({\n   addedIDS: [],\n   cartValue: 0,\n   handleClick: (id: number) => {},\n });\n \n-function App() {\n-  return (\n-    <ThemeContext.Provider value=\"dark\">\n-      <Toolbar />\n-    </ThemeContext.Provider>\n-  );\n-}\n+export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {\n+  const [addedIDS, setAddedIDS] = useState<number[]>([]);\n+  const [cartValue, setCartValue] = useState(0);\n \n-function Toolbar() {\n-  return (\n-    <div>\n-      <ThemedButton />\n-    </div>\n-  );\n-}\n+  const handleClick = (id: number) => {\n+    const price = id * 10;\n \n-function ThemedButton() {\n+    if (addedIDS.includes(id)) {\n+      setAddedIDS(prev => prev.filter(searched => searched !== id));\n+      setCartValue(prev => prev - price);\n+    } else {\n+      setAddedIDS(prev => [...prev, id]);\n+      setCartValue(prev => prev + price);\n+    }\n+  };\n+\n   return (\n-    <ThemeContext.Consumer>\n-      {value => <button>{value}</button>}\n-    </ThemeContext.Consumer>\n+    <MyContext.Provider value={{ addedIDS, cartValue, handleClick }}>\n+      {children}\n+    </MyContext.Provider>\n   );\n-}\n+};\n \n-ReactDOM.render(<App />, document.getElementById('root'));\n+export default MyContext;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1716370451539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n import React, { createContext, useState } from 'react';\n \n-\n type MyContextType = {\n   addedIDS: number[];\n   cartValue: number;\n   handleClick: (id: number) => void;\n@@ -12,9 +11,11 @@\n   cartValue: 0,\n   handleClick: (id: number) => {},\n });\n \n-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {\n+export const CartProvider: React.FC<{ children: React.ReactNode }> = ({\n+  children,\n+}) => {\n   const [addedIDS, setAddedIDS] = useState<number[]>([]);\n   const [cartValue, setCartValue] = useState(0);\n \n   const handleClick = (id: number) => {\n@@ -35,5 +36,5 @@\n     </MyContext.Provider>\n   );\n };\n \n-export default MyContext;\n\\ No newline at end of file\n+export default MyContext;\n"
+                },
+                {
+                    "date": 1716370556217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   cartValue: 0,\n   handleClick: (id: number) => {},\n });\n \n-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({\n+export const MyContextProvider: React.FC<{ children: React.ReactNode }> = ({\n   children,\n }) => {\n   const [addedIDS, setAddedIDS] = useState<number[]>([]);\n   const [cartValue, setCartValue] = useState(0);\n"
+                },
+                {
+                    "date": 1716370708543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,11 +11,9 @@\n   cartValue: 0,\n   handleClick: (id: number) => {},\n });\n \n-export const MyContextProvider: React.FC<{ children: React.ReactNode }> = ({\n-  children,\n-}) => {\n+export const MyContextProvider: React.FC<{children: React.ReactNode>} = ({ children }) => {\n   const [addedIDS, setAddedIDS] = useState<number[]>([]);\n   const [cartValue, setCartValue] = useState(0);\n \n   const handleClick = (id: number) => {\n"
+                },
+                {
+                    "date": 1716370773218,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,24 @@\n+// Provider.tsx\n import React, { createContext, useState } from 'react';\n \n-type MyContextType = {\n+// Define the context\n+const MyContext = createContext<any>(null);\n+\n+// Define the type for the context value\n+type ContextValueType = {\n   addedIDS: number[];\n   cartValue: number;\n   handleClick: (id: number) => void;\n };\n \n-const MyContext = createContext<MyContextType>({\n-  addedIDS: [],\n-  cartValue: 0,\n-  handleClick: (id: number) => {},\n-});\n+// Define the type for MyContextProvider props\n+type MyContextProviderProps = {\n+  children: React.ReactNode;\n+};\n \n-export const MyContextProvider: React.FC<{children: React.ReactNode>} = ({ children }) => {\n+// Export the context and its provider\n+export const MyContextProvider: React.FC<MyContextProviderProps> = ({ children }) => {\n   const [addedIDS, setAddedIDS] = useState<number[]>([]);\n   const [cartValue, setCartValue] = useState(0);\n \n   const handleClick = (id: number) => {\n@@ -27,10 +32,17 @@\n       setCartValue(prev => prev + price);\n     }\n   };\n \n+  // Create the context value object\n+  const contextValue: ContextValueType = {\n+    addedIDS,\n+    cartValue,\n+    handleClick\n+  };\n+\n   return (\n-    <MyContext.Provider value={{ addedIDS, cartValue, handleClick }}>\n+    <MyContext.Provider value={contextValue}>\n       {children}\n     </MyContext.Provider>\n   );\n };\n"
+                },
+                {
+                    "date": 1716370783974,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,18 @@\n-// Provider.tsx\n import React, { createContext, useState } from 'react';\n \n-// Define the context\n const MyContext = createContext<any>(null);\n \n-// Define the type for the context value\n type ContextValueType = {\n   addedIDS: number[];\n   cartValue: number;\n   handleClick: (id: number) => void;\n };\n \n-// Define the type for MyContextProvider props\n type MyContextProviderProps = {\n   children: React.ReactNode;\n };\n \n-// Export the context and its provider\n export const MyContextProvider: React.FC<MyContextProviderProps> = ({\n   children,\n }) => {\n   const [addedIDS, setAddedIDS] = useState<number[]>([]);\n@@ -34,9 +29,8 @@\n       setCartValue(prev => prev + price);\n     }\n   };\n \n-  // Create the context value object\n   const contextValue: ContextValueType = {\n     addedIDS,\n     cartValue,\n     handleClick,\n"
+                }
+            ],
+            "date": 1716370154864,
+            "name": "Commit-0",
+            "content": "import React from 'react';\nimport ReactDOM from 'react-dom';\n\nconst MyContext = React.createContext({\n  addedIDS: [],\n  cartValue: 0,\n  handleClick: (id: number) => {},\n});\n\nfunction App() {\n  return (\n    <ThemeContext.Provider value=\"dark\">\n      <Toolbar />\n    </ThemeContext.Provider>\n  );\n}\n\nfunction Toolbar() {\n  return (\n    <div>\n      <ThemedButton />\n    </div>\n  );\n}\n\nfunction ThemedButton() {\n  return (\n    <ThemeContext.Consumer>\n      {value => <button>{value}</button>}\n    </ThemeContext.Consumer>\n  );\n}\n\nReactDOM.render(<App />, document.getElementById('root'));\n"
+        }
+    ]
+}
