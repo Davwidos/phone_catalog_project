@@ -6,7 +6,11 @@ import { CartItem } from '../CartItem';
 
 export const Cart = () => {
   // const { addedIDS } = useContext<ContextValueType>(MyContext);
-  const [cartItems, setCartItems] = useState([1, 2, 3]);
+  const [cartItems, setCartItems] = useState([
+    { id: 1, price: 899 },
+    { id: 2, price: 799 },
+    { id: 3, price: 999 },
+  ]);
   const navigate = useNavigate();
 
   const handleCheckout = () => {
@@ -20,6 +24,12 @@ export const Cart = () => {
     }
   };
 
+  const handleDelete = (id: number) => {
+    setCartItems((prevItems: any[]) =>
+      prevItems.filter((item: { id: number }) => item.id !== id),
+    );
+  };
+
   return (
     <>
       <div className="cart">
@@ -29,13 +39,18 @@ export const Cart = () => {
         </NavLink>
         <h1 className="cart__title">Cart</h1>
         <div className="cart__items">
-          {cartItems.map(id => (
-            <CartItem id={id} key={id} />
+          {cartItems.map(item => (
+            <CartItem
+              key={item.id}
+              id={item.id}
+              price={item.price}
+              onDelete={handleDelete}
+            />
           ))}
         </div>
         <div className="cart__summary">
           <span className="cart__summary-total">
-            ${cartItems.reduce((total, item) => total + item, 0)}
+            ${cartItems.reduce((total, item) => total + item.price, 0)}
           </span>
           <span className="cart__summary-label">
             Total for {cartItems.length} items

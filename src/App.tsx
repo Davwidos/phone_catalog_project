@@ -15,6 +15,7 @@ const Details = () => {
   const { id } = useParams();
   const location = useLocation();
   const { price } = location.state;
+
   return (
     <>
       <h1>details: {id}</h1>

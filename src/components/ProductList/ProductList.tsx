@@ -9,6 +9,7 @@ export const ProductList: React.FC = () => {
       id: index,
       price: index * 100,
     }));
+
   return (
     <div className="container">
       {phones.map(phone => (
