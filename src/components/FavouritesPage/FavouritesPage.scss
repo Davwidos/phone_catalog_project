@@ -1,0 +1,27 @@
+@use '../../styles/utils/mixins' as *;
+@import '../../styles/utils/vars';
+@import '../../generalStyles/fonts';
+
+.favouritesPage {
+  @include flex-col;
+  align-items: flex-start;
+  margin: 0 auto;
+  &__text {
+    // @include bodytext14;
+    font-family: Mont;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    text-align: left;
+    color: $secondary;
+    margin: 8px 0 32px;
+  }
+  &__title {
+    @include h1;
+    margin-top: 24px;
+  }
+  &__products {
+    @include flex-col;
+    gap: 40px;
+  }
+}
