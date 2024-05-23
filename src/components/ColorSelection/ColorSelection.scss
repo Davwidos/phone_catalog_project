@@ -14,13 +14,13 @@
   }
 }
 
-.title {
+.color-title {
   @include smalltext;
 
   color: #89939A;
 }
 
-.id {
+.color-id {
   @include smalltext;
 
   font-weight: 700;

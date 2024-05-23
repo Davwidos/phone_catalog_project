@@ -5,7 +5,7 @@
   padding: 16px;
 
   &__title {
-    font-family: Mont;
+    font-family: Mont, sans-serif;
     font-size: 22px;
     font-weight: 800;
     line-height: 30.8px;
@@ -16,5 +16,36 @@
     width: 100%;
     height: 440px;
     text-align: center;
+  }
+
+  &__short-specs {
+    margin-top: -24px;
+  }
+}
+
+.short-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__spec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    font-family: Mont, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15.34px;
+    color: #89939A;
+  }
+
+  &__value {
+    font-family: Mont, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15.34px;
   }
 }
