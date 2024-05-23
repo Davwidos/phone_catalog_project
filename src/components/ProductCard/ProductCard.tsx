@@ -2,11 +2,16 @@ import './ProductCard.scss';
 import img from '../../images/Product.png';
 import favorites from '../../images/icons/favorites.svg';
 import { Link } from 'react-router-dom';
+import { useCart } from '../../provider/CartProvider';
+
 type Props = {
   id: number;
   price: number;
 };
+
 export const ProductCard: React.FC<Props> = ({ id, price }) => {
+  const { handleAddToCart } = useCart();
+
   return (
     <div className="productCard">
       <img
@@ -52,18 +57,15 @@ export const ProductCard: React.FC<Props> = ({ id, price }) => {
         <div className="productCard__btns">
           <button
             type="button"
-            className="
-            productCard__addToCart
-            productCard__btn"
+            className="productCard__addToCart productCard__btn"
+            onClick={() => handleAddToCart(id, price)}
           >
             Add to cart
           </button>
 
           <button
             type="button"
-            className="
-            productCard__favorites
-            productCard__btn"
+            className="productCard__favorites productCard__btn"
           >
             <img src={favorites} alt="favorites" />
           </button>
