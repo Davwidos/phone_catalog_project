@@ -1,15 +1,19 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 type ContextValueType = {
-  addedIDS: number[];
+  addedIDS: Record<number, number>;
   cartValue: number;
   handleAddToCart: (id: number) => void;
+  decreaseAmount: (id: number, amount?: number) => void;
+  removeItem: (id: number) => void;
 };
 
 const CartContext = createContext<ContextValueType>({
   cartValue: 0,
   addedIDS: [],
   handleAddToCart: () => {},
+  decreaseAmount: () => {},
+  removeItem: () => {},
 });
 
 type MyContextProviderProps = {
@@ -29,7 +33,7 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
     }
 
     if (cartValStr) {
-      setCartValue(+cartValStr)
+      setCartValue(+cartValStr);
     }
   }, []);
 
@@ -42,21 +46,53 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
   }, [cartValue]);
 
   const handleAddToCart = (id: number) => {
-    const price = id * 10;
+    setAddedIDS(prev => {
+      const productCount = prev[id];
 
-    if (addedIDS.includes(id)) {
-      setAddedIDS(prev => prev.filter(searched => searched !== id));
-      setCartValue(prev => prev - price);
-    } else {
-      setAddedIDS(prev => [...prev, id]);
-      setCartValue(prev => prev + price);
-    }
+      return productCount
+        ? { ...prev, [id]: productCount + 1 }
+        : { ...prev, [id]: 1 };
+    });
+
+    setCartValue(prev => prev + id * 10);
+  };
+
+  const removeItem = (id: number) => {
+    setAddedIDS(prev => {
+      const { [id]: count, ...rest } = prev;
+
+      setCartValue(val => (count ? val - count * 10 * id : val));
+
+      return { ...rest };
+    });
+  };
+
+  const decreaseAmount = (id: number, amount = 1) => {
+    setAddedIDS(prev => {
+      const productAmount = prev[id];
+
+      if (productAmount && productAmount > amount) {
+        setCartValue(val => val - amount * id * 10);
+
+        return { ...prev, [id]: productAmount - amount };
+      } else if (productAmount) {
+        const { [id]: count, ...rest } = prev;
+
+        setCartValue(val => (count ? val - count * 10 * id : val));
+
+        return { ...rest };
+      }
+
+      return prev;
+    });
   };
 
   const contextValue: ContextValueType = {
     addedIDS,
     cartValue,
     handleAddToCart,
+    decreaseAmount,
+    removeItem,
   };
 
   return (
