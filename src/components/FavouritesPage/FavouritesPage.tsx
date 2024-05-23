@@ -9,7 +9,7 @@ export const FavouritesPage = () => {
     <div className="favouritesPage">
       {/* <Breadcrumbs /> */} breadcrumbsplaceholder
       <h1 className="favouritesPage__title">Favourites</h1>
-      <p className="favouritesPage__text"> *placeholder* items</p>
+      <p className="favouritesPage__text"> {favouritesIDS.length} items</p>
       <div className="favouritesPage__products">
         {favouritesIDS?.map(id => <ProductCard key={id} productId={id} />)}
       </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-// import { ProductCard } from '../ProductCard/ProductCard';
+import { ProductCard } from '../ProductCard/ProductCard';
 import './ProductList.scss';
 
 export const ProductList: React.FC = () => {
@@ -12,6 +12,7 @@ export const ProductList: React.FC = () => {
       <ProductCard />
       <ProductCard />
       <ProductCard /> */}
+      <ProductCard productId={232} />
     </div>
   );
 };

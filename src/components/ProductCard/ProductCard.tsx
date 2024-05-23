@@ -1,10 +1,13 @@
 import './ProductCard.scss';
 import img from '../../images/Product.png';
 import favorites from '../../images/icons/favorites.svg';
+import { useFavourites } from '../../provider/FavouritesProvider';
 type Props = {
   productId: number;
 };
 export const ProductCard: React.FC<Props> = ({ productId }) => {
+  const { handleAddToFavourites } = useFavourites();
+
   return (
     <div className="productCard">
       {productId}
@@ -61,6 +64,7 @@ export const ProductCard: React.FC<Props> = ({ productId }) => {
             className="
             productCard__favorites
             productCard__btn"
+            onClick={() => handleAddToFavourites(productId)}
           >
             <img src={favorites} alt="favorites" />
           </button>
