@@ -1,10 +1,10 @@
+/* eslint-disable no-console */
 import { FC, useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import './Page.scss';
 import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
-import Slider from '../Slider/Slider';
 
 export const Page: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,15 +22,16 @@ export const Page: FC = () => {
   }, [isOpen]);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(prev => !prev);
   };
+
+  console.log(isOpen);
 
   return (
     <div className="page">
-      <Header toggleMenu={toggleMenu} />
+      <Header toggleMenu={toggleMenu} isOpen={isOpen} />
       {isOpen && <BurgerMenu toggleMenu={toggleMenu} />}
       <Outlet />
-      <Slider />
       <Footer />
     </div>
   );

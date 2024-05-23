@@ -2,9 +2,17 @@ import './ProductCard.scss';
 import img from '../../images/Product.png';
 import favorites from '../../images/icons/favorites.svg';
 
-export const ProductCard: React.FC = () => {
+interface ProductCardType {
+  width: number;
+}
+
+export const ProductCard: React.FC<ProductCardType> = ({ width }) => {
+  const cardStyle = {
+    width: `${width}px`,
+  };
+
   return (
-    <div className="productCard">
+    <div className="productCard" style={cardStyle}>
       <img
         className="productCard__img"
         src={img}

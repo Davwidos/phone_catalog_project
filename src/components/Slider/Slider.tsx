@@ -64,12 +64,6 @@ const products = [
 const Slider = () => {
   return (
     <>
-      <div className="title">
-        <h1>
-          Brand new <br /> models
-        </h1>
-      </div>
-
       <Carousel responsive={responsive}>
         {products.map(product => (
           <div className="item">
