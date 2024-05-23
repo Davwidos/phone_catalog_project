@@ -1,10 +1,13 @@
 import './ProductCard.scss';
 import img from '../../images/Product.png';
 import favorites from '../../images/icons/favorites.svg';
-
-export const ProductCard: React.FC = () => {
+type Props = {
+  productId: number;
+};
+export const ProductCard: React.FC<Props> = ({ productId }) => {
   return (
     <div className="productCard">
+      {productId}
       <img
         className="productCard__img"
         src={img}

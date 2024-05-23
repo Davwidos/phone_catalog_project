@@ -26,6 +26,7 @@ export const FavouritesProvider: React.FC<MyContextProviderProps> = ({
       setFavouritesIDS(prev => [...prev, id]);
     }
   };
+
   const contextValue: FavouritesValueType = {
     favouritesIDS,
     handleAddToFavourites,
