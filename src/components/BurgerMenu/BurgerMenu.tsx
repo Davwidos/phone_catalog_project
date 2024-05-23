@@ -1,35 +1,17 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './BurgerMenu.scss';
 
-const BurgerMenu: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface BurgerProps {
+  toggleMenu: () => void;
+}
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
+const BurgerMenu: React.FC<BurgerProps> = ({ toggleMenu }) => {
   return (
     <>
       <div className="burger-menu-container">
-        <div className="logo">
-          <img src={require('../../icons/Logo.svg').default} alt="" />
-        </div>
-        {!isOpen && (
-          <div className="menu-icon" onClick={toggleMenu}>
-            <img src={require('../../icons/burgerIcon.svg').default} alt="" />
-          </div>
-        )}
-        <div className={`menu ${isOpen ? 'open' : ''}`}>
-          {isOpen && (
-            <div className="close-icon" onClick={toggleMenu}>
-              <img src={require('../../icons/Close-icon.svg').default} alt="" />
-            </div>
-          )}
-          <div className="logo">
-            <img src={require('../../icons/Logo.svg').default} alt="" />
-          </div>
+        <div className="menu">
           <ul>
             <li>
               <Link to="/" onClick={toggleMenu}>

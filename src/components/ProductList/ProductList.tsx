@@ -5,13 +5,13 @@ import './ProductList.scss';
 export const ProductList: React.FC = () => {
   return (
     <div className="container">
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+      <ProductCard width={212} />
+      <ProductCard width={212} />
+      <ProductCard width={212} />
+      <ProductCard width={212} />
+      <ProductCard width={212} />
+      <ProductCard width={212} />
+      <ProductCard width={212} />
     </div>
   );
 };

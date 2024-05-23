@@ -13,3 +13,7 @@
     @include page-grid;
   }
 }
+
+.no-scroll {
+  overflow: hidden;
+}

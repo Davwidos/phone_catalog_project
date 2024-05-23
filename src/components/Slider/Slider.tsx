@@ -3,7 +3,6 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './Slider.scss';
-
 const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
@@ -19,7 +18,7 @@ const responsive = {
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1,
+    items: 1.5,
   },
 };
 
@@ -61,11 +60,11 @@ const products = [
     image: '../../images/Product.png',
   },
 ];
+
 const Slider = () => {
   return (
     <>
       <div className="title">
-        {' '}
         <h1>
           Brand new <br /> models
         </h1>
@@ -74,7 +73,7 @@ const Slider = () => {
       <Carousel responsive={responsive}>
         {products.map(product => (
           <div className="item">
-            <ProductCard key={product.id} {...product} />
+            <ProductCard width={212} key={product.id} {...product} />
           </div>
         ))}
       </Carousel>
