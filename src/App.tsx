@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import { Page } from './components/Page/Page';
-import BurgerMenu from './components/BurgerMenu/BurgerMenu';
 import { NotFoundPage } from './components/NotFoundPage/NotFoundPage';
 import { Cart } from './components/Cart/Cart';
 import { ProductList } from './components/ProductList/ProductList';

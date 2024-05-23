@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/provider/Provider.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1716371113010,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1716371132510,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,28 +1,23 @@\n-// Provider.tsx\n import React, { createContext, useState } from 'react';\n \n-// Define the context\n const MyContext = createContext<any>(null);\n \n-// Define the type for the context value\n type ContextValueType = {\n   addedIDS: number[];\n   cartValue: number;\n   handleClick: (id: number) => void;\n };\n \n-// Define the type for MyContextProvider props\n type MyContextProviderProps = {\n   children: React.ReactNode;\n };\n \n-// Export the context and its provider\n export const MyContextProvider: React.FC<MyContextProviderProps> = ({\n   children,\n }) => {\n   const [addedIDS, setAddedIDS] = useState<number[]>([]);\n-  const [cartValue, setCartValue] = useState<number>(0); // Define cartValue here\n+  const [cartValue, setCartValue] = useState<number>(0);\n \n   const handleClick = (id: number) => {\n     const price = id * 10;\n \n@@ -34,9 +29,8 @@\n       setCartValue(prev => prev + price);\n     }\n   };\n \n-  // Create the context value object\n   const contextValue: ContextValueType = {\n     addedIDS,\n     cartValue,\n     handleClick,\n"
+                }
+            ],
+            "date": 1716371113010,
+            "name": "Commit-0",
+            "content": "// Provider.tsx\nimport React, { createContext, useState } from 'react';\n\n// Define the context\nconst MyContext = createContext<any>(null);\n\n// Define the type for the context value\ntype ContextValueType = {\n  addedIDS: number[];\n  cartValue: number;\n  handleClick: (id: number) => void;\n};\n\n// Define the type for MyContextProvider props\ntype MyContextProviderProps = {\n  children: React.ReactNode;\n};\n\n// Export the context and its provider\nexport const MyContextProvider: React.FC<MyContextProviderProps> = ({ children }) => {\n  const [addedIDS, setAddedIDS] = useState<number[]>([]);\n  const [cartValue, setCartValue] = useState<number>(0); // Define cartValue here\n\n  const handleClick = (id: number) => {\n    const price = id * 10;\n\n    if (addedIDS.includes(id)) {\n      setAddedIDS(prev => prev.filter(searched => searched !== id));\n      setCartValue(prev => prev - price);\n    } else {\n      setAddedIDS(prev => [...prev, id]);\n      setCartValue(prev => prev + price);\n    }\n  };\n\n  // Create the context value object\n  const contextValue: ContextValueType = {\n    addedIDS,\n    cartValue,\n    handleClick\n  };\n\n  return (\n    <MyContext.Provider value={contextValue}>\n      {children}\n    </MyContext.Provider>\n  );\n};\n\nexport default MyContext;\n"
+        }
+    ]
+}
