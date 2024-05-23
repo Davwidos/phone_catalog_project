@@ -2,8 +2,6 @@
 @import '../../styles/utils/vars';
 
 .about {
-  margin: 56px 16px;
-
   @include flex-col;
 
   align-items: flex-start;
