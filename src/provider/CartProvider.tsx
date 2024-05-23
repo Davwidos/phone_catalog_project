@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 type ContextValueType = {
   addedIDS: number[];
@@ -16,11 +16,30 @@ type MyContextProviderProps = {
   children: React.ReactNode;
 };
 
-export const CartProvider: React.FC<MyContextProviderProps> = ({
-  children,
-}) => {
-  const [addedIDS, setAddedIDS] = useState<number[]>([]);
+const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
+  const [addedIDS, setAddedIDS] = useState<Record<number, number>>({});
   const [cartValue, setCartValue] = useState<number>(0);
+
+  useEffect(() => {
+    const idsStr = localStorage.getItem('cartItems');
+    const cartValStr = localStorage.getItem('cartValue');
+
+    if (idsStr) {
+      setAddedIDS(JSON.parse(idsStr));
+    }
+
+    if (cartValStr) {
+      setCartValue(+cartValStr)
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(addedIDS));
+  }, [addedIDS]);
+
+  useEffect(() => {
+    localStorage.setItem('cartValue', cartValue.toString());
+  }, [cartValue]);
 
   const handleAddToCart = (id: number) => {
     const price = id * 10;
