@@ -11,6 +11,10 @@ export const VariantsSection: FC = () => (
     <div className="VariantsSection__separator" />
     <ParametrSelection />
     <div className="VariantsSection__separator" />
+    <div className="price">
+      <span className="price__actual">$799</span>
+      <span className="price__prev">$1199</span>
+    </div>
     <div className="VariantsSection_buttons buttons">
       <Button className="buttons__add" primary>
         Add to cart
