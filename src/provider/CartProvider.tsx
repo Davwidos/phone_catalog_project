@@ -1,12 +1,12 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-export type ContextValueType = {
+type ContextValueType = {
   addedIDS: number[];
   cartValue: number;
   handleAddToCart: (id: number) => void;
 };
 
-const MyContext = createContext<ContextValueType>({
+const CartContext = createContext<ContextValueType>({
   cartValue: 0,
   addedIDS: [],
   handleAddToCart: () => {},
@@ -16,7 +16,7 @@ type MyContextProviderProps = {
   children: React.ReactNode;
 };
 
-export const MyContextProvider: React.FC<MyContextProviderProps> = ({
+export const CartProvider: React.FC<MyContextProviderProps> = ({
   children,
 }) => {
   const [addedIDS, setAddedIDS] = useState<number[]>([]);
@@ -41,8 +41,10 @@ export const MyContextProvider: React.FC<MyContextProviderProps> = ({
   };
 
   return (
-    <MyContext.Provider value={contextValue}>{children}</MyContext.Provider>
+    <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
   );
 };
 
-export default MyContext;
+export const useCart = () => useContext(CartContext);
+
+export default CartProvider;
