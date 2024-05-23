@@ -25,9 +25,7 @@ export const Cart = () => {
   };
 
   const handleDelete = (id: number) => {
-    setCartItems((prevItems: any[]) =>
-      prevItems.filter((item: { id: number }) => item.id !== id),
-    );
+    setCartItems(prevItems => prevItems.filter(item => item.id !== id));
   };
 
   return (

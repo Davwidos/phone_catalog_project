@@ -48,6 +48,7 @@ export const CartItem: React.FC<Props> = ({ id, onDelete, price }) => {
             type="button"
             className="cartItem__btn"
             onClick={handleDecrease}
+            disabled={quantity === 1}
           >
             -
           </button>
