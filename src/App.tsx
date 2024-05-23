@@ -4,7 +4,6 @@ import { Page } from './components/Page/Page';
 import { NotFoundPage } from './components/NotFoundPage/NotFoundPage';
 import { Cart } from './components/Cart/Cart';
 import { ProductList } from './components/ProductList/ProductList';
-
 export const App = () => (
   <Routes>
     <Route element={<Page />}>
