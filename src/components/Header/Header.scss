@@ -3,7 +3,8 @@
 
 .header {
   @include flex-row;
-
+  position: sticky;
+  width: 100%;
   justify-content: space-between;
   padding: 0 16px;
   height: 48px;
