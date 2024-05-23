@@ -1,8 +1,12 @@
 import './ProductCard.scss';
 import img from '../../images/Product.png';
 import favorites from '../../images/icons/favorites.svg';
-
-export const ProductCard: React.FC = () => {
+import { Link } from 'react-router-dom';
+type Props = {
+  id: number;
+  price: number;
+};
+export const ProductCard: React.FC<Props> = ({ id, price }) => {
   return (
     <div className="productCard">
       <img
@@ -12,7 +16,9 @@ export const ProductCard: React.FC = () => {
       />
 
       <h2 className="productCard__title">
-        Apple iPhone 14 Pro 128GB Silver (MQ023)
+        <Link to={`/phones/${id}`} state={{ id, price }}>
+          Apple iPhone 14 Pro 128GB Silver (MQ023)
+        </Link>
       </h2>
 
       <div className="productCard__bottom-content">

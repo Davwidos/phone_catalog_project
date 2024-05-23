@@ -6,6 +6,13 @@ import vector from '../../icons/Vector.svg';
 import { NavLink } from 'react-router-dom';
 
 export const ProductList: React.FC = () => {
+  const phones = Array(10)
+    .fill(1)
+    .map((_el, index) => ({
+      id: index,
+      price: index * 100,
+    }));
+
   return (
     <div className="container">
       <div className="productList">
@@ -49,13 +56,9 @@ export const ProductList: React.FC = () => {
         </div>
       </div>
 
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+      {phones.map(phone => (
+        <ProductCard id={phone.id} key={phone.id} price={phone.price} />
+      ))}
 
       <div className="productList__buttons">
         <button className="productList__button productList__button-arrow">
