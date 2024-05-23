@@ -1,0 +1,49 @@
+.VariantSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__separator {
+    width: 100%;
+    height: 0;
+    border: 1px solid #E2E6E9;
+  }
+
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+
+  &__add {
+    width: 100%;
+    font-family: Mont, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 21px;
+  }
+}
+
+.price {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  &__actual {
+    font-family: Mont, sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 41px;
+    letter-spacing: -0.01em;
+    color: #313237;
+  }
+
+  &__prev {
+    font-family: Mont,sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 28.12px;
+    color: #89939A;
+    text-decoration: line-through;
+  }
+}

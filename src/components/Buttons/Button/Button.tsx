@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 export interface Props
   extends ButtonHTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
-  active?: true;
-  primary?: true;
-  square?: true;
+  active?: boolean;
+  primary?: boolean;
+  square?: boolean;
   to?: string;
   children?: React.ReactNode;
 }
