@@ -53,7 +53,7 @@ const BurgerMenu: React.FC = () => {
             </li>
           </ul>
           <div className="bottom">
-            <Link to="/cart" onClick={toggleMenu}>
+            <Link to="/favorite" onClick={toggleMenu}>
               <button>
                 <img
                   src={require('../../icons/favorite-icon.svg').default}
