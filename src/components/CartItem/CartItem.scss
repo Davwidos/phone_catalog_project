@@ -54,6 +54,10 @@
     color: #313237;
     background-color: transparent;
     font-size: 20px;
+
+    &:disabled {
+      background: #ddd;
+    }
   }
 
   &__number {
