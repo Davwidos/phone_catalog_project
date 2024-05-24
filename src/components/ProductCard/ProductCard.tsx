@@ -1,17 +1,23 @@
 import './ProductCard.scss';
 import img from '../../images/Product.png';
 import favorites from '../../images/icons/favorites.svg';
+import { Link } from 'react-router-dom';
+import { useCart } from '../../provider/CartProvider';
 import favoritesRed from '../../icons/favorite-icon-red.svg';
 import { useFavourites } from '../../provider/FavouritesProvider';
+
 type Props = {
-  productId: number;
+  id: number;
+  price: number;
 };
-export const ProductCard: React.FC<Props> = ({ productId }) => {
+
+export const ProductCard: React.FC<Props> = ({ id, price }) => {
+  const { handleAddToCart } = useCart();
   const { handleAddToFavourites, favouritesIDS } = useFavourites();
 
   return (
     <div className="productCard">
-      {productId}
+      {id}
       <img
         className="productCard__img"
         src={img}
@@ -19,7 +25,9 @@ export const ProductCard: React.FC<Props> = ({ productId }) => {
       />
 
       <h2 className="productCard__title">
-        Apple iPhone 14 Pro 128GB Silver (MQ023)
+        <Link to={`/phones/${id}`} state={{ id, price }}>
+          Apple iPhone 14 Pro 128GB Silver (MQ023)
+        </Link>
       </h2>
 
       <div className="productCard__bottom-content">
@@ -53,9 +61,8 @@ export const ProductCard: React.FC<Props> = ({ productId }) => {
         <div className="productCard__btns">
           <button
             type="button"
-            className="
-            productCard__addToCart
-            productCard__btn"
+            className="productCard__addToCart productCard__btn"
+            onClick={() => handleAddToCart(id, price)}
           >
             Add to cart
           </button>
@@ -65,10 +72,10 @@ export const ProductCard: React.FC<Props> = ({ productId }) => {
             className="
             productCard__favorites
             productCard__btn"
-            onClick={() => handleAddToFavourites(productId)}
+            onClick={() => handleAddToFavourites(id)}
           >
             <img
-              src={favouritesIDS.includes(productId) ? favoritesRed : favorites}
+              src={favouritesIDS.includes(id) ? favoritesRed : favorites}
               alt="favorites"
             />
           </button>
