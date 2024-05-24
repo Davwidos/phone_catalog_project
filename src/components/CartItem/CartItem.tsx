@@ -1,30 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CartItem.scss';
 import img from '../../images/Product.png';
 import Delete from '../../icons/Close.svg';
-import { useCart } from '../../provider/CartProvider';
 
 type Props = {
   id: number;
   price: number;
-  quantity: number;
   onDelete: (id: number) => void;
 };
 
-export const CartItem: React.FC<Props> = ({
-  id,
-  onDelete,
-  price,
-  quantity,
-}) => {
-  const { handleAddToCart, decreaseAmount } = useCart();
+export const CartItem: React.FC<Props> = ({ id, onDelete, price }) => {
+  const [quantity, setQuantity] = useState(1);
 
   const handleIncrease = () => {
-    handleAddToCart(id, price);
+    setQuantity(prevQuantity => prevQuantity + 1);
   };
 
   const handleDecrease = () => {
-    decreaseAmount(id);
+    setQuantity(prevQuantity => (prevQuantity > 1 ? prevQuantity - 1 : 1));
   };
 
   const handleDelete = () => {

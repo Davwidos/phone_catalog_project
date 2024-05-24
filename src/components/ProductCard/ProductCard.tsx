@@ -67,7 +67,7 @@ export const ProductCard: React.FC<Props> = ({ id, price, width }) => {
           <button
             type="button"
             className="productCard__addToCart productCard__btn"
-            onClick={() => handleAddToCart(id, price)}
+            onClick={() => handleAddToCart({ id, price })}
           >
             Add to cart
           </button>
