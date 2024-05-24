@@ -4,6 +4,7 @@ import { TechSpecs } from '../TechSpecs/TechSpecs';
 import './ProductPage.scss';
 import { ProductGallery } from '../ProductGallery';
 import { VariantsSection } from '../VariantsSection';
+import Slider from '../Slider/Slider';
 
 export const ProductPage: FC = () => {
   return (
@@ -30,7 +31,10 @@ export const ProductPage: FC = () => {
       <About />
       <TechSpecs />
 
-      <div className="ProductPage__slider">slider</div>
+      <div className="ProductPage__slider">
+        <h1 className="title-slider">You may also like</h1>
+        <Slider />
+      </div>
     </div>
   );
 };
