@@ -1,5 +1,6 @@
 import { ShopByCategory } from '../Shop-by-category/Shop-by-category';
 import Slider from '../Slider/Slider';
+import SliderHomePage from '../SliderHomePage/SliderHomePage';
 import './Homepage.scss';
 
 export const Homepage = () => {
@@ -7,7 +8,7 @@ export const Homepage = () => {
     <div className="main">
       <h1 className="main__title title">Welcome to Nice Gadgets store!</h1>
       <div className="main__slider slider"></div>
-
+      <SliderHomePage />
       <div className="main__slider new-models">
         {' '}
         <h1 className="secondary-title">
@@ -24,3 +25,4 @@ export const Homepage = () => {
     </div>
   );
 };
+
