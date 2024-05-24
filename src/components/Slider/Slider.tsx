@@ -20,7 +20,7 @@ const responsive = {
   },
   mobile: {
     breakpoint: { max: 639, min: 0 },
-    items: 1.5,
+    items: 1.3,
   },
 };
 
@@ -161,13 +161,15 @@ const Slider = () => {
 
   return (
     <>
-      <Carousel responsive={responsive}>
-        {products.map(product => (
-          <div className="item" key={product.id}>
-            <ProductCard width={cardWidth} {...product} />
-          </div>
-        ))}
-      </Carousel>
+      <div>
+        <Carousel responsive={responsive}>
+          {products.map(product => (
+            <div className="item" key={product.id}>
+              <ProductCard width={cardWidth} {...product} />
+            </div>
+          ))}
+        </Carousel>
+      </div>
     </>
   );
 };
