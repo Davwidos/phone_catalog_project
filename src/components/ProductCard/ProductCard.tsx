@@ -3,6 +3,8 @@ import img from '../../images/Product.png';
 import favorites from '../../images/icons/favorites.svg';
 import { Link } from 'react-router-dom';
 import { useCart } from '../../provider/CartProvider';
+import favoritesRed from '../../icons/favorite-icon-red.svg';
+import { useFavourites } from '../../provider/FavouritesProvider';
 
 type Props = {
   id: number;
@@ -11,9 +13,11 @@ type Props = {
 
 export const ProductCard: React.FC<Props> = ({ id, price }) => {
   const { handleAddToCart } = useCart();
+  const { handleAddToFavourites, favouritesIDS } = useFavourites();
 
   return (
     <div className="productCard">
+      {id}
       <img
         className="productCard__img"
         src={img}
@@ -65,9 +69,15 @@ export const ProductCard: React.FC<Props> = ({ id, price }) => {
 
           <button
             type="button"
-            className="productCard__favorites productCard__btn"
+            className="
+            productCard__favorites
+            productCard__btn"
+            onClick={() => handleAddToFavourites(id)}
           >
-            <img src={favorites} alt="favorites" />
+            <img
+              src={favouritesIDS.includes(id) ? favoritesRed : favorites}
+              alt="favorites"
+            />
           </button>
         </div>
       </div>

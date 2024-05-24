@@ -56,6 +56,7 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
   const handleAddToCart = (id: number, price: number) => {
     setAddedIDS(prev => {
       const productCount = prev[id];
+
       return productCount
         ? { ...prev, [id]: productCount + 1 }
         : { ...prev, [id]: 1 };
@@ -65,9 +66,12 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
 
     setCartItems(prev => {
       const itemIndex = prev.findIndex(item => item.id === id);
+
       if (itemIndex >= 0) {
         const updatedItems = [...prev];
+
         updatedItems[itemIndex].price += price;
+
         return updatedItems;
       } else {
         return [...prev, { id, price }];
@@ -78,7 +82,9 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
   const removeItem = (id: number) => {
     setAddedIDS(prev => {
       const { [id]: count, ...rest } = prev;
+
       setCartValue(val => (count ? val - count * id : val));
+
       return { ...rest };
     });
 
@@ -91,10 +97,13 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
 
       if (productAmount && productAmount > amount) {
         setCartValue(val => val - amount * id);
+
         return { ...prev, [id]: productAmount - amount };
       } else if (productAmount) {
         const { [id]: count, ...rest } = prev;
+
         setCartValue(val => (count ? val - count * id : val));
+
         return { ...rest };
       }
 
@@ -103,14 +112,18 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
 
     setCartItems(prev => {
       const itemIndex = prev.findIndex(item => item.id === id);
+
       if (itemIndex >= 0) {
         const updatedItems = [...prev];
+
         updatedItems[itemIndex].price -= amount * id;
         if (updatedItems[itemIndex].price <= 0) {
           updatedItems.splice(itemIndex, 1);
         }
+
         return updatedItems;
       }
+
       return prev;
     });
   };
