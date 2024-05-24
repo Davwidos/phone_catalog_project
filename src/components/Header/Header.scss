@@ -31,11 +31,16 @@
         cursor: pointer;
       }
     }
+
   }
 
   &__logo {
     height: 22px;
   }
+}
+
+.burger {
+  background-color: transparent;
 }
 
 button {

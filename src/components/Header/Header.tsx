@@ -19,7 +19,7 @@ export const Header: React.FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
 
       <div className="header__buttons">
         <div className="header__burger-container">
-          <button onClick={toggleMenu}>
+          <button onClick={toggleMenu} className="burger">
             {!isOpen ? (
               <img
                 src={Burger}
