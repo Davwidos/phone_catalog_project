@@ -17,14 +17,12 @@
   box-shadow: 0 -1px 0 0 #e2e6e9;
   &__links {
     @include flex-col;
-
     align-items: flex-start;
     justify-content: space-between;
     height: 65px;
-
+    color: $secondary;
     &--link {
       @include uppercase;
-
       color: $secondary;
     }
   }
