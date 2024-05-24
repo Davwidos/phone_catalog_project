@@ -9,14 +9,19 @@ import { useFavourites } from '../../provider/FavouritesProvider';
 type Props = {
   id: number;
   price: number;
+  width?: number;
 };
 
-export const ProductCard: React.FC<Props> = ({ id, price }) => {
+export const ProductCard: React.FC<Props> = ({ id, price, width }) => {
   const { handleAddToCart } = useCart();
   const { handleAddToFavourites, favouritesIDS } = useFavourites();
 
+  const cardStyles = {
+    width: `${width}px`,
+  };
+
   return (
-    <div className="productCard">
+    <div className="productCard" style={cardStyles}>
       {id}
       <img
         className="productCard__img"
