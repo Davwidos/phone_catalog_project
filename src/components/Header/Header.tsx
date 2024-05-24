@@ -13,8 +13,17 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
   return (
     <div className="header">
-      <Link to="/" onClick={toggleMenu}>
-        <img src={Logo} alt="nice-gadgets-logo" className="header__logo logo" />
+      <Link to="/">
+        <img
+          src={Logo}
+          alt="nice-gadgets-logo"
+          className="header__logo logo"
+          onClick={() => {
+            if (isOpen) {
+              toggleMenu();
+            }
+          }}
+        />
       </Link>
 
       <div className="header__buttons">

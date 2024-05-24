@@ -8,54 +8,57 @@ interface BurgerProps {
 }
 
 const BurgerMenu: React.FC<BurgerProps> = ({ toggleMenu }) => {
-  return (
-    <>
-      <div className="burger-menu-container">
-        <div className="menu">
-          <ul>
-            <li>
-              <Link to="/" onClick={toggleMenu}>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/phones" onClick={toggleMenu}>
-                Phones
-              </Link>
-            </li>
-            <li>
-              <Link to="/tablets" onClick={toggleMenu}>
-                Tablets
-              </Link>
-            </li>
-            <li>
-              <Link to="/accessories" onClick={toggleMenu}>
-                Accessories
-              </Link>
-            </li>
-          </ul>
-          <div className="bottom">
-            <Link to="/favorite" onClick={toggleMenu}>
-              <button>
-                <img
-                  src={require('../../icons/favorite-icon.svg').default}
-                  alt=""
-                />
-              </button>
-            </Link>
+  const handleLinkClick = () => {
+    toggleMenu();
+    window.scrollTo(0, 0);
+  };
 
-            <Link to="/cart" onClick={toggleMenu}>
-              <button>
-                <img
-                  src={require('../../icons/shopbag-icon.svg').default}
-                  alt=""
-                />
-              </button>
+  return (
+    <div className="burger-menu-container">
+      <div className="menu">
+        <ul>
+          <li>
+            <Link to="/" onClick={handleLinkClick}>
+              Home
             </Link>
-          </div>
+          </li>
+          <li>
+            <Link to="/phones" onClick={handleLinkClick}>
+              Phones
+            </Link>
+          </li>
+          <li>
+            <Link to="/tablets" onClick={handleLinkClick}>
+              Tablets
+            </Link>
+          </li>
+          <li>
+            <Link to="/accessories" onClick={handleLinkClick}>
+              Accessories
+            </Link>
+          </li>
+        </ul>
+        <div className="bottom">
+          <Link to="/favourites" onClick={handleLinkClick}>
+            <button>
+              <img
+                src={require('../../icons/favorite-icon.svg').default}
+                alt="Favourite"
+              />
+            </button>
+          </Link>
+
+          <Link to="/cart" onClick={handleLinkClick}>
+            <button>
+              <img
+                src={require('../../icons/shopbag-icon.svg').default}
+                alt="Cart"
+              />
+            </button>
+          </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

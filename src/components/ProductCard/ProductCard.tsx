@@ -2,13 +2,20 @@ import './ProductCard.scss';
 import img from '../../images/Product.png';
 import favorites from '../../images/icons/favorites.svg';
 import { Link } from 'react-router-dom';
+
 type Props = {
   id: number;
   price: number;
+  width?: number;
 };
-export const ProductCard: React.FC<Props> = ({ id, price }) => {
+
+export const ProductCard: React.FC<Props> = ({ id, price, width }) => {
+  const cardStyles = {
+    width: `${width}px`,
+  };
+
   return (
-    <div className="productCard" style={cardStyle}>
+    <div className="productCard" style={cardStyles}>
       <img
         className="productCard__img"
         src={img}
