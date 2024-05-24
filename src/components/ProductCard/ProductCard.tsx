@@ -11,7 +11,6 @@ type Props = {
   price: number;
   width?: number;
 };
-import { useNavigate } from 'react-router-dom';
 
 export const ProductCard: React.FC<Props> = ({ id, price, width }) => {
   const { handleAddToCart } = useCart();
