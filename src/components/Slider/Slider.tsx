@@ -159,16 +159,12 @@ const Slider = () => {
     };
   }, []);
 
-  const handleGoToUpPage = () => {
-    window.scrollTo(0, 0);
-  };
-
   return (
     <>
       <div>
         <Carousel responsive={responsive}>
           {products.map(product => (
-            <div className="item" key={product.id} onClick={handleGoToUpPage}>
+            <div className="item" key={product.id}>
               <ProductCard width={cardWidth} {...product} />
             </div>
           ))}

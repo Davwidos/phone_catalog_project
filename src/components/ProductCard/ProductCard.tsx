@@ -20,6 +20,10 @@ export const ProductCard: React.FC<Props> = ({ id, price, width }) => {
     width: `${width}px`,
   };
 
+  const handleGoToUpPage = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="productCard" style={cardStyles}>
       {id}
@@ -30,7 +34,11 @@ export const ProductCard: React.FC<Props> = ({ id, price, width }) => {
       />
 
       <h2 className="productCard__title">
-        <Link to={`/phones/${id}`} state={{ id, price }}>
+        <Link
+          to={`/phones/${id}`}
+          state={{ id, price }}
+          onClick={handleGoToUpPage}
+        >
           Apple iPhone 14 Pro 128GB Silver (MQ023)
         </Link>
       </h2>
