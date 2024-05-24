@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import './SliderHomePage.scss';
 // eslint-disable-next-line max-len
@@ -5,7 +6,7 @@ import bannerAccessories from '../../images/slidesHomePage/banner-accessories.pn
 import bannerPhones from '../../images/slidesHomePage/banner-phones.png';
 import bannerTablets from '../../images/slidesHomePage/banner-tablets.png';
 
-const Slider = () => {
+const SliderHomePage = () => {
   const slides = [
     { image: bannerAccessories, alt: 'Accessories' },
     { image: bannerPhones, alt: 'Phones' },
@@ -25,12 +26,10 @@ const Slider = () => {
   const handlers = useSwipeable({
     onSwipedLeft: nextSlide,
     onSwipedRight: prevSlide,
-    preventDefaultTouchmoveEvent: true,
     trackMouse: true,
   });
 
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
     <div className="slider-container" {...handlers}>
       {slides.map((slide, index) => (
         <div
@@ -55,4 +54,4 @@ const Slider = () => {
   );
 };
 
-export default Slider;
+export default SliderHomePage;
