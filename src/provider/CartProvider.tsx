@@ -1,14 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-
-type CartItemType = {
-  id: number;
-  price: number;
-};
+import { Product } from '../types/Product';
 
 type ContextValueType = {
   addedIDS: Record<number, number>;
   cartValue: number;
-  cartItems: CartItemType[];
+  cartItems: Product[];
   handleAddToCart: (id: number, price: number) => void;
   decreaseAmount: (id: number, amount?: number) => void;
   removeItem: (id: number) => void;
@@ -30,11 +26,12 @@ type MyContextProviderProps = {
 const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
   const [addedIDS, setAddedIDS] = useState<Record<number, number>>({});
   const [cartValue, setCartValue] = useState<number>(0);
-  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
+  const [cartItems, setCartItems] = useState<Product[]>([]);
 
   useEffect(() => {
-    const idsStr = localStorage.getItem('cartItems');
+    const idsStr = localStorage.getItem('addedIDS');
     const cartValStr = localStorage.getItem('cartValue');
+    const cartIemsStr = localStorage.getItem('cartItems');
 
     if (idsStr) {
       setAddedIDS(JSON.parse(idsStr));
@@ -43,15 +40,23 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
     if (cartValStr) {
       setCartValue(+cartValStr);
     }
+
+    if (cartIemsStr) {
+      setCartItems(JSON.parse(cartIemsStr));
+    }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(addedIDS));
+    localStorage.setItem('addedIDS', JSON.stringify(addedIDS));
   }, [addedIDS]);
 
   useEffect(() => {
     localStorage.setItem('cartValue', cartValue.toString());
   }, [cartValue]);
+
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const handleAddToCart = (id: number, price: number) => {
     setAddedIDS(prev => {
@@ -110,22 +115,22 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
       return prev;
     });
 
-    setCartItems(prev => {
-      const itemIndex = prev.findIndex(item => item.id === id);
+    // setCartItems(prev => {
+    //   const itemIndex = prev.findIndex(item => item.id === id);
 
-      if (itemIndex >= 0) {
-        const updatedItems = [...prev];
+    //   if (itemIndex >= 0) {
+    //     const updatedItems = [...prev];
 
-        updatedItems[itemIndex].price -= amount * id;
-        if (updatedItems[itemIndex].price <= 0) {
-          updatedItems.splice(itemIndex, 1);
-        }
+    //     updatedItems[itemIndex].price -= amount * id;
+    //     if (updatedItems[itemIndex].price <= 0) {
+    //       updatedItems.splice(itemIndex, 1);
+    //     }
 
-        return updatedItems;
-      }
+    //     return updatedItems;
+    //   }
 
-      return prev;
-    });
+    //   return prev;
+    // });
   };
 
   const contextValue: ContextValueType = {

@@ -5,7 +5,7 @@ import { CartItem } from '../CartItem';
 import { useCart } from '../../provider/CartProvider';
 
 export const Cart = () => {
-  const { cartItems, removeItem } = useCart();
+  const { cartItems, removeItem, addedIDS } = useCart();
 
   const handleCheckout = () => {
     const userConfirmed = confirm(
@@ -34,6 +34,7 @@ export const Cart = () => {
             key={item.id}
             id={item.id}
             price={item.price}
+            quantity={addedIDS[item.id]}
             onDelete={handleDelete}
           />
         ))}
