@@ -1,9 +1,6 @@
-/* eslint-disable max-len */
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable import/no-extraneous-dependencies */
-import React, { useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import './SliderHomePage.scss';
+// eslint-disable-next-line max-len
 import bannerAccessories from '../../images/slidesHomePage/banner-accessories.png';
 import bannerPhones from '../../images/slidesHomePage/banner-phones.png';
 import bannerTablets from '../../images/slidesHomePage/banner-tablets.png';
@@ -33,6 +30,7 @@ const Slider = () => {
   });
 
   return (
+    // eslint-disable-next-line react/jsx-filename-extension
     <div className="slider-container" {...handlers}>
       {slides.map((slide, index) => (
         <div
