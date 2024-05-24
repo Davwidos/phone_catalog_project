@@ -1,0 +1,33 @@
+@use '../../styles/utils/mixins' as *;
+@import '../../styles/utils/vars';
+
+.techSpecs {
+  @include flex-col;
+
+  align-items: flex-start;
+  gap: 8px;
+
+  &__title {
+    @include h3;
+
+    height: 42px;
+    border-bottom: 1px solid $elements;
+    width: 100%;
+  }
+
+  &__row {
+    @include flex-row;
+
+    justify-content: space-between;
+    height: 21px;
+    width: 100%;
+    &--title {
+      // @include bodytext14;
+      color: $secondary;
+    }
+    &--value {
+      // @include bodytext14;
+      color: $primary;
+    }
+  }
+}

@@ -1,25 +1,39 @@
 import './ProductCard.scss';
 import img from '../../images/Product.png';
 import favorites from '../../images/icons/favorites.svg';
+import { Link } from 'react-router-dom';
+import { useCart } from '../../provider/CartProvider';
+import favoritesRed from '../../icons/favorite-icon-red.svg';
+import { useFavourites } from '../../provider/FavouritesProvider';
+
+type Props = {
+  id: number;
+  price: number;
+  width?: number;
+};
 import { useNavigate } from 'react-router-dom';
 
-export const ProductCard: React.FC = () => {
-  const navigate = useNavigate();
+export const ProductCard: React.FC<Props> = ({ id, price, width }) => {
+  const { handleAddToCart } = useCart();
+  const { handleAddToFavourites, favouritesIDS } = useFavourites();
 
-  const handleCardClick = (id: number) => () => {
-    navigate(`/product/${id}`);
+  const cardStyles = {
+    width: `${width}px`,
   };
 
   return (
-    <div className="productCard">
+    <div className="productCard" style={cardStyles}>
+      {id}
       <img
         className="productCard__img"
         src={img}
         alt="Apple iPhone 14 Pro 128GB Silver (MQ023)"
       />
 
-      <h2 className="productCard__title" onClick={handleCardClick(12)}>
-        Apple iPhone 14 Pro 128GB Silver (MQ023)
+      <h2 className="productCard__title">
+        <Link to={`/phones/${id}`} state={{ id, price }}>
+          Apple iPhone 14 Pro 128GB Silver (MQ023)
+        </Link>
       </h2>
 
       <div className="productCard__bottom-content">
@@ -53,9 +67,8 @@ export const ProductCard: React.FC = () => {
         <div className="productCard__btns">
           <button
             type="button"
-            className="
-            productCard__addToCart
-            productCard__btn"
+            className="productCard__addToCart productCard__btn"
+            onClick={() => handleAddToCart(id, price)}
           >
             Add to cart
           </button>
@@ -65,8 +78,12 @@ export const ProductCard: React.FC = () => {
             className="
             productCard__favorites
             productCard__btn"
+            onClick={() => handleAddToFavourites(id)}
           >
-            <img src={favorites} alt="favorites" />
+            <img
+              src={favouritesIDS.includes(id) ? favoritesRed : favorites}
+              alt="favorites"
+            />
           </button>
         </div>
       </div>

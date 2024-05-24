@@ -1,24 +1,24 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.scss';
-import { Footer } from './components/Footer/Footer';
-import { Header } from './components/Header/Header';
-import { Page } from './components/Page';
+import { Page } from './components/Page/Page';
+import { NotFoundPage } from './components/NotFoundPage/NotFoundPage';
+import { Cart } from './components/Cart/Cart';
 import { ProductList } from './components/ProductList/ProductList';
-import { NotFoundPage } from './components/NotFoundPage';
-
+import { FavouritesPage } from './components/FavouritesPage/FavouritesPage';
+import { Homepage } from './components/Homepage/Homepage';
+import { ProductPage } from './components/ProductPage';
 export const App = () => (
-  <>
-    <Header />
-    <Routes>
-      <Route element={<Page />}>
-        <Route path="/" element={<h1>Home</h1>} />
-        <Route path="/phones" element={<ProductList />} />
-        <Route path="/tablets" element={<ProductList />} />
-        <Route path="/accessories" element={<ProductList />} />
-        <Route path="/home" element={<Navigate to="/" />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
-    <Footer />
-  </>
+  <Routes>
+    <Route element={<Page />}>
+      <Route path="/" element={<Homepage />} />
+      <Route path="/phones" element={<ProductList />} />
+      <Route path="/phones/:id" element={<ProductPage />} />
+      <Route path="/tablets" element={<ProductList />} />
+      <Route path="/accessories" element={<ProductList />} />
+      <Route path="/favourites" element={<FavouritesPage />} />
+      <Route path="/home" element={<Navigate to="/" />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Route>
+  </Routes>
 );
