@@ -15,16 +15,21 @@
     @include h1;
   }
   &__slider {
-    height: 352px;
+    height: 100vh;
     width: 100%;
     text-align: center;
-    background-color: gray;
     margin-bottom: 10px;
   }
+
   &__hot-prices {
     height: 495px;
     width: 100%;
     text-align: center;
-    background-color: gray;
   }
+}
+
+.secondary-title {
+  font-size: 22px;
+  text-align: left;
+  margin-bottom: 24px;
 }

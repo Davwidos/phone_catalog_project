@@ -1,79 +1,64 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './BurgerMenu.scss';
 
-const BurgerMenu: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface BurgerProps {
+  toggleMenu: () => void;
+}
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+const BurgerMenu: React.FC<BurgerProps> = ({ toggleMenu }) => {
+  const handleLinkClick = () => {
+    toggleMenu();
+    window.scrollTo(0, 0);
   };
 
   return (
-    <>
-      <div className="burger-menu-container">
-        <div className="logo">
-          <img src={require('../../icons/Logo.svg').default} alt="" />
-        </div>
-        {!isOpen && (
-          <div className="menu-icon" onClick={toggleMenu}>
-            <img src={require('../../icons/burgerIcon.svg').default} alt="" />
-          </div>
-        )}
-        <div className={`menu ${isOpen ? 'open' : ''}`}>
-          {isOpen && (
-            <div className="close-icon" onClick={toggleMenu}>
-              <img src={require('../../icons/Close-icon.svg').default} alt="" />
-            </div>
-          )}
-          <div className="logo">
-            <img src={require('../../icons/Logo.svg').default} alt="" />
-          </div>
-          <ul>
-            <li>
-              <Link to="/" onClick={toggleMenu}>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/phones" onClick={toggleMenu}>
-                Phones
-              </Link>
-            </li>
-            <li>
-              <Link to="/tablets" onClick={toggleMenu}>
-                Tablets
-              </Link>
-            </li>
-            <li>
-              <Link to="/accessories" onClick={toggleMenu}>
-                Accessories
-              </Link>
-            </li>
-          </ul>
-          <div className="bottom">
-            <Link to="/cart" onClick={toggleMenu}>
-              <button>
-                <img
-                  src={require('../../icons/favorite-icon.svg').default}
-                  alt=""
-                />
-              </button>
+    <div className="burger-menu-container">
+      <div className="menu">
+        <ul>
+          <li>
+            <Link to="/" onClick={handleLinkClick}>
+              Home
             </Link>
+          </li>
+          <li>
+            <Link to="/phones" onClick={handleLinkClick}>
+              Phones
+            </Link>
+          </li>
+          <li>
+            <Link to="/tablets" onClick={handleLinkClick}>
+              Tablets
+            </Link>
+          </li>
+          <li>
+            <Link to="/accessories" onClick={handleLinkClick}>
+              Accessories
+            </Link>
+          </li>
+        </ul>
+        <div className="bottom">
+          <Link to="/favourites" onClick={handleLinkClick}>
+            <button>
+              <img
+                src={require('../../icons/favorite-icon.svg').default}
+                alt="Favourite"
+              />
+            </button>
+          </Link>
 
-            <Link to="/cart" onClick={toggleMenu}>
-              <button>
-                <img
-                  src={require('../../icons/shopbag-icon.svg').default}
-                  alt=""
-                />
-              </button>
-            </Link>
-          </div>
+          <Link to="/cart" onClick={handleLinkClick}>
+            <button>
+              <img
+                src={require('../../icons/shopbag-icon.svg').default}
+                alt="Cart"
+              />
+            </button>
+          </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
