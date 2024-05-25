@@ -32,7 +32,11 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
 
   const cartValue = useMemo(
-    () => cartItems.reduce((prev, curr) => prev + curr.price * curr.price, 0),
+    () =>
+      cartItems.reduce(
+        (prev, curr) => prev + curr.price * (curr.amount || 0),
+        0,
+      ),
     [cartItems],
   );
 
