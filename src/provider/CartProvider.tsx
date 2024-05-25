@@ -33,18 +33,20 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
 
   const cartValue = useMemo(
     () =>
-      cartItems.reduce(
-        (prev, curr) => prev + curr.price * (curr.amount || 0),
-        0,
-      ),
+      Array.isArray(cartItems)
+        ? cartItems.reduce(
+            (prev, curr) => prev + curr.price * (curr.amount ?? 0),
+            0,
+          )
+        : 0,
     [cartItems],
   );
 
   useEffect(() => {
-    const cartIemsStr = localStorage.getItem('cartItems');
+    const cartItemsStr = localStorage.getItem('cartItems');
 
-    if (cartIemsStr) {
-      setCartItems(JSON.parse(cartIemsStr));
+    if (cartItemsStr) {
+      setCartItems(JSON.parse(cartItemsStr));
     }
   }, []);
 
@@ -55,13 +57,11 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
   const handleAddToCart = useCallback(
     (product: Product) => {
       setCartItems(prev => {
-        const exitisngProduct = prev.find(p => p.id === product.id);
+        const existingProduct = prev.find(p => p.id === product.id);
 
-        if (exitisngProduct) {
+        if (existingProduct) {
           return prev.map(p =>
-            p.id === product.id
-              ? { ...p, amount: p.amount ? p.amount + 1 : 1 }
-              : p,
+            p.id === product.id ? { ...p, amount: (p.amount ?? 0) + 1 } : p,
           );
         }
 
@@ -83,13 +83,15 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
       setCartItems(prev =>
         prev.map(p => {
           if (p.id === id) {
-            if (!p.amount || p.amount <= amount) {
+            const currentAmount = p.amount ?? 0;
+
+            if (currentAmount <= amount) {
               removeItem(id);
 
-              return p;
+              return { ...p, amount: 0 };
             }
 
-            return { ...p, amount: p?.amount - amount };
+            return { ...p, amount: currentAmount - amount };
           }
 
           return p;

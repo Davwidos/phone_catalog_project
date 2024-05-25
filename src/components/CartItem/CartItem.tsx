@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CartItem.scss';
 import img from '../../images/Product.png';
 import Delete from '../../icons/Close.svg';
@@ -6,18 +6,36 @@ import Delete from '../../icons/Close.svg';
 type Props = {
   id: number;
   price: number;
+  quantity: number;
   onDelete: (id: number) => void;
+  onQuantityChange: (id: number, quantity: number) => void;
 };
 
-export const CartItem: React.FC<Props> = ({ id, onDelete, price }) => {
-  const [quantity, setQuantity] = useState(1);
+export const CartItem: React.FC<Props> = ({
+  id,
+  price,
+  quantity,
+  onDelete,
+  onQuantityChange,
+}) => {
+  const [itemQuantity, setItemQuantity] = useState(quantity);
+
+  useEffect(() => {
+    setItemQuantity(quantity);
+  }, [quantity]);
 
   const handleIncrease = () => {
-    setQuantity(prevQuantity => prevQuantity + 1);
+    const newQuantity = itemQuantity + 1;
+
+    setItemQuantity(newQuantity);
+    onQuantityChange(id, newQuantity);
   };
 
   const handleDecrease = () => {
-    setQuantity(prevQuantity => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+    const newQuantity = itemQuantity > 1 ? itemQuantity - 1 : 1;
+
+    setItemQuantity(newQuantity);
+    onQuantityChange(id, newQuantity);
   };
 
   const handleDelete = () => {
@@ -48,12 +66,12 @@ export const CartItem: React.FC<Props> = ({ id, onDelete, price }) => {
             type="button"
             className="cartItem__btn"
             onClick={handleDecrease}
-            disabled={quantity === 1}
+            disabled={itemQuantity === 1}
           >
             -
           </button>
 
-          <span className="cartItem__number">{quantity}</span>
+          <span className="cartItem__number">{itemQuantity}</span>
 
           <button
             type="button"
@@ -64,7 +82,7 @@ export const CartItem: React.FC<Props> = ({ id, onDelete, price }) => {
           </button>
         </div>
 
-        <div className="cartItem__price">${price * quantity}</div>
+        <div className="cartItem__price">${price * itemQuantity}</div>
       </div>
     </div>
   );

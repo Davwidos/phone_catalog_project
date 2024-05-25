@@ -5,7 +5,7 @@ import { CartItem } from '../CartItem';
 import { useCart } from '../../provider/CartProvider';
 
 export const Cart = () => {
-  const { cartItems, removeItem } = useCart();
+  const { cartItems, removeItem, handleAddToCart, decreaseAmount } = useCart();
 
   const handleCheckout = () => {
     const userConfirmed = confirm(
@@ -21,6 +21,29 @@ export const Cart = () => {
     removeItem(id);
   };
 
+  const handleQuantityChange = (id: number, quantity: number) => {
+    const item = cartItems.find(i => i.id === id);
+
+    if (!item) {
+      return;
+    }
+
+    const currentAmount = item.amount ?? 0;
+
+    if (quantity > currentAmount) {
+      handleAddToCart({ ...item });
+    } else {
+      decreaseAmount(id);
+    }
+  };
+
+  const totalPrice = Array.isArray(cartItems)
+    ? cartItems.reduce(
+        (total, item) => total + item.price * (item.amount ?? 0),
+        0,
+      )
+    : 0;
+
   return (
     <div className="cart">
       <NavLink to="#" className="cart__back-link">
@@ -34,18 +57,18 @@ export const Cart = () => {
             key={item.id}
             id={item.id}
             price={item.price}
+            quantity={item.amount ?? 1}
             onDelete={handleDelete}
+            onQuantityChange={handleQuantityChange}
           />
         ))}
       </div>
       <div className="cart__summary">
-        <span className="cart__summary-total">
-          ${cartItems.reduce((total, item) => total + item.price, 0)}
-        </span>
+        <span className="cart__summary-total">${totalPrice}</span>
         <span className="cart__summary-label">
           Total for {cartItems.length} items
         </span>
-        <div className="cart__summary-diveder"></div>
+        <div className="cart__summary-divider"></div>
         <button className="cart__checkout" onClick={handleCheckout}>
           Checkout
         </button>
