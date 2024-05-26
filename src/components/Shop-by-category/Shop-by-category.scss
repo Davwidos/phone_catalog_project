@@ -18,10 +18,14 @@
     }
   }
   &__links {
+    justify-content: center;
     @include for-l-mobile {
       @include flex-row;
       gap: 16px;
     }
+  }
+  &__link {
+    width: 100%;
   }
 }
 
