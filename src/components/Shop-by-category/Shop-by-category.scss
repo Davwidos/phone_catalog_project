@@ -7,6 +7,7 @@
 }
 
 .shop-by-category {
+  width: 100%;
   &__title {
     @include h2;
 
@@ -16,6 +17,12 @@
       @include d-t-h2;
     }
   }
+  &__links {
+    @include for-l-mobile {
+      @include flex-row;
+      gap: 16px;
+    }
+  }
 }
 
 .product-category {
@@ -23,6 +30,7 @@
 
   &__image {
     margin-bottom: 24px;
+    width: 100%;
   }
   &__category {
     @include h4;
