@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 type FavouritesValueType = {
   favouritesIDS: number[];
@@ -17,15 +23,27 @@ type MyContextProviderProps = {
 export const FavouritesProvider: React.FC<MyContextProviderProps> = ({
   children,
 }) => {
-  const [favouritesIDS, setFavouritesIDS] = useState([1, 2, 3]);
+  const [favouritesIDS, setFavouritesIDS] = useState<number[]>([]);
 
-  const handleAddToFavourites = (id: number) => {
-    if (favouritesIDS.includes(id)) {
-      setFavouritesIDS(prev => prev.filter(searched => searched !== id));
-    } else {
-      setFavouritesIDS(prev => [...prev, id]);
+  useEffect(() => {
+    const favouritesIdsStr = localStorage.getItem('favouritesIds');
+
+    if (favouritesIdsStr) {
+      setFavouritesIDS(JSON.parse(favouritesIdsStr));
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('favouritesIds', JSON.stringify(favouritesIDS));
+  }, [favouritesIDS]);
+
+  const handleAddToFavourites = useCallback((id: number) => {
+    setFavouritesIDS(prev =>
+      prev.includes(id)
+        ? prev.filter(searched => searched !== id)
+        : [...prev, id],
+    );
+  }, []);
 
   const contextValue: FavouritesValueType = {
     favouritesIDS,
