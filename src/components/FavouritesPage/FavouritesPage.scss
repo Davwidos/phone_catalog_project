@@ -7,6 +7,8 @@
 
   align-items: flex-start;
   margin: 0 auto;
+  padding: 0 16px;
+  width: 100%;
   &__text {
     // @include bodytext14;
     font-family: Mont, sans-serif;
@@ -26,7 +28,21 @@
 
   &__products {
     @include flex-col;
-
-    gap: 40px;
+    row-gap: 40px;
+    column-gap: 16px;
+    width: 100%;
+    justify-content: flex-start;
+    @include for-l-mobile {
+      flex-direction: row;
+      flex-wrap: wrap;
+      & > * {
+        width: calc(50% - 16px);
+      }
+    }
+    @include for-desktop {
+      & > * {
+        width: calc(25% - 16px);
+      }
+    }
   }
 }
