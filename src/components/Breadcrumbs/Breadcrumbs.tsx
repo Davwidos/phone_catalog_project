@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import homeIcon from '../../icons/Home.svg';
-import rightArrowIcon from '../../icons/rightAarrow.svg';
+import rightArrowIcon from '../../icons/rightArrow.svg';
 import './Breadcrumbs.scss';
 
 type Props = {
