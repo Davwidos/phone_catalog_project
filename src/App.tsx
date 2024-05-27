@@ -31,9 +31,11 @@ export const App = () => (
       <Route
         path="/phones/:id"
         element={
-          <ProductDetailsProvider>
-            <ProductPage />
-          </ProductDetailsProvider>
+          <ProductsProider>
+            <ProductDetailsProvider>
+              <ProductPage />
+            </ProductDetailsProvider>
+          </ProductsProider>
         }
       />
       <Route

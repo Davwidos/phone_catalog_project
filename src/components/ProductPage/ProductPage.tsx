@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { About } from '../About/About';
 import { TechSpecs } from '../TechSpecs/TechSpecs';
 import './ProductPage.scss';
@@ -6,10 +6,16 @@ import { ProductGallery } from '../ProductGallery';
 import { VariantsSection } from '../VariantsSection';
 import Slider from '../Slider/Slider';
 import { useProductDetails } from '../../provider/ProductDetailsProvider';
-import { ProductsProider } from '../../provider/ProductsProvider';
+import { ProductsProider, useProducts } from '../../provider/ProductsProvider';
 
 export const ProductPage: FC = () => {
   const { details } = useProductDetails();
+  const { products } = useProducts();
+
+  const product = useMemo(
+    () => products.find(p => p.itemId === details?.id),
+    [products, details],
+  );
 
   return (
     <div className="ProductPage">
@@ -17,7 +23,7 @@ export const ProductPage: FC = () => {
         Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)
       </h1>
       <ProductGallery />
-      <VariantsSection />
+      <VariantsSection product={product} />
       <div className="ProdctPage__short-specs short-specs">
         <div className="short-specs__spec">
           <p className="short-specs__title">Screen</p>

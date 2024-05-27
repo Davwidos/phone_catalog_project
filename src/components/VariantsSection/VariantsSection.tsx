@@ -1,13 +1,50 @@
-import { FC } from 'react';
+import { FC, useCallback, useMemo } from 'react';
 import './VariantsSection.scss';
 import { ColorSelection } from '../ColorSelection/ColorSelection';
 import { ParametrSelection } from '../ParametrSelection';
 import { Button } from '../Buttons/Button';
 import { ButtonHeart } from '../Buttons/ButtonHeart';
 import { useProductDetails } from '../../provider/ProductDetailsProvider';
+import { useCart } from '../../provider/CartProvider';
+import { Product } from '../../types/Product';
+import { useFavourites } from '../../provider/FavouritesProvider';
 
-export const VariantsSection: FC = () => {
+interface Props {
+  product?: Product;
+}
+
+export const VariantsSection: FC<Props> = ({ product }) => {
   const { details } = useProductDetails();
+  const { handleAddToCart: addToCart, cartItems, removeItem } = useCart();
+  const { favourites, handleAddToFavourites: addToFavorites } = useFavourites();
+
+  const inCart = useMemo(
+    () => cartItems.some(p => p.id === product?.id),
+    [cartItems, product?.id],
+  );
+
+  const inFavorites = useMemo(
+    () => favourites.some(p => p.id === product?.id),
+    [favourites, product?.id],
+  );
+
+  const handleAddToCart = useCallback(() => {
+    if (!product) {
+      return;
+    }
+
+    if (!inCart) {
+      addToCart(product);
+    } else {
+      removeItem(product.id);
+    }
+  }, [addToCart, inCart, product, removeItem]);
+
+  const handleAddToFavourites = useCallback(() => {
+    if (product) {
+      addToFavorites(product);
+    }
+  }, [addToFavorites, product]);
 
   return (
     <div className="VariantSection">
@@ -20,10 +57,19 @@ export const VariantsSection: FC = () => {
         <span className="price__prev">{details?.priceRegular}</span>
       </div>
       <div className="VariantsSection_buttons buttons">
-        <Button className="buttons__add" primary>
+        <Button
+          className="buttons__add"
+          primary
+          onClick={handleAddToCart}
+          active={inCart}
+        >
           Add to cart
         </Button>
-        <ButtonHeart style={{ width: 48, height: 48 }} />
+        <ButtonHeart
+          active={inFavorites}
+          onClick={handleAddToFavourites}
+          style={{ width: 48, height: 48 }}
+        />
       </div>
     </div>
   );
