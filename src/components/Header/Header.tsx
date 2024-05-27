@@ -11,9 +11,13 @@ interface HeaderProps {
   isOpen: boolean;
 }
 export const Header: React.FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
+  const handleGoToUpPage = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="header">
-      <Link to="/">
+      <Link to="/" onClick={handleGoToUpPage}>
         <img
           src={Logo}
           alt="nice-gadgets-logo"

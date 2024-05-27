@@ -14,22 +14,10 @@ export const ProductPage: FC = () => {
       </h1>
       <ProductGallery />
       <VariantsSection />
-      <div className="ProdctPage__short-specs short-specs">
-        <div className="short-specs__spec">
-          <p className="short-specs__title">Screen</p>
-          <p className="short-specs__value">6.5” OLED</p>
-        </div>
-        <div className="short-specs__spec">
-          <p className="short-specs__title">Screen</p>
-          <p className="short-specs__value">6.5” OLED</p>
-        </div>
-        <div className="short-specs__spec">
-          <p className="short-specs__title">Screen</p>
-          <p className="short-specs__value">6.5” OLED</p>
-        </div>
+      <div className="info">
+        <About />
+        <TechSpecs />
       </div>
-      <About />
-      <TechSpecs />
 
       <div className="ProductPage__slider">
         <h1 className="title-slider">You may also like</h1>

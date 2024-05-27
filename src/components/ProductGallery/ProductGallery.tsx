@@ -33,7 +33,7 @@ export const ProductGallery: FC = () => {
   const handleSetImage = (index: number) => () => setMainImageIndex(index);
 
   return (
-    <div className="Product)Gallery">
+    <div className="ProductGallery">
       <div
         className="ProductGallery__main-container"
         onTouchStart={handleTouchStart}

@@ -161,7 +161,7 @@ const Slider = () => {
 
   return (
     <>
-      <div>
+      <div className="carousel">
         <Carousel responsive={responsive}>
           {products.map(product => (
             <div className="item" key={product.id}>
