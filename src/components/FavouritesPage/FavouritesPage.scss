@@ -3,6 +3,7 @@
 @import '../../generalStyles/fonts';
 
 .favouritesPage {
+  max-width: 1200px;
   @include flex-col;
 
   align-items: flex-start;
@@ -38,12 +39,17 @@
       flex-direction: row;
       flex-wrap: wrap;
       & > * {
-        width: calc(50% - 16px);
+        max-width: calc(50% - 16px);
+      }
+    }
+    @media (min-width: 920px) {
+      & > * {
+        max-width: calc(33.33% - 16px);
       }
     }
     @include for-desktop {
       & > * {
-        width: calc(25% - 16px);
+        max-width: calc(25% - 16px);
       }
     }
   }
