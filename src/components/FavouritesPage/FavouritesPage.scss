@@ -22,7 +22,9 @@
 
   &__title {
     @include h1;
-
+    @include for-l-mobile {
+      @include d-t-h1;
+    }
     margin-top: 24px;
   }
 
