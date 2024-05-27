@@ -10,7 +10,7 @@ export interface ProductDetails {
   capacity: string;
   priceRegular: number;
   priceDiscount: number;
-  cocolorsAvailable: string[];
+  colorsAvailable: string[];
   color: string;
   images: string[];
   description: ProductDescription[];

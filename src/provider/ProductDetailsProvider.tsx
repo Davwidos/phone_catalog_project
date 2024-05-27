@@ -2,6 +2,7 @@ import {
   FC,
   PropsWithChildren,
   createContext,
+  useContext,
   useEffect,
   useMemo,
   useState,
@@ -46,3 +47,5 @@ export const ProductDetailsProvider: FC<PropsWithChildren> = ({ children }) => {
     </ProductDetailsContext.Provider>
   );
 };
+
+export const useProductDetails = () => useContext(ProductDetailsContext);

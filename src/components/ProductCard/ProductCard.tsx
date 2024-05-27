@@ -1,20 +1,19 @@
 import './ProductCard.scss';
-import img from '../../images/Product.png';
 import favorites from '../../images/icons/favorites.svg';
 import { Link } from 'react-router-dom';
 import { useCart } from '../../provider/CartProvider';
 import favoritesRed from '../../icons/favorite-icon-red.svg';
 import { useFavourites } from '../../provider/FavouritesProvider';
+import { Product } from '../../types/Product';
 
 type Props = {
-  id: number;
-  price: number;
+  product: Product;
   width?: number;
 };
 
-export const ProductCard: React.FC<Props> = ({ id, price, width }) => {
+export const ProductCard: React.FC<Props> = ({ product, width }) => {
   const { handleAddToCart } = useCart();
-  const { handleAddToFavourites, favouritesIDS } = useFavourites();
+  const { handleAddToFavourites, favourites } = useFavourites();
 
   const cardStyles = {
     width: `${width}px`,
@@ -26,28 +25,28 @@ export const ProductCard: React.FC<Props> = ({ id, price, width }) => {
 
   return (
     <div className="productCard" style={cardStyles}>
-      {id}
+      {product.id}
       <img
         className="productCard__img"
-        src={img}
-        alt="Apple iPhone 14 Pro 128GB Silver (MQ023)"
+        src={product.image}
+        alt={product.name}
       />
 
       <h2 className="productCard__title">
         <Link
-          to={`/phones/${id}`}
-          state={{ id, price }}
+          to={`/phones/${product.itemId}`}
+          state={{ product }}
           onClick={handleGoToUpPage}
         >
-          Apple iPhone 14 Pro 128GB Silver (MQ023)
+          {product.name}
         </Link>
       </h2>
 
       <div className="productCard__bottom-content">
         <div className="productCard__prices">
-          $799
+          {product.price}
           <div className="productCard__old-price">
-            $999
+            {product.fullPrice}
             <span className="productCard__line-through">$999</span>
           </div>
         </div>
@@ -57,17 +56,17 @@ export const ProductCard: React.FC<Props> = ({ id, price, width }) => {
         <div className="productCard__info">
           <div className="productCard__info-row">
             Screen
-            <span className="productCard__info-value">6.1” OLED</span>
+            <span className="productCard__info-value">{product.screen}</span>
           </div>
 
           <div className="productCard__info-row">
             Capacity
-            <span className="productCard__info-value">128 GB</span>
+            <span className="productCard__info-value">{product.capacity}</span>
           </div>
 
           <div className="productCard__info-row">
             RAM
-            <span className="productCard__info-value">6 GB</span>
+            <span className="productCard__info-value">{product.ram}</span>
           </div>
         </div>
 
@@ -75,7 +74,7 @@ export const ProductCard: React.FC<Props> = ({ id, price, width }) => {
           <button
             type="button"
             className="productCard__addToCart productCard__btn"
-            onClick={() => handleAddToCart({ id, price })}
+            onClick={() => handleAddToCart(product)}
           >
             Add to cart
           </button>
@@ -85,10 +84,14 @@ export const ProductCard: React.FC<Props> = ({ id, price, width }) => {
             className="
             productCard__favorites
             productCard__btn"
-            onClick={() => handleAddToFavourites(id)}
+            onClick={() => handleAddToFavourites(product)}
           >
             <img
-              src={favouritesIDS.includes(id) ? favoritesRed : favorites}
+              src={
+                favourites.some(p => p.id === product.id)
+                  ? favoritesRed
+                  : favorites
+              }
               alt="favorites"
             />
           </button>
