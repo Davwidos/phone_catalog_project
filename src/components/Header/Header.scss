@@ -9,38 +9,94 @@
   z-index: 100;
   background-color: #fff;
   justify-content: space-between;
-  padding: 0 16px;
   height: 48px;
   box-shadow: 0 1px 0 0 #e2e6e9;
-  
-
+  gap: 16px;
+  @include for-desktop {
+    height: 64px;
+  }
   &__buttons {
     @include flex-row;
 
     justify-content: flex-end;
-    height: 48px;
+    height: 100%;
     width: 100%;
+    &--desktop {
+      @include flex-row;
+      align-items: center;
+      justify-content: center;
+      display: none;
+      @include for-l-mobile {
+        display: flex;
+      }
+      & > * {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: -1px 0px 0px 0px #e2e6e9;
+        @include for-desktop {
+          height: 64px;
+          width: 64px;
+        }
+      }
+    }
   }
 
   &__burger {
-
     &-container {
-      padding-left: 16px;
+      padding: 0 16px;
       box-shadow: -1px 0 0 0 #e2e6e9;
 
       @include flex-col;
 
-      height: 48px;
-
+      height: 100%;
+      width: 48px;
+      @include for-l-mobile {
+        display: none;
+      }
+      @include for-desktop {
+        display: none;
+      }
       &:hover {
         cursor: pointer;
       }
     }
-
   }
 
   &__logo {
     height: 22px;
+    padding: 0 16px;
+    @include for-desktop {
+      height: 28px;
+    }
+  }
+
+  &__menu-items {
+    @include flex-row;
+    height: 100%;
+    gap: 32px;
+    box-sizing: border-box;
+    display: none;
+    width: 0px;
+    @include for-l-mobile {
+      display: flex;
+      width: auto;
+    }
+    &--item {
+      display: flex;
+      text-decoration: none;
+      color: $secondary;
+      height: 100%;
+      align-items: center;
+      padding-top: 3px;
+      border-bottom: 3px solid transparent;
+      &:hover {
+        color: $primary;
+        border-bottom: 3px solid $primary;
+      }
+    }
   }
 }
 

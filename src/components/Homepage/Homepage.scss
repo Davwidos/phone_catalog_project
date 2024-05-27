@@ -8,11 +8,14 @@
 
 .main {
   @include flex-col;
-
   gap: 24px;
   margin: 24px 16px 64px;
   &__title {
+    align-self: flex-start;
     @include h1;
+    @include for-l-mobile {
+      @include d-t-h1;
+    }
   }
 
   &__slider {
@@ -32,4 +35,7 @@
   font-size: 22px;
   text-align: left;
   margin-bottom: 24px;
+  @include for-l-mobile {
+    @include d-t-h2;
+  }
 }
