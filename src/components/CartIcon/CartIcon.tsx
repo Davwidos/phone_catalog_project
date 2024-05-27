@@ -9,7 +9,9 @@ export const CartIcon = () => {
     <div className="icon-wrapper">
       <img src={cartIcon} alt="cart-icon" className="icon-container" />
       {cartItems.length !== 0 && (
-        <div className="icon-container--amount">{cartItems.length}</div>
+        <div className="icon-container--amount">
+          {cartItems.length <= 99 ? cartItems.length : '99+'}
+        </div>
       )}
     </div>
   );
