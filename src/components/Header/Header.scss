@@ -42,6 +42,12 @@
         }
       }
     }
+    &--link {
+      border-bottom: 3px solid transparent;
+      &:hover {
+        border-bottom: 3px solid $primary;
+      }
+    }
   }
 
   &__burger {
@@ -106,4 +112,12 @@
 
 button {
   border: 0;
+}
+
+.link-is-active {
+  border-bottom: 3px solid $primary;
+  &--nav {
+    color: $primary;
+    border-bottom: 3px solid $primary;
+  }
 }
