@@ -25,6 +25,10 @@
       @include flex-row;
       align-items: center;
       justify-content: center;
+      display: none;
+      @include for-l-mobile {
+        display: flex;
+      }
       & > * {
         width: 48px;
         height: 48px;
@@ -74,10 +78,10 @@
     height: 100%;
     gap: 32px;
     box-sizing: border-box;
-    visibility: hidden;
+    display: none;
     width: 0px;
     @include for-l-mobile {
-      visibility: visible;
+      display: flex;
       width: auto;
     }
     &--item {
