@@ -6,7 +6,7 @@ import { ProductGallery } from '../ProductGallery';
 import { VariantsSection } from '../VariantsSection';
 import Slider from '../Slider/Slider';
 import { useProductDetails } from '../../provider/ProductDetailsProvider';
-import { ProductsProider, useProducts } from '../../provider/ProductsProvider';
+import { useProducts } from '../../provider/ProductsProvider';
 
 export const ProductPage: FC = () => {
   const { details } = useProductDetails();
@@ -47,9 +47,7 @@ export const ProductPage: FC = () => {
 
       <div className="ProductPage__slider">
         <h1 className="title-slider">You may also like</h1>
-        <ProductsProider>
-          <Slider />
-        </ProductsProider>
+        <Slider />
       </div>
     </div>
   );
