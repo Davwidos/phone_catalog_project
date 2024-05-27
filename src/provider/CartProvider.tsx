@@ -1,16 +1,24 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+import { Product } from '../types/Product';
 
 type ContextValueType = {
-  addedIDS: Record<number, number>;
   cartValue: number;
-  handleAddToCart: (id: number) => void;
+  cartItems: Product[];
+  handleAddToCart: (product: Product) => void;
   decreaseAmount: (id: number, amount?: number) => void;
   removeItem: (id: number) => void;
 };
 
 const CartContext = createContext<ContextValueType>({
   cartValue: 0,
-  addedIDS: [],
+  cartItems: [],
   handleAddToCart: () => {},
   decreaseAmount: () => {},
   removeItem: () => {},
@@ -21,75 +29,79 @@ type MyContextProviderProps = {
 };
 
 const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
-  const [addedIDS, setAddedIDS] = useState<Record<number, number>>({});
-  const [cartValue, setCartValue] = useState<number>(0);
+  const [cartItems, setCartItems] = useState<Product[]>([]);
+
+  const cartValue = useMemo(
+    () =>
+      cartItems.reduce(
+        (prev, curr) => prev + curr.price * (curr.amount || 0),
+        0,
+      ),
+    [cartItems],
+  );
 
   useEffect(() => {
-    const idsStr = localStorage.getItem('cartItems');
-    const cartValStr = localStorage.getItem('cartValue');
+    const cartIemsStr = localStorage.getItem('cartItems');
 
-    if (idsStr) {
-      setAddedIDS(JSON.parse(idsStr));
-    }
-
-    if (cartValStr) {
-      setCartValue(+cartValStr);
+    if (cartIemsStr) {
+      setCartItems(JSON.parse(cartIemsStr));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(addedIDS));
-  }, [addedIDS]);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
-  useEffect(() => {
-    localStorage.setItem('cartValue', cartValue.toString());
-  }, [cartValue]);
+  const handleAddToCart = useCallback(
+    (product: Product) => {
+      setCartItems(prev => {
+        const exitisngProduct = prev.find(p => p.id === product.id);
 
-  const handleAddToCart = (id: number) => {
-    setAddedIDS(prev => {
-      const productCount = prev[id];
+        if (exitisngProduct) {
+          return prev.map(p =>
+            p.id === product.id
+              ? { ...p, amount: p.amount ? p.amount + 1 : 1 }
+              : p,
+          );
+        }
 
-      return productCount
-        ? { ...prev, [id]: productCount + 1 }
-        : { ...prev, [id]: 1 };
-    });
+        return [...prev, { ...product, amount: 1 }];
+      });
+    },
+    [setCartItems],
+  );
 
-    setCartValue(prev => prev + id * 10);
-  };
+  const removeItem = useCallback(
+    (id: number) => {
+      setCartItems(prev => prev.filter(p => p.id !== id));
+    },
+    [setCartItems],
+  );
 
-  const removeItem = (id: number) => {
-    setAddedIDS(prev => {
-      const { [id]: count, ...rest } = prev;
+  const decreaseAmount = useCallback(
+    (id: number, amount = 1) => {
+      setCartItems(prev =>
+        prev.map(p => {
+          if (p.id === id) {
+            if (!p.amount || p.amount <= amount) {
+              removeItem(id);
 
-      setCartValue(val => (count ? val - count * 10 * id : val));
+              return p;
+            }
 
-      return { ...rest };
-    });
-  };
+            return { ...p, amount: p?.amount - amount };
+          }
 
-  const decreaseAmount = (id: number, amount = 1) => {
-    setAddedIDS(prev => {
-      const productAmount = prev[id];
-
-      if (productAmount && productAmount > amount) {
-        setCartValue(val => val - amount * id * 10);
-
-        return { ...prev, [id]: productAmount - amount };
-      } else if (productAmount) {
-        const { [id]: count, ...rest } = prev;
-
-        setCartValue(val => (count ? val - count * 10 * id : val));
-
-        return { ...rest };
-      }
-
-      return prev;
-    });
-  };
+          return p;
+        }),
+      );
+    },
+    [removeItem],
+  );
 
   const contextValue: ContextValueType = {
-    addedIDS,
     cartValue,
+    cartItems,
     handleAddToCart,
     decreaseAmount,
     removeItem,
