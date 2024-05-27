@@ -1,5 +1,4 @@
 import favouritesIcon from '../../icons/favorite-icon.svg';
-import './FavouritesIcon.scss';
 
 export const FavouritesIcon = () => {
   return (
