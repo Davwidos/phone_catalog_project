@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   line-height: 16px;
+  margin-bottom: 16px;
 
   &__icon {
     margin-right: 8px;
@@ -27,6 +28,7 @@
     line-height: 41px;
     color: #313237;
     margin-bottom: 8px;
+    margin-top: 16px;
 
     &-info {
       color: #89939A;
@@ -84,7 +86,7 @@
     color: #313237;
 
     &-arrow {
-      margin:0 8px;
+      margin: 0 8px;
     }
   }
 }
