@@ -29,3 +29,36 @@
     // @include bodytext14;
   }
 }
+
+@media screen and (min-width: 1200px) {
+  .about {
+    @include flex-col;
+
+    align-items: flex-start;
+    gap: 32px;
+    width: 55%;
+    height: 629px;
+    
+    &__title {
+      @include h3;
+
+      width: 100%;
+      height: 42px;
+      border-bottom: 1px solid $elements;
+    }
+
+    &__subtitle {
+      margin-bottom: 16px;
+
+      @include h4;
+
+      font-weight: 500;
+    }
+
+    &__text {
+      color: $secondary;
+
+      // @include bodytext14;
+    }
+  }
+}

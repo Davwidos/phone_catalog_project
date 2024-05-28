@@ -51,3 +51,21 @@
     }
   }
 }
+
+
+@media screen and (min-width: 1200px) {
+  .ProductGallery {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+  }
+  .selector {
+    flex-direction: column;
+    margin-top: 0;
+
+    &__item {
+      margin-bottom: 8px;
+      margin-right: 28px;
+    }
+  }
+}

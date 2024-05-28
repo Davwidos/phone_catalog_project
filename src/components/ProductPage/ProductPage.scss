@@ -55,6 +55,33 @@
   margin-bottom: 24px;
 }
 
+@media screen and (min-width: 1200px) {
+  .ProductPage {
+    flex-flow: row wrap;
+    justify-content: start;
+    margin: 152px;
+    margin-top: 0;
+
+  }
+
+  .ProductPage__title {
+    flex: 1 0 100%;
+  }
+
+  .ProductPage__slider {
+    order: 3;
+    flex: 1 0 100%;
+  }
+
+  .short-specs {
+    flex: 1 0 48%;
+  }
+
+  .About, .TechSpecs, .VariantsSection, .ProductGallery {
+    flex: 1 0 60%;
+  }
+}
+
 @media screen and (min-width: 640px) and (max-width: 1199px) {
   .ProductPage {
     flex-flow: row wrap;
@@ -72,6 +99,10 @@
 
   .short-specs {
     flex: 1 0 48%;
+  }
+
+  .bottom {
+    display: flex;
   }
 
   .About, .TechSpecs, .VariantsSection, .ProductGallery {
