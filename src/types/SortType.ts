@@ -1,4 +1,4 @@
-export enum sortType {
+export enum SortType {
   Name,
   Price,
   Date,
