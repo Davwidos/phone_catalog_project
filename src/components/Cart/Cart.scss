@@ -119,8 +119,6 @@
     }
 
     &__summary {
-      flex-direction: row;
-      justify-content: space-between;
       padding: 24px;
 
       &-total {
@@ -137,7 +135,6 @@
     }
 
     &__checkout {
-      width: auto;
       padding: 16px 32px;
     }
   }
@@ -147,6 +144,12 @@
   .cart {
     padding: 48px;
 
+    &__container {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
     &__title {
       font-size: 40px;
       line-height: 50px;
@@ -154,6 +157,7 @@
 
     &__items {
       flex-flow: row, wrap;
+      flex: 2.5;
       gap: 32px;
     }
 
@@ -163,9 +167,8 @@
     }
 
     &__summary {
-      flex-direction: row;
-      justify-content: space-between;
       padding: 32px;
+      flex: 1;
 
       &-total {
         font-size: 40px;
@@ -181,7 +184,6 @@
     }
 
     &__checkout {
-      width: auto;
       padding: 20px 40px;
     }
   }
