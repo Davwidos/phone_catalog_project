@@ -30,6 +30,7 @@ const SliderHomePage = () => {
   });
 
   return (
+    // eslint-disable-next-line react/jsx-filename-extension
     <div className="slider-container" {...handlers}>
       {slides.map((slide, index) => (
         <div
@@ -41,6 +42,12 @@ const SliderHomePage = () => {
           )}
         </div>
       ))}
+      <button className="prev-arrow" onClick={prevSlide}>
+        &#10094;
+      </button>
+      <button className="next-arrow" onClick={nextSlide}>
+        &#10095;
+      </button>
       <div className="dots">
         {slides.map((_, index) => (
           <span
