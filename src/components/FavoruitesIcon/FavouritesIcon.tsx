@@ -3,7 +3,6 @@ import { useFavourites } from '../../provider/FavouritesProvider';
 
 export const FavouritesIcon = () => {
   const { favourites } = useFavourites();
-
   return (
     <div className="icon-wrapper">
       <img src={favouritesIcon} alt="cart-icon" className="icon-container" />
