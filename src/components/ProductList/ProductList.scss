@@ -109,6 +109,11 @@
   }
 }
 
+.productList__button.active {
+  background-color: #313237;
+  color: #fff;
+}
+
 @media screen and (min-width: 640px) {
   .productList {
     &__title {

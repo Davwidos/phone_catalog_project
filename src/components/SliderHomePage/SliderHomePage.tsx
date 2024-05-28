@@ -47,6 +47,7 @@ const SliderHomePage = () => {
       <button className="next-arrow" onClick={nextSlide}>
         &#10095;
       </button>
+
       <div className="dots">
         {slides.map((_, index) => (
           <span
