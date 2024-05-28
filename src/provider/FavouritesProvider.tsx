@@ -1,12 +1,19 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import { Product } from '../types/Product';
 
 type FavouritesValueType = {
-  favouritesIDS: number[];
-  handleAddToFavourites: (id: number) => void;
+  favourites: Product[];
+  handleAddToFavourites: (product: Product) => void;
 };
 
 const FavouritesContext = createContext<FavouritesValueType>({
-  favouritesIDS: [],
+  favourites: [],
   handleAddToFavourites: () => {},
 });
 
@@ -17,18 +24,30 @@ type MyContextProviderProps = {
 export const FavouritesProvider: React.FC<MyContextProviderProps> = ({
   children,
 }) => {
-  const [favouritesIDS, setFavouritesIDS] = useState([1, 2, 3]);
+  const [favourites, setFavourites] = useState<Product[]>([]);
 
-  const handleAddToFavourites = (id: number) => {
-    if (favouritesIDS.includes(id)) {
-      setFavouritesIDS(prev => prev.filter(searched => searched !== id));
-    } else {
-      setFavouritesIDS(prev => [...prev, id]);
+  useEffect(() => {
+    const favouritesIdsStr = localStorage.getItem('favouritesIds');
+
+    if (favouritesIdsStr) {
+      setFavourites(JSON.parse(favouritesIdsStr));
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('favouritesIds', JSON.stringify(favourites));
+  }, [favourites]);
+
+  const handleAddToFavourites = useCallback((product: Product) => {
+    setFavourites(prev =>
+      prev.some(p => p.id === product.id)
+        ? prev.filter(searched => searched.id !== product.id)
+        : [...prev, product],
+    );
+  }, []);
 
   const contextValue: FavouritesValueType = {
-    favouritesIDS,
+    favourites: favourites,
     handleAddToFavourites,
   };
 

@@ -4,18 +4,23 @@
   border: 1px solid #e2e6e9;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  gap: 8px;
 
   &:hover {
     box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
   }
 
   &__img {
-    display: block;
-    width: 224px;
+    width: 148px;
     height: 130px;
-    object-fit: contain;
+    object-fit: cover;
+    margin-bottom: 16px;
+
+    @media (min-width: 640px) {
+      height: 196px;
+      width: 165px;
+    }
   }
 
   &__title {
@@ -23,19 +28,23 @@
     font-size: 14px;
     font-weight: 600;
     line-height: 21px;
-    margin-top: 25px;
+    text-align: start;
   }
 
   &__prices {
+    width: 100%;
     display: flex;
-    align-self: self-start;
-    color: #313237;
+    justify-content: start;
+    border-bottom: 1px solid #E2E6E9;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
     font-size: 22px;
-    font-weight: 700;
-    line-height: 140%;
+    font-weight: 800;
+    line-height: 30.8px;
+    text-align: left;
   }
 
-  &__old-price {
+    &__old-price {
     position: relative;
     color: #89939a;
     font-weight: 500;
@@ -53,26 +62,11 @@
     line-height: 1.2px;
   }
 
-  &__divider {
-    width: 100%;
-    height: 1px;
-    background-color: #e2e6e9;
-    margin-top: 6px;
-  }
-
-  &__info {
+  &__info-row {
     color: #89939a;
     font-size: 12px;
     font-weight: 600;
-    line-height: normal;
-    margin-block: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
     width: 100%;
-  }
-
-  &__info-row {
     display: flex;
     justify-content: space-between;
   }
@@ -83,16 +77,10 @@
 
   &__btns {
     display: flex;
-    justify-content: space-between;
     width: 100%;
     gap: 8px;
     height: 40px;
-  }
-
-  &__btn {
-    &:active {
-      transform: scale(0.9);
-    }
+    margin-top: 16px;
   }
 
   &__addToCart {
@@ -104,6 +92,7 @@
     line-height: 21px;
     background-color: #313237;
     border: none;
+    cursor: pointer;
     transition: all 0.3s;
     &:hover {
       box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.26);
@@ -118,10 +107,16 @@
     background-color: #fff;
     transition: all 0.3s;
     border: 1px solid #b4bdc3;
+    cursor: pointer;
 
     &:hover {
       border: 1px solid #313237;
     }
   }
-}
 
+   &__btn {
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+}

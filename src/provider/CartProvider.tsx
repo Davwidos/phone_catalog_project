@@ -1,22 +1,23 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-
-type CartItemType = {
-  id: number;
-  price: number;
-};
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+import { CartItem } from '../types/CartItem';
 
 type ContextValueType = {
-  addedIDS: Record<number, number>;
   cartValue: number;
-  cartItems: CartItemType[];
-  handleAddToCart: (id: number, price: number) => void;
+  cartItems: CartItem[];
+  handleAddToCart: (product: CartItem) => void;
   decreaseAmount: (id: number, amount?: number) => void;
   removeItem: (id: number) => void;
 };
 
 const CartContext = createContext<ContextValueType>({
   cartValue: 0,
-  addedIDS: {},
   cartItems: [],
   handleAddToCart: () => {},
   decreaseAmount: () => {},
@@ -28,108 +29,77 @@ type MyContextProviderProps = {
 };
 
 const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
-  const [addedIDS, setAddedIDS] = useState<Record<number, number>>({});
-  const [cartValue, setCartValue] = useState<number>(0);
-  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  const cartValue = useMemo(
+    () =>
+      cartItems.reduce(
+        (prev, curr) => prev + curr.price * (curr.amount || 0),
+        0,
+      ),
+    [cartItems],
+  );
 
   useEffect(() => {
-    const idsStr = localStorage.getItem('cartItems');
-    const cartValStr = localStorage.getItem('cartValue');
+    const cartIemsStr = localStorage.getItem('cartItems');
 
-    if (idsStr) {
-      setAddedIDS(JSON.parse(idsStr));
-    }
-
-    if (cartValStr) {
-      setCartValue(+cartValStr);
+    if (cartIemsStr) {
+      setCartItems(JSON.parse(cartIemsStr));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(addedIDS));
-  }, [addedIDS]);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
-  useEffect(() => {
-    localStorage.setItem('cartValue', cartValue.toString());
-  }, [cartValue]);
+  const handleAddToCart = useCallback(
+    (product: CartItem) => {
+      setCartItems(prev => {
+        const exitisngProduct = prev.find(p => p.id === product.id);
 
-  const handleAddToCart = (id: number, price: number) => {
-    setAddedIDS(prev => {
-      const productCount = prev[id];
-
-      return productCount
-        ? { ...prev, [id]: productCount + 1 }
-        : { ...prev, [id]: 1 };
-    });
-
-    setCartValue(prev => prev + price);
-
-    setCartItems(prev => {
-      const itemIndex = prev.findIndex(item => item.id === id);
-
-      if (itemIndex >= 0) {
-        const updatedItems = [...prev];
-
-        updatedItems[itemIndex].price += price;
-
-        return updatedItems;
-      } else {
-        return [...prev, { id, price }];
-      }
-    });
-  };
-
-  const removeItem = (id: number) => {
-    setAddedIDS(prev => {
-      const { [id]: count, ...rest } = prev;
-
-      setCartValue(val => (count ? val - count * id : val));
-
-      return { ...rest };
-    });
-
-    setCartItems(prev => prev.filter(item => item.id !== id));
-  };
-
-  const decreaseAmount = (id: number, amount = 1) => {
-    setAddedIDS(prev => {
-      const productAmount = prev[id];
-
-      if (productAmount && productAmount > amount) {
-        setCartValue(val => val - amount * id);
-
-        return { ...prev, [id]: productAmount - amount };
-      } else if (productAmount) {
-        const { [id]: count, ...rest } = prev;
-
-        setCartValue(val => (count ? val - count * id : val));
-
-        return { ...rest };
-      }
-
-      return prev;
-    });
-
-    setCartItems(prev => {
-      const itemIndex = prev.findIndex(item => item.id === id);
-
-      if (itemIndex >= 0) {
-        const updatedItems = [...prev];
-
-        updatedItems[itemIndex].price -= amount * id;
-        if (updatedItems[itemIndex].price <= 0) {
-          updatedItems.splice(itemIndex, 1);
+        if (exitisngProduct) {
+          return prev.map(p =>
+            p.id === product.id
+              ? { ...p, amount: p.amount ? p.amount + 1 : 1 }
+              : p,
+          );
         }
 
-        return updatedItems;
-      }
+        return [...prev, { ...product, amount: 1 }];
+      });
+    },
+    [setCartItems],
+  );
 
-      return prev;
-    });
-  };
+  const removeItem = useCallback(
+    (id: number) => {
+      setCartItems(prev => prev.filter(p => p.id !== id));
+    },
+    [setCartItems],
+  );
+
+  const decreaseAmount = useCallback(
+    (id: number, amount = 1) => {
+      setCartItems(prev =>
+        prev.map(p => {
+          if (p.id === id) {
+            if (!p.amount || p.amount <= amount) {
+              removeItem(id);
+
+              return p;
+            }
+
+            return { ...p, amount: p?.amount - amount };
+          }
+
+          return p;
+        }),
+      );
+    },
+    [removeItem],
+  );
 
   const contextValue: ContextValueType = {
-    addedIDS,
     cartValue,
     cartItems,
     handleAddToCart,

@@ -2,9 +2,11 @@ import { FC, useCallback, useState } from 'react';
 import { ButtonCicirle } from '../Buttons/ButtonCircle';
 import './ColorSelection.scss';
 
-const colors = ['#FCDBC1', '#5F7170', '#4C4C4C', '#F0F0F0'];
+interface Props {
+  colors: string[];
+}
 
-export const ColorSelection: FC = () => {
+export const ColorSelection: FC<Props> = ({ colors }) => {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
 
   const handleSelectColor = useCallback(

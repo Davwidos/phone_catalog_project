@@ -1,16 +1,14 @@
 import { FC, TouchEvent, useState } from 'react';
 import './ProductGallery.scss';
 import classNames from 'classnames';
-
-const images = [
-  '/img/phones/apple-iphone-11-pro-max/gold/00.webp',
-  '/img/phones/apple-iphone-11-pro-max/gold/01.webp',
-  '/img/phones/apple-iphone-11-pro-max/gold/02.webp',
-];
+import { useProductDetails } from '../../provider/ProductDetailsProvider';
 
 export const ProductGallery: FC = () => {
   const [mainImageIndex, setMainImageIndex] = useState(0);
   const [touchStartX, setTouchStartX] = useState(0);
+  const { details } = useProductDetails();
+
+  const images = details?.images || [];
 
   const handleTouchStart = (e: TouchEvent) => {
     e.preventDefault();
