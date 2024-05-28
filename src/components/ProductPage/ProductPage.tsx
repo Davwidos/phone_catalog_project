@@ -7,7 +7,7 @@ import { VariantsSection } from '../VariantsSection';
 import Slider from '../Slider/Slider';
 import { useProductDetails } from '../../provider/ProductDetailsProvider';
 import { useProducts } from '../../provider/ProductsProvider';
-
+import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 export const ProductPage: FC = () => {
   const { details } = useProductDetails();
   const { products } = useProducts();
@@ -17,14 +17,34 @@ export const ProductPage: FC = () => {
     [products, details],
   );
 
+  const category = useMemo(() => {
+    if (details?.category?.includes('phones')) {
+      return 'Phones';
+    }
+
+    if (details?.category?.includes('tablets')) {
+      return 'Tablets';
+    }
+
+    if (details?.category?.includes('accessories')) {
+      return 'Accessories';
+    }
+
+    return undefined;
+  }, [details]);
+
   return (
     <div className="ProductPage">
-      <h1 className="ProductPage__title">
-        Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)
-      </h1>
+      {category && (
+        <Breadcrumbs
+          path={category as 'Phones' | 'Tablets' | 'Accessories'}
+          productName={details?.name}
+        />
+      )}
+      <h1 className="ProductPage__title">{details?.name}</h1>
       <ProductGallery />
       <VariantsSection product={product} />
-      <div className="ProdctPage__short-specs short-specs">
+      <div className="ProductPage__short-specs short-specs">
         <div className="short-specs__spec">
           <p className="short-specs__title">Screen</p>
           <p className="short-specs__value">{details?.screen}</p>
