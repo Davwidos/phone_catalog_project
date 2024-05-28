@@ -10,7 +10,7 @@ import { useProducts } from '../../provider/ProductsProvider';
 
 export const ProductPage: FC = () => {
   const { details } = useProductDetails();
-  const { products } = useProducts();
+  const { products, youMayAlsoLikeProducts } = useProducts();
 
   const product = useMemo(
     () => products.find(p => p.itemId === details?.id),
@@ -47,7 +47,7 @@ export const ProductPage: FC = () => {
 
       <div className="ProductPage__slider">
         <h1 className="title-slider">You may also like</h1>
-        <Slider />
+        <Slider models={youMayAlsoLikeProducts} />
       </div>
     </div>
   );
