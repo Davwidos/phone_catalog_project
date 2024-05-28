@@ -25,7 +25,6 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
 
   return (
     <div className="productCard" style={cardStyles}>
-      {product.id}
       <img
         className="productCard__img"
         src={product.image}
@@ -42,60 +41,54 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
         </Link>
       </h2>
 
-      <div className="productCard__bottom-content">
-        <div className="productCard__prices">
-          {product.price}
-          <div className="productCard__old-price">
-            {product.fullPrice}
-            <span className="productCard__line-through">$999</span>
-          </div>
+      <div className="productCard__prices">
+        {product.price}
+        <div className="productCard__old-price">
+          {product.fullPrice}
+          <span className="productCard__line-through">{product.fullPrice}</span>
         </div>
+      </div>
 
-        <div className="productCard__divider" />
+      <div className="productCard__info-row">
+        Screen
+        <span className="productCard__info-value">{product.screen}</span>
+      </div>
 
-        <div className="productCard__info">
-          <div className="productCard__info-row">
-            Screen
-            <span className="productCard__info-value">{product.screen}</span>
-          </div>
+      <div className="productCard__info-row">
+        Capacity
+        <span className="productCard__info-value">{product.capacity}</span>
+      </div>
 
-          <div className="productCard__info-row">
-            Capacity
-            <span className="productCard__info-value">{product.capacity}</span>
-          </div>
+      <div className="productCard__info-row">
+        RAM
+        <span className="productCard__info-value">{product.ram}</span>
+      </div>
 
-          <div className="productCard__info-row">
-            RAM
-            <span className="productCard__info-value">{product.ram}</span>
-          </div>
-        </div>
+      <div className="productCard__btns">
+        <button
+          type="button"
+          className="productCard__addToCart productCard__btn"
+          onClick={() => handleAddToCart(product)}
+        >
+          Add to cart
+        </button>
 
-        <div className="productCard__btns">
-          <button
-            type="button"
-            className="productCard__addToCart productCard__btn"
-            onClick={() => handleAddToCart(product)}
-          >
-            Add to cart
-          </button>
-
-          <button
-            type="button"
-            className="
-            productCard__favorites
-            productCard__btn"
-            onClick={() => handleAddToFavourites(product)}
-          >
-            <img
-              src={
-                favourites.some(p => p.id === product.id)
-                  ? favoritesRed
-                  : favorites
-              }
-              alt="favorites"
-            />
-          </button>
-        </div>
+        <button
+          type="button"
+          className="
+             productCard__favorites
+             productCard__btn"
+          onClick={() => handleAddToFavourites(product)}
+        >
+          <img
+            src={
+              favourites.some(p => p.id === product.id)
+                ? favoritesRed
+                : favorites
+            }
+            alt="favorites"
+          />
+        </button>
       </div>
     </div>
   );

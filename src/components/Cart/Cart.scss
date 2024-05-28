@@ -109,8 +109,7 @@
     }
 
     &__items {
-      flex-direction: row;
-      flex-wrap: wrap;
+      flex-flow: row, wrap;
       gap: 24px;
     }
 
@@ -154,8 +153,7 @@
     }
 
     &__items {
-      flex-direction: row;
-      flex-wrap: wrap;
+      flex-flow: row, wrap;
       gap: 32px;
     }
 

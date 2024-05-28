@@ -13,14 +13,17 @@
 
     margin-bottom: 24px;
     margin-top: 47px;
+
     @include for-l-mobile {
       @include d-t-h2;
     }
   }
   &__links {
     justify-content: center;
+
     @include for-l-mobile {
       @include flex-row;
+
       gap: 16px;
     }
   }
