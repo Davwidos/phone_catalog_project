@@ -100,6 +100,7 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
           if (p.id === id) {
             return { ...p, amount: (p.amount || 0) + amount };
           }
+
           return p;
         }),
       );

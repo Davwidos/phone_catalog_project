@@ -30,12 +30,16 @@ export const ProductList: React.FC = () => {
     setSortOrder(order);
   };
 
-  const sortProducts = (products: Product[], sortBy: string, order: string) => {
-    const sortedProducts = [...products];
+  const sortProducts = (
+    productsToSort: Product[],
+    sortBy: string,
+    order: string,
+  ) => {
+    const sortedProducts = [...productsToSort];
 
     sortedProducts.sort((a, b) => {
-      let aValue: any;
-      let bValue: any;
+      let aValue: string | number;
+      let bValue: string | number;
 
       switch (sortBy) {
         case 'price-low':
@@ -65,10 +69,8 @@ export const ProductList: React.FC = () => {
     return sortedProducts;
   };
 
-  // Apply sorting to products
   const sortedProducts = sortProducts(products, sortType, sortOrder);
 
-  // Apply pagination to sorted products
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
   const currentProducts = sortedProducts.slice(
