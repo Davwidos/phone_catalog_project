@@ -4,6 +4,7 @@ import 'react-multi-carousel/lib/styles.css';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './Slider.scss';
 import { useEffect, useState } from 'react';
+import { useProducts } from '../../provider/ProductsProvider';
 
 const responsive = {
   superLargeDesktop: {
@@ -24,119 +25,9 @@ const responsive = {
   },
 };
 
-const products = [
-  {
-    id: 1,
-    name: 'Apple iPhone 14 Pro',
-    price: 799,
-    color: 'Silver',
-    capacity: '128 GB',
-    ram: '6 GB',
-    image: '../../images/Product.png',
-  },
-  {
-    id: 32,
-    name: 'Apple iPhone 14',
-    price: 799,
-    color: 'Silver',
-    capacity: '128 GB',
-    ram: '6 GB',
-    image: '../../images/Product.png',
-  },
-  {
-    id: 122,
-    name: 'Apple iPhone',
-    price: 799,
-    color: 'Silver',
-    capacity: '128 GB',
-    ram: '6 GB',
-    image: '../../images/Product.png',
-  },
-  {
-    id: 11,
-    name: 'Apple iPhone 14 Pro',
-    price: 799,
-    color: 'Silver',
-    capacity: '128 GB',
-    ram: '6 GB',
-    image: '../../images/Product.png',
-  },
-  {
-    id: 1,
-    name: 'Apple iPhone 14 Pro',
-    price: 799,
-    color: 'Silver',
-    capacity: '128 GB',
-    ram: '6 GB',
-    image: '../../images/Product.png',
-  },
-  {
-    id: 32,
-    name: 'Apple iPhone 14',
-    price: 799,
-    color: 'Silver',
-    capacity: '128 GB',
-    ram: '6 GB',
-    image: '../../images/Product.png',
-  },
-  {
-    id: 122,
-    name: 'Apple iPhone',
-    price: 799,
-    color: 'Silver',
-    capacity: '128 GB',
-    ram: '6 GB',
-    image: '../../images/Product.png',
-  },
-  {
-    id: 11,
-    name: 'Apple iPhone 14 Pro',
-    price: 799,
-    color: 'Silver',
-    capacity: '128 GB',
-    ram: '6 GB',
-    image: '../../images/Product.png',
-  },
-  {
-    id: 1,
-    name: 'Apple iPhone 14 Pro',
-    price: 799,
-    color: 'Silver',
-    capacity: '128 GB',
-    ram: '6 GB',
-    image: '../../images/Product.png',
-  },
-  {
-    id: 32,
-    name: 'Apple iPhone 14',
-    price: 799,
-    color: 'Silver',
-    capacity: '128 GB',
-    ram: '6 GB',
-    image: '../../images/Product.png',
-  },
-  {
-    id: 122,
-    name: 'Apple iPhone',
-    price: 799,
-    color: 'Silver',
-    capacity: '128 GB',
-    ram: '6 GB',
-    image: '../../images/Product.png',
-  },
-  {
-    id: 11,
-    name: 'Apple iPhone 14 Pro',
-    price: 799,
-    color: 'Silver',
-    capacity: '128 GB',
-    ram: '6 GB',
-    image: '../../images/Product.png',
-  },
-];
-
 const Slider = () => {
   const [cardWidth, setCardWidth] = useState(213);
+  const { products } = useProducts();
 
   useEffect(() => {
     const updateCardWidth = () => {
@@ -165,7 +56,7 @@ const Slider = () => {
         <Carousel responsive={responsive}>
           {products.map(product => (
             <div className="item" key={product.id}>
-              <ProductCard width={cardWidth} {...product} />
+              <ProductCard width={cardWidth} product={product} />
             </div>
           ))}
         </Carousel>
