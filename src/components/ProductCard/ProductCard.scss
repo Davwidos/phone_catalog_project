@@ -12,14 +12,13 @@
   }
 
   &__img {
-    width: 148px;
+    width: auto;
     height: 130px;
     object-fit: cover;
     margin-bottom: 16px;
 
     @media (min-width: 640px) {
       height: 196px;
-      width: 165px;
     }
   }
 
