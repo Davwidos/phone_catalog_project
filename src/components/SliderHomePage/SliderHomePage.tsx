@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import { useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import './SliderHomePage.scss';
@@ -31,7 +30,6 @@ const SliderHomePage = () => {
   });
 
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
     <div className="slider-container" {...handlers}>
       {slides.map((slide, index) => (
         <div
