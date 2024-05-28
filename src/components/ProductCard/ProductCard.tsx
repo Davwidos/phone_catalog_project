@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const ProductCard: React.FC<Props> = ({ product, width }) => {
-  const { handleAddToCart, cartItems } = useCart();
+  const { toggleAddToCart, cartItems } = useCart();
   const { handleAddToFavourites, favourites } = useFavourites();
 
   const cardStyles = {
@@ -72,7 +72,7 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
               ? 'Button--primary active'
               : ''
           }`}
-          onClick={() => handleAddToCart(product)}
+          onClick={() => toggleAddToCart(product)}
         >
           {cartItems.some(i => i.id === product.id)
             ? 'Added to cart'

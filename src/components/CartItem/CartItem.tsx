@@ -9,10 +9,10 @@ type Props = {
 };
 
 export const CartItem: React.FC<Props> = ({ product }) => {
-  const { handleAddToCart, decreaseAmount, removeItem } = useCart();
+  const { decreaseAmount, removeItem, increaseAmount } = useCart();
 
   const handleIncrease = () => {
-    handleAddToCart(product);
+    increaseAmount(product.id);
   };
 
   const handleDecrease = () => {
