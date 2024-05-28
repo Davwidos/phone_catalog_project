@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import { useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import './SliderHomePage.scss';

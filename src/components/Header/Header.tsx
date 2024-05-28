@@ -43,10 +43,10 @@ export const Header: React.FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
       </div>
       <div className="header__buttons">
         <div className="header__buttons--desktop">
-          <Link to="/favourites" className="header__buttons--link">
+          <Link to="/favourites">
             <FavouritesIcon />
           </Link>
-          <Link to="/cart" className="header__buttons--link">
+          <Link to="/cart">
             <CartIcon />
           </Link>
         </div>
