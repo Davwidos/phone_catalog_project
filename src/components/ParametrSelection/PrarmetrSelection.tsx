@@ -2,9 +2,11 @@ import { FC, useCallback, useState } from 'react';
 import { Button } from '../Buttons/Button';
 import './ParametrSelection.scss';
 
-const parametrs = ['64 GB', '256 GB', '512 GB'];
+interface Props {
+  parametrs: string[];
+}
 
-export const ParametrSelection: FC = () => {
+export const ParametrSelection: FC<Props> = ({ parametrs }) => {
   const [selected, setSelected] = useState(parametrs[0]);
 
   const handleSelectParametr = useCallback(

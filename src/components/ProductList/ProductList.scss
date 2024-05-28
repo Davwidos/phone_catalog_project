@@ -2,17 +2,32 @@
 
 .container {
   @include page-grid;
+
+  max-width: 1136px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .productList {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
   line-height: 16px;
+  grid-column: 1 /-1;
+
+  &__wrapper {
+    margin-bottom: 24px;
+  }
 
   &__icon {
     margin-right: 8px;
     display: flex;
     align-items: center;
+    text-decoration: none;
+
+    &-home {
+      margin-right: 8px;
+    }
   }
 
   &__text {
@@ -51,6 +66,7 @@
     &-label {
       color: #89939A;
       font-size: 12px;
+      margin-top: 32px;
     }
 
     &-select {
@@ -74,6 +90,10 @@
     justify-content: center;
     align-items: center;
     gap: 8px;
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   &__button {
@@ -84,7 +104,20 @@
     color: #313237;
 
     &-arrow {
-      margin:0 8px;
+      margin: 0 8px;
+    }
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .productList {
+    &__title {
+      font-size: 48px;
+    }
+
+    &__buttons {
+      position: absolute;
+      bottom: -20px;
     }
   }
 }
