@@ -39,6 +39,13 @@ export const Footer = () => {
     };
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <div className="footer">
       <a href="" className="footer__link link">
@@ -57,7 +64,7 @@ export const Footer = () => {
         </a>
       </div>
 
-      <div className="footer__scrollup">
+      <div className="footer__scrollup" id="scrollup" onClick={scrollToTop}>
         <p className="footer__text text">Back to top</p>
 
         <a className="footer__link link">
