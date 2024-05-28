@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './CartItem.scss';
-import img from '../../images/Product.png';
 import Delete from '../../icons/Close.svg';
+import { useCart } from '../../provider/CartProvider';
+import { CartItem as Product } from '../../types/CartItem';
 
 type Props = {
-  id: number;
-  price: number;
-  onDelete: (id: number) => void;
+  product: Product;
 };
 
-export const CartItem: React.FC<Props> = ({ id, onDelete, price }) => {
-  const [quantity, setQuantity] = useState(1);
+export const CartItem: React.FC<Props> = ({ product }) => {
+  const { handleAddToCart, decreaseAmount, removeItem } = useCart();
 
   const handleIncrease = () => {
-    setQuantity(prevQuantity => prevQuantity + 1);
+    handleAddToCart(product);
   };
 
   const handleDecrease = () => {
-    setQuantity(prevQuantity => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+    decreaseAmount(product.id);
   };
 
   const handleDelete = () => {
-    onDelete(id);
+    removeItem(product.id);
   };
 
   return (
@@ -35,11 +34,9 @@ export const CartItem: React.FC<Props> = ({ id, onDelete, price }) => {
           <img src={Delete} alt="Delete" />
         </button>
 
-        <img src={img} alt="Phone" className="cartItem__img" />
+        <img src={product.image} alt="Phone" className="cartItem__img" />
 
-        <span className="cartItem__title">
-          Apple iPhone 14 Pro 128GB Silver (MQ023) | id: {id}
-        </span>
+        <span className="cartItem__title">{product.name}</span>
       </div>
 
       <div className="cartItem__calculation">
@@ -48,12 +45,12 @@ export const CartItem: React.FC<Props> = ({ id, onDelete, price }) => {
             type="button"
             className="cartItem__btn"
             onClick={handleDecrease}
-            disabled={quantity === 1}
+            disabled={!product.amount || product.amount === 1}
           >
             -
           </button>
 
-          <span className="cartItem__number">{quantity}</span>
+          <span className="cartItem__number">{product.amount}</span>
 
           <button
             type="button"
@@ -64,7 +61,9 @@ export const CartItem: React.FC<Props> = ({ id, onDelete, price }) => {
           </button>
         </div>
 
-        <div className="cartItem__price">${price * quantity}</div>
+        <div className="cartItem__price">
+          ${product.price * (product.amount || 0)}
+        </div>
       </div>
     </div>
   );

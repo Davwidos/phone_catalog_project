@@ -3,14 +3,16 @@
   border: 1px solid #e2e6e9;
   padding: 16px;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 24px;
 
   &__mobail-top {
     display: flex;
     align-items: center;
     gap: 23px;
+    flex: 2;
   }
 
   &__delete-btn {
@@ -37,7 +39,10 @@
   &__calculation {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex: 1;
+    gap: 24px;
   }
 
   &__quantity {
