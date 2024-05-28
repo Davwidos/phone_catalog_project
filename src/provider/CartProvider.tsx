@@ -6,12 +6,12 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { Product } from '../types/Product';
+import { CartItem } from '../types/CartItem';
 
 type ContextValueType = {
   cartValue: number;
-  cartItems: Product[];
-  handleAddToCart: (product: Product) => void;
+  cartItems: CartItem[];
+  handleAddToCart: (product: CartItem) => void;
   decreaseAmount: (id: number, amount?: number) => void;
   removeItem: (id: number) => void;
 };
@@ -29,7 +29,7 @@ type MyContextProviderProps = {
 };
 
 const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
-  const [cartItems, setCartItems] = useState<Product[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const cartValue = useMemo(
     () =>
@@ -53,7 +53,7 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
   }, [cartItems]);
 
   const handleAddToCart = useCallback(
-    (product: Product) => {
+    (product: CartItem) => {
       setCartItems(prev => {
         const exitisngProduct = prev.find(p => p.id === product.id);
 

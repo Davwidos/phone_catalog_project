@@ -11,10 +11,7 @@ export const Homepage = () => {
       <SliderHomePage />
       <div className="main__slider new-models">
         {' '}
-        <h1 className="secondary-title">
-          Brand new <br />
-          models
-        </h1>
+        <h1 className="secondary-title">Brand new models</h1>
         <Slider />
       </div>
       <ShopByCategory />
@@ -25,4 +22,3 @@ export const Homepage = () => {
     </div>
   );
 };
-

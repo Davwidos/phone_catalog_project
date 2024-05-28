@@ -4,14 +4,10 @@ import './ProductList.scss';
 import home from '../../icons/Home.svg';
 import vector from '../../icons/Vector.svg';
 import { NavLink } from 'react-router-dom';
+import { useProducts } from '../../provider/ProductsProvider';
 
 export const ProductList: React.FC = () => {
-  const phones = Array(10)
-    .fill(1)
-    .map((_el, index) => ({
-      id: index,
-      price: index * 100,
-    }));
+  const { products } = useProducts();
 
   return (
     <div className="container">
@@ -56,8 +52,8 @@ export const ProductList: React.FC = () => {
         </div>
       </div>
 
-      {phones.map(phone => (
-        <ProductCard id={phone.id} key={phone.id} price={phone.price} />
+      {products.map(p => (
+        <ProductCard key={p.id} product={p} />
       ))}
 
       <div className="productList__buttons">
