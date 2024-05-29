@@ -59,7 +59,7 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
       setCartItems(prev => {
         return prev.some(p => p.id === product.id)
           ? prev.filter(p => p.id !== product.id)
-          : [...prev, product];
+          : [...prev, { ...product, amount: 1 }];
       });
     },
     [setCartItems],
