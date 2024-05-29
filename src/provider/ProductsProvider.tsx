@@ -9,6 +9,7 @@ import {
 } from 'react';
 import { Product } from '../types/Product';
 import { ProductCategory as Category } from '../types/ProuductCategory';
+import { useSearchParams } from 'react-router-dom';
 
 interface ProductsContextI {
   products: Product[];
@@ -36,16 +37,49 @@ export const ProductsProider: FC<Props> = ({ category, children }) => {
   const [productCategory, setProductCategory] = useState<Category | undefined>(
     category,
   );
+  const [searchParams] = useSearchParams();
 
   useEffect(() => setProductCategory(category), [category]);
 
-  const productsFromCategory = useMemo(
-    () =>
-      productCategory
-        ? allProducts.filter(p => p.category === productCategory)
-        : allProducts,
-    [productCategory, allProducts],
-  );
+  const productsFromCategory = useMemo(() => {
+    const filteredProducts = productCategory
+      ? allProducts.filter(p => p.category === productCategory)
+      : allProducts;
+
+    const sortBy = searchParams.get('sortBy') || 'newest';
+    const perPage = parseInt(searchParams.get('perPage') || '8', 10);
+    const sortedProducts = filteredProducts.sort((a, b) => {
+      let aValue: string | number;
+      let bValue: string | number;
+
+      switch (sortBy) {
+        case 'price-low':
+          aValue = a.price;
+          bValue = b.price;
+
+          return aValue - bValue;
+        case 'price-high':
+          aValue = a.price;
+          bValue = b.price;
+
+          return bValue - aValue;
+        case 'newest':
+          aValue = a.year;
+          bValue = b.year;
+
+          return bValue - aValue;
+        case 'oldest':
+          aValue = a.year;
+          bValue = b.year;
+
+          return aValue - bValue;
+        default:
+          return 0;
+      }
+    });
+
+    return sortedProducts.slice(0, perPage);
+  }, [productCategory, allProducts, searchParams]);
 
   useEffect(() => {
     setPending(true);
