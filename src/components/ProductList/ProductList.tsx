@@ -1,16 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './ProductList.scss';
-import home from '../../icons/Home.svg';
-import vector from '../../icons/Vector.svg';
+import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
+import { useLocation, NavLink } from 'react-router-dom';
+import { useProducts } from '../../provider/ProductsProvider';
 import leftArrow from '../../icons/leftArrow.svg';
 import rightArrow from '../../icons/rightArrow.svg';
-import { NavLink } from 'react-router-dom';
-import { useProducts } from '../../provider/ProductsProvider';
 import { Product } from '../../types/Product';
+
+const getPathFromLocation = (
+  pathname: string,
+): 'Phones' | 'Tablets' | 'Accessories' => {
+  switch (true) {
+    case pathname.includes('/phones'):
+      return 'Phones';
+    case pathname.includes('/tablets'):
+      return 'Tablets';
+    case pathname.includes('/accessories'):
+      return 'Accessories';
+    default:
+      throw new Error('Unknown path');
+  }
+};
 
 export const ProductList: React.FC = () => {
   const { products } = useProducts();
+  const location = useLocation();
+  const path = getPathFromLocation(location.pathname);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [sortType, setSortType] = useState('newest');
@@ -92,6 +108,7 @@ export const ProductList: React.FC = () => {
 
   return (
     <div className="container">
+      <Breadcrumbs path={path} />
       <div className="productList">
         <div className="productList__wrapper">
           <NavLink className="productList__icon" to={'/'}>
@@ -100,12 +117,10 @@ export const ProductList: React.FC = () => {
             <span className="productList__text">Phones</span>
           </NavLink>
         </div>
-
         <div>
           <h1 className="productList__title">Mobile phones</h1>
           <span className="productList__title-info">95 models</span>
         </div>
-
         <div className="productList__sort">
           <div className="productList__item">
             <label className="productList__item-label" htmlFor="sort">
@@ -150,7 +165,6 @@ export const ProductList: React.FC = () => {
       {currentProducts.map(p => (
         <ProductCard key={p.id} product={p} />
       ))}
-
       <div className="productList__buttons">
         <button
           className="productList__button productList__button-arrow"
