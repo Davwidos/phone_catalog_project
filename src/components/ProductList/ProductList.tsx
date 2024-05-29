@@ -7,6 +7,8 @@ import { useProducts } from '../../provider/ProductsProvider';
 import leftArrow from '../../icons/leftArrow.svg';
 import rightArrow from '../../icons/rightArrow.svg';
 import { Product } from '../../types/Product';
+import home from '../../icons/Home.svg';
+import vector from '../../icons/Vector.svg';
 
 const getPathFromLocation = (
   pathname: string,
