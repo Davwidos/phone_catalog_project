@@ -1,12 +1,13 @@
 import './ProductCard.scss';
 import favorites from '../../images/icons/favorites.svg';
 import { Link } from 'react-router-dom';
-import { useCart } from '../../provider/CartProvider';
 import favoritesRed from '../../icons/favorite-icon-red.svg';
 // import { useFavourites } from '../../provider/FavouritesProvider';
 import { Product } from '../../types/Product';
 import { useDispatch } from 'react-redux';
-import { toggle } from '../../features/favorites/favoritesSlice';
+// eslint-disable-next-line max-len
+import { toggle as toggleFavorites } from '../../features/favorites/favoritesSlice';
+import { toogleItem as toggleCart } from '../../features/cart/cartSlice';
 import { useAppSelector } from '../../app/hooks';
 
 type Props = {
@@ -15,9 +16,10 @@ type Props = {
 };
 
 export const ProductCard: React.FC<Props> = ({ product, width }) => {
-  const { toggleAddToCart, cartItems } = useCart();
+  // const { toggleAddToCart, cartItems } = useCart();
   // const { handleAddToFavourites, favourites } = useFavourites();
   const favourites = useAppSelector(store => store.favorites);
+  const cartItems = useAppSelector(store => store.cart);
   const dispatch = useDispatch();
 
   const cardStyles = {
@@ -77,7 +79,7 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
               ? 'Button--primary active'
               : ''
           }`}
-          onClick={() => toggleAddToCart(product)}
+          onClick={() => dispatch(toggleCart(product))}
         >
           {cartItems.some(i => i.id === product.id)
             ? 'Added to cart'
@@ -89,7 +91,7 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
           className="
              productCard__favorites
              productCard__btn"
-          onClick={() => dispatch(toggle(product))}
+          onClick={() => dispatch(toggleFavorites(product))}
         >
           <img
             src={

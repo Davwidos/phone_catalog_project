@@ -1,9 +1,9 @@
+import { useAppSelector } from '../../app/hooks';
 import cartIcon from '../../icons/shopbag-icon.svg';
-import { useCart } from '../../provider/CartProvider';
 import './CartIcon.scss';
 
 export const CartIcon = () => {
-  const { cartItems } = useCart();
+  const cartItems = useAppSelector(state => state.cart);
 
   return (
     <div className="icon-wrapper">
