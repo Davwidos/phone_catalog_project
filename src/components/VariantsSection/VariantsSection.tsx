@@ -15,7 +15,7 @@ interface Props {
 
 export const VariantsSection: FC<Props> = ({ product }) => {
   const { details } = useProductDetails();
-  const { handleAddToCart: addToCart, cartItems, removeItem } = useCart();
+  const { toggleAddToCart: addToCart, cartItems, removeItem } = useCart();
   const { favourites, handleAddToFavourites: addToFavorites } = useFavourites();
 
   const inCart = useMemo(
@@ -28,7 +28,7 @@ export const VariantsSection: FC<Props> = ({ product }) => {
     [favourites, product?.id],
   );
 
-  const handleAddToCart = useCallback(() => {
+  const toggleAddToCart = useCallback(() => {
     if (!product) {
       return;
     }
@@ -60,7 +60,7 @@ export const VariantsSection: FC<Props> = ({ product }) => {
         <Button
           className="buttons__add"
           primary
-          onClick={handleAddToCart}
+          onClick={toggleAddToCart}
           active={inCart}
         >
           Add to cart
