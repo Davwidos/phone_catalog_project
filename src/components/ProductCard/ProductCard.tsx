@@ -3,8 +3,11 @@ import favorites from '../../images/icons/favorites.svg';
 import { Link } from 'react-router-dom';
 import { useCart } from '../../provider/CartProvider';
 import favoritesRed from '../../icons/favorite-icon-red.svg';
-import { useFavourites } from '../../provider/FavouritesProvider';
+// import { useFavourites } from '../../provider/FavouritesProvider';
 import { Product } from '../../types/Product';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggle } from '../../features/favorites/favoritesSlice';
+import { RootState } from '../../app/store';
 
 type Props = {
   product: Product;
@@ -13,7 +16,9 @@ type Props = {
 
 export const ProductCard: React.FC<Props> = ({ product, width }) => {
   const { toggleAddToCart, cartItems } = useCart();
-  const { handleAddToFavourites, favourites } = useFavourites();
+  // const { handleAddToFavourites, favourites } = useFavourites();
+  const favourites = useSelector((store: RootState) => store.favorites);
+  const dispatch = useDispatch();
 
   const cardStyles = {
     width: `${width}px`,
@@ -84,7 +89,7 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
           className="
              productCard__favorites
              productCard__btn"
-          onClick={() => handleAddToFavourites(product)}
+          onClick={() => dispatch(toggle(product))}
         >
           <img
             src={
