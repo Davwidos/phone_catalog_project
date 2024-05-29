@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './ProductList.scss';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
-import { useLocation, NavLink } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useProducts } from '../../provider/ProductsProvider';
 import leftArrow from '../../icons/leftArrow.svg';
 import rightArrow from '../../icons/rightArrow.svg';
 import { Product } from '../../types/Product';
-import home from '../../icons/Home.svg';
-import vector from '../../icons/Vector.svg';
 
 const getPathFromLocation = (
   pathname: string,
@@ -112,13 +110,6 @@ export const ProductList: React.FC = () => {
     <div className="container">
       <Breadcrumbs path={path} />
       <div className="productList">
-        <div className="productList__wrapper">
-          <NavLink className="productList__icon" to={'/'}>
-            <img className="productList__icon-home" src={home} alt="home" />
-            <img className="productList__icon" src={vector} alt="right arrow" />
-            <span className="productList__text">Phones</span>
-          </NavLink>
-        </div>
         <div>
           <h1 className="productList__title">Mobile phones</h1>
           <span className="productList__title-info">95 models</span>
