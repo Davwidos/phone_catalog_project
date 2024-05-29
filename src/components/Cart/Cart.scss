@@ -11,6 +11,7 @@
 .cart {
   padding: 16px;
   flex-grow: 1;
+  max-width: 1200px;
   &__icon {
     height: 10px;
     width: 10px;
@@ -147,7 +148,8 @@
 @media (min-width: 1200px) {
   .cart {
     padding: 48px;
-
+    width: 1200px;
+    margin: 0 auto;
     &__container {
       display: flex;
       align-items: flex-start;
