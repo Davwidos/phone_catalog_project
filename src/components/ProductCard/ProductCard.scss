@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-
+  min-height: 507px;
   &:hover {
     box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
   }
@@ -34,7 +34,7 @@
     width: 100%;
     display: flex;
     justify-content: start;
-    border-bottom: 1px solid #E2E6E9;
+    border-bottom: 1px solid #e2e6e9;
     padding-bottom: 8px;
     margin-bottom: 8px;
     font-size: 22px;
@@ -43,7 +43,7 @@
     text-align: left;
   }
 
-    &__old-price {
+  &__old-price {
     position: relative;
     color: #89939a;
     font-weight: 500;
@@ -113,7 +113,7 @@
     }
   }
 
-   &__btn {
+  &__btn {
     &:active {
       transform: scale(0.9);
     }
