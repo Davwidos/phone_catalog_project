@@ -1,12 +1,12 @@
-/* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './ProductList.scss';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
-import { useLocation } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 import { useProducts } from '../../provider/ProductsProvider';
 import leftArrow from '../../icons/leftArrow.svg';
 import rightArrow from '../../icons/rightArrow.svg';
+import { Product } from '../../types/Product';
 
 const getPathFromLocation = (
   pathname: string,
@@ -29,12 +29,67 @@ export const ProductList: React.FC = () => {
   const path = getPathFromLocation(location.pathname);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [sortType, setSortType] = useState('newest');
+  const [sortOrder, setSortOrder] = useState('desc');
 
   const totalPages = Math.ceil(products.length / itemsPerPage);
 
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    let order = 'asc';
+
+    if (value.includes('high') || value === 'newest') {
+      order = 'desc';
+    }
+
+    setSortType(value);
+    setSortOrder(order);
+  };
+
+  const sortProducts = (
+    productsToSort: Product[],
+    sortBy: string,
+    order: string,
+  ) => {
+    const sortedProducts = [...productsToSort];
+
+    sortedProducts.sort((a, b) => {
+      let aValue: string | number;
+      let bValue: string | number;
+
+      switch (sortBy) {
+        case 'price-low':
+        case 'price-high':
+          aValue = a.price;
+          bValue = b.price;
+          break;
+
+        case 'newest':
+        case 'oldest':
+          aValue = a.year;
+          bValue = b.year;
+          break;
+
+        default:
+          aValue = a.name.toLowerCase();
+          bValue = b.name.toLowerCase();
+      }
+
+      if (order === 'asc') {
+        return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
+      } else {
+        return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
+      }
+    });
+
+    return sortedProducts;
+  };
+
+  const sortedProducts = sortProducts(products, sortType, sortOrder);
+
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = products.slice(
+  const currentProducts = sortedProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct,
   );
@@ -47,10 +102,21 @@ export const ProductList: React.FC = () => {
     setCurrentPage(page);
   };
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [sortType, sortOrder, itemsPerPage]);
+
   return (
     <div className="container">
       <Breadcrumbs path={path} />
       <div className="productList">
+        <div className="productList__wrapper">
+          <NavLink className="productList__icon" to={'/'}>
+            <img className="productList__icon-home" src={home} alt="home" />
+            <img className="productList__icon" src={vector} alt="right arrow" />
+            <span className="productList__text">Phones</span>
+          </NavLink>
+        </div>
         <div>
           <h1 className="productList__title">Mobile phones</h1>
           <span className="productList__title-info">95 models</span>
@@ -60,7 +126,13 @@ export const ProductList: React.FC = () => {
             <label className="productList__item-label" htmlFor="sort">
               Sort by
             </label>
-            <select className="productList__item-select" name="sort" id="sort">
+            <select
+              className="productList__item-select"
+              name="sort"
+              id="sort"
+              value={sortType}
+              onChange={handleSortChange}
+            >
               <option value="newest">Newest</option>
               <option value="oldest">Oldest</option>
               <option value="price-low">Low to High</option>
