@@ -20,12 +20,16 @@
   &__back {
     color: #89939A;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 15.34px;
   }
 
   &__back-link {
+    display: flex;
+    align-items: center;
     text-decoration: none;
+    background: none;
+    cursor: pointer;
   }
 
   &__title {

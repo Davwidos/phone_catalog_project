@@ -13,6 +13,7 @@
   align-items: flex-start;
   flex-direction: column;
   line-height: 16px;
+  margin-bottom: 16px;
   grid-column: 1 /-1;
 
   &__wrapper {
@@ -42,6 +43,7 @@
     line-height: 41px;
     color: #313237;
     margin-bottom: 8px;
+    margin-top: 16px;
 
     &-info {
       color: #89939A;
