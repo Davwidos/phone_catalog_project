@@ -36,9 +36,8 @@
 
     align-items: flex-start;
     gap: 32px;
-    width: 55%;
     height: 629px;
-    
+
     &__title {
       @include h3;
 

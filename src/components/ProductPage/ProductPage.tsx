@@ -42,10 +42,25 @@ export const ProductPage: FC = () => {
         />
       )}
       <h1 className="ProductPage__title">{details?.name}</h1>
-      <ProductGallery />
-      <VariantsSection product={product} />
-      <About />
-      <TechSpecs />
+
+      <div className="middle">
+        <div className="middle-1">
+          <ProductGallery />
+        </div>
+        <div className="middle-2">
+          <VariantsSection product={product} />
+        </div>
+      </div>
+
+      <div className="info">
+        <div className="info-1">
+          <About />
+        </div>
+        <div className="info-2">
+          <TechSpecs />
+        </div>
+      </div>
+
       <div className="ProductPage__slider">
         <h1 className="title-slider">You may also like</h1>
         <Slider />
