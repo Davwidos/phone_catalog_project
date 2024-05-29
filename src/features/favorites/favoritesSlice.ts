@@ -1,16 +1,13 @@
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { Product } from '../../types/Product';
+import { startListening } from '../../app/listenerMiddleware';
+import { RootState } from '../../app/store';
 
 const getFavorites = () => {
-  const favoritesString = localStorage.getItem('favourites');
+  const favoritesString = localStorage.getItem('favorites');
 
   return favoritesString ? JSON.parse(favoritesString) : [];
 };
-
-export const updateLocalStorage = createAsyncThunk(
-  'favorites/localstorage',
-  () => {},
-);
 
 const favoritesSlice = createSlice({
   name: 'favorites',
@@ -24,13 +21,18 @@ const favoritesSlice = createSlice({
         ? state.filter(p => p.id !== action.payload.id)
         : [...state, action.payload],
   },
-  extraReducers: builder => {
-    builder.addCase(updateLocalStorage.fulfilled, state => {
-      localStorage.setItem('favourites', JSON.stringify(state));
-    });
-  },
 });
 
 export const { add, remove, toggle } = favoritesSlice.actions;
+
+startListening({
+  matcher: isAnyOf(...Object.values(favoritesSlice.actions)),
+  effect: (_action, listenerApi) => {
+    localStorage.setItem(
+      'favorites',
+      JSON.stringify((listenerApi.getState() as RootState).favorites),
+    );
+  },
+});
 
 export default favoritesSlice.reducer;

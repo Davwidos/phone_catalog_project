@@ -1,8 +1,8 @@
+import { useAppSelector } from '../../app/hooks';
 import favouritesIcon from '../../icons/favorite-icon.svg';
-import { useFavourites } from '../../provider/FavouritesProvider';
 
 export const FavouritesIcon = () => {
-  const { favourites } = useFavourites();
+  const favourites = useAppSelector(store => store.favorites);
 
   return (
     <div className="icon-wrapper">
