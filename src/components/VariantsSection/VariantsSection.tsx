@@ -47,9 +47,9 @@ export const VariantsSection: FC<Props> = ({ product }) => {
 
   return (
     <div className="VariantSection">
-      <ColorSelection colors={details?.colorsAvailable || []} />
+      {details && <ColorSelection details={details} />}
       <div className="VariantsSection__separator" />
-      <ParametrSelection parametrs={details?.capacityAvailable || []} />
+      {details && <ParametrSelection details={details} />}
       <div className="VariantsSection__separator" />
       <div className="price">
         <span className="price__actual">{details?.priceDiscount}</span>
