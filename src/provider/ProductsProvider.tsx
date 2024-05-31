@@ -9,6 +9,8 @@ import {
 } from 'react';
 import { Product } from '../types/Product';
 import { ProductCategory as Category } from '../types/ProuductCategory';
+import { useSearchParams } from 'react-router-dom';
+import { useProductDetails } from './ProductDetailsProvider';
 
 interface ProductsContextI {
   products: Product[];
@@ -42,6 +44,8 @@ export const ProductsProider: FC<Props> = ({ category, children }) => {
   const [productCategory, setProductCategory] = useState<Category | undefined>(
     category,
   );
+  const { details } = useProductDetails();
+  const [searchParams] = useSearchParams();
 
   const shuffleArray = (array: Product[]) => {
     const shuffledArray = array.slice();
@@ -69,28 +73,56 @@ export const ProductsProider: FC<Props> = ({ category, children }) => {
   );
 
   const youMayAlsoLikeProducts = useMemo(() => {
-    const referenceModels = allProducts.slice(0, 10);
-
     return shuffleArray(
-      allProducts.filter(p =>
-        referenceModels.some(
-          model => model.itemId.substring(0, 15) === p.itemId.substring(0, 15),
-        ),
+      allProducts.filter(
+        p => p.name.substring(0, 15) === details?.name.substring(0, 15),
       ),
     );
-  }, [allProducts]);
+  }, [allProducts, details]);
 
   useEffect(() => {
     setProductCategory(category);
   }, [category]);
 
-  const productsFromCategory = useMemo(
-    () =>
-      productCategory
-        ? allProducts.filter(p => p.category === productCategory)
-        : allProducts,
-    [productCategory, allProducts],
-  );
+  const productsFromCategory = useMemo(() => {
+    const filteredProducts = productCategory
+      ? allProducts.filter(p => p.category === productCategory)
+      : allProducts;
+
+    const sortBy = searchParams.get('sortBy') || 'newest';
+    // const perPage = parseInt(searchParams.get('perPage') || '8', 10);
+    const sortedProducts = filteredProducts.sort((a, b) => {
+      let aValue: string | number;
+      let bValue: string | number;
+
+      switch (sortBy) {
+        case 'price-low':
+          aValue = a.price;
+          bValue = b.price;
+
+          return aValue - bValue;
+        case 'price-high':
+          aValue = a.price;
+          bValue = b.price;
+
+          return bValue - aValue;
+        case 'newest':
+          aValue = a.year;
+          bValue = b.year;
+
+          return bValue - aValue;
+        case 'oldest':
+          aValue = a.year;
+          bValue = b.year;
+
+          return aValue - bValue;
+        default:
+          return 0;
+      }
+    });
+
+    return sortedProducts;
+  }, [productCategory, allProducts, searchParams]);
 
   useEffect(() => {
     setPending(true);
