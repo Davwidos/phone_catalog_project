@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './ProductList.scss';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
@@ -8,7 +8,7 @@ import leftArrow from '../../icons/leftArrow.svg';
 import rightArrow from '../../icons/rightArrow.svg';
 import { ProductCategory } from '../../types/ProuductCategory';
 import { useAppSelector } from '../../app/hooks';
-import { selectFilterdProducts } from '../../features/products/selectors';
+import { selectProductsByCategory } from '../../features/products/selectors';
 import { Product } from '../../types/Product';
 
 const getPathFromLocation = (
@@ -37,13 +37,8 @@ interface Props {
 }
 
 export const ProductList: React.FC<Props> = ({ category }) => {
-  const checkCategory = useCallback(
-    (p: Product) => p.category === category,
-    [category],
-  );
-
   const products = useAppSelector(state =>
-    selectFilterdProducts(state, checkCategory),
+    selectProductsByCategory(state, category),
   );
   const location = useLocation();
   const path = getPathFromLocation(location.pathname);

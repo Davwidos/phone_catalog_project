@@ -8,14 +8,14 @@ import Slider from '../Slider/Slider';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 import { useAppSelector } from '../../app/hooks';
 import {
-  selectProduct,
+  selectProductByItemId,
   selectProducts,
 } from '../../features/products/selectors';
 import { useParams } from 'react-router-dom';
 export const ProductPage: FC = () => {
   const { id } = useParams();
   const product = useAppSelector(state =>
-    selectProduct(state, p => p.itemId === id),
+    selectProductByItemId(state, id || ''),
   );
   const details = product?.item;
 
