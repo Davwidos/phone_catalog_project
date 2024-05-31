@@ -16,6 +16,9 @@ interface ProductsContextI {
   error: boolean;
   category?: Category;
   setProductCategory: (category: Category) => void;
+  newModels: Product[];
+  hotPricesModels: Product[];
+  youMayAlsoLikeProducts: Product[];
 }
 
 const ProductsContext = createContext<ProductsContextI>({
@@ -23,6 +26,9 @@ const ProductsContext = createContext<ProductsContextI>({
   pending: false,
   error: false,
   setProductCategory: () => {},
+  newModels: [],
+  hotPricesModels: [],
+  youMayAlsoLikeProducts: [],
 });
 
 interface Props extends PropsWithChildren {
@@ -37,7 +43,46 @@ export const ProductsProider: FC<Props> = ({ category, children }) => {
     category,
   );
 
-  useEffect(() => setProductCategory(category), [category]);
+  const shuffleArray = (array: Product[]) => {
+    const shuffledArray = array.slice();
+
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+
+      [shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ];
+    }
+
+    return shuffledArray;
+  };
+
+  const newModels = useMemo(
+    () => shuffleArray(allProducts.filter(p => p.year >= 2022)),
+    [allProducts],
+  );
+
+  const hotPricesModels = useMemo(
+    () => shuffleArray(allProducts.filter(p => p.fullPrice - p.price > 50)),
+    [allProducts],
+  );
+
+  const youMayAlsoLikeProducts = useMemo(() => {
+    const referenceModels = allProducts.slice(0, 10);
+
+    return shuffleArray(
+      allProducts.filter(p =>
+        referenceModels.some(
+          model => model.itemId.substring(0, 15) === p.itemId.substring(0, 15),
+        ),
+      ),
+    );
+  }, [allProducts]);
+
+  useEffect(() => {
+    setProductCategory(category);
+  }, [category]);
 
   const productsFromCategory = useMemo(
     () =>
@@ -60,8 +105,11 @@ export const ProductsProider: FC<Props> = ({ category, children }) => {
     products: productsFromCategory,
     error,
     pending,
-    category,
+    category: productCategory,
     setProductCategory,
+    newModels,
+    hotPricesModels,
+    youMayAlsoLikeProducts,
   };
 
   return (

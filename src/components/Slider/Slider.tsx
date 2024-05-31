@@ -3,7 +3,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './Slider.scss';
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Product } from '../../types/Product';
 
 const responsive = {
@@ -25,11 +25,11 @@ const responsive = {
   },
 };
 
-interface Props {
-  products: Product[];
+interface SliderProps {
+  models: Product[];
 }
 
-const Slider: FC<Props> = ({ products }) => {
+const Slider = ({ models }: SliderProps) => {
   const [cardWidth, setCardWidth] = useState(213);
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const Slider: FC<Props> = ({ products }) => {
     <>
       <div>
         <Carousel responsive={responsive}>
-          {products.map(product => (
+          {models.map(product => (
             <div className="item" key={product.id}>
               <ProductCard width={cardWidth} product={product} />
             </div>

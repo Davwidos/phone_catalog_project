@@ -71,7 +71,7 @@ export const ProductPage: FC = () => {
 
       <div className="ProductPage__slider">
         <h1 className="title-slider">You may also like</h1>
-        <Slider products={recomended} />
+        <Slider models={recomended} />
       </div>
     </div>
   );
