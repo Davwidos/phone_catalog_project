@@ -2,7 +2,6 @@ import './ProductCard.scss';
 import favorites from '../../images/icons/favorites.svg';
 import { Link } from 'react-router-dom';
 import favoritesRed from '../../icons/favorite-icon-red.svg';
-// import { useFavourites } from '../../provider/FavouritesProvider';
 import { Product } from '../../types/Product';
 import { useDispatch } from 'react-redux';
 // eslint-disable-next-line max-len
@@ -16,8 +15,6 @@ type Props = {
 };
 
 export const ProductCard: React.FC<Props> = ({ product, width }) => {
-  // const { toggleAddToCart, cartItems } = useCart();
-  // const { handleAddToFavourites, favourites } = useFavourites();
   const favourites = useAppSelector(store => store.favorites);
   const cartItems = useAppSelector(store => store.cart);
   const dispatch = useDispatch();

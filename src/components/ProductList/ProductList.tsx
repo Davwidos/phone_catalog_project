@@ -1,12 +1,15 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './ProductList.scss';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 import { useLocation } from 'react-router-dom';
-import { useProducts } from '../../provider/ProductsProvider';
 import leftArrow from '../../icons/leftArrow.svg';
 import rightArrow from '../../icons/rightArrow.svg';
+import { ProductCategory } from '../../types/ProuductCategory';
+import { useAppSelector } from '../../app/hooks';
+import { selectFilterdProducts } from '../../features/products/selectors';
+import { Product } from '../../types/Product';
 
 const getPathFromLocation = (
   pathname: string,
@@ -23,8 +26,25 @@ const getPathFromLocation = (
   }
 };
 
-export const ProductList: React.FC = () => {
-  const { products } = useProducts();
+const TILTES: Record<ProductCategory, string> = {
+  phones: 'Mobile phones',
+  tablets: 'Tablets',
+  accessories: 'Accessories',
+};
+
+interface Props {
+  category: ProductCategory;
+}
+
+export const ProductList: React.FC<Props> = ({ category }) => {
+  const checkCategory = useCallback(
+    (p: Product) => p.category === category,
+    [category],
+  );
+
+  const products = useAppSelector(state =>
+    selectFilterdProducts(state, checkCategory),
+  );
   const location = useLocation();
   const path = getPathFromLocation(location.pathname);
   const [currentPage, setCurrentPage] = useState(1);
@@ -52,8 +72,8 @@ export const ProductList: React.FC = () => {
       <Breadcrumbs path={path} />
       <div className="productList">
         <div>
-          <h1 className="productList__title">Mobile phones</h1>
-          <span className="productList__title-info">95 models</span>
+          <h1 className="productList__title">{TILTES[category]}</h1>
+          <span className="productList__title-info">{`${products.length} models`}</span>
         </div>
         <div className="productList__sort">
           <div className="productList__item">

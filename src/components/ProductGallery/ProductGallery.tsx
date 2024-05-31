@@ -1,12 +1,15 @@
 import { FC, TouchEvent, useState } from 'react';
 import './ProductGallery.scss';
 import classNames from 'classnames';
-import { useProductDetails } from '../../provider/ProductDetailsProvider';
+import { ProductDetails } from '../../types/ProductDetails';
 
-export const ProductGallery: FC = () => {
+interface Props {
+  details?: ProductDetails;
+}
+
+export const ProductGallery: FC<Props> = ({ details }) => {
   const [mainImageIndex, setMainImageIndex] = useState(0);
   const [touchStartX, setTouchStartX] = useState(0);
-  const { details } = useProductDetails();
 
   const images = details?.images || [];
 

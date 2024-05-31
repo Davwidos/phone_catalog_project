@@ -2,16 +2,15 @@ import './Cart.scss';
 import LeftIcon from '../../icons/left.svg';
 import { useNavigate } from 'react-router-dom';
 import { CartItem } from '../CartItem';
-import { useAppSelector } from '../../app/hooks';
-import { selectCartValue } from '../../features/cart/selectCartValue';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectCartValue } from '../../features/cart/selectors';
 import { clear } from '../../features/cart/cartSlice';
 
 export const Cart = () => {
   // const { cartItems, removeItem, cartValue } = useCart();
   const cartItems = useAppSelector(state => state.cart);
   const cartValue = useAppSelector(state => selectCartValue(state));
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleCheckout = () => {

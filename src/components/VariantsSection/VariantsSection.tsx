@@ -4,7 +4,6 @@ import { ColorSelection } from '../ColorSelection/ColorSelection';
 import { ParametrSelection } from '../ParametrSelection';
 import { Button } from '../Buttons/Button';
 import { ButtonHeart } from '../Buttons/ButtonHeart';
-import { useProductDetails } from '../../provider/ProductDetailsProvider';
 import { Product } from '../../types/Product';
 import { useAppSelector } from '../../app/hooks';
 import { useDispatch } from 'react-redux';
@@ -17,7 +16,7 @@ interface Props {
 }
 
 export const VariantsSection: FC<Props> = ({ product }) => {
-  const { details } = useProductDetails();
+  const details = product?.item;
   const cartItems = useAppSelector(store => store.cart);
   const dispatch = useDispatch();
   const favourites = useAppSelector(store => store.favorites);

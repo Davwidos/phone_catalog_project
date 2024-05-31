@@ -5,17 +5,21 @@ import './ProductPage.scss';
 import { ProductGallery } from '../ProductGallery';
 import { VariantsSection } from '../VariantsSection';
 import Slider from '../Slider/Slider';
-import { useProductDetails } from '../../provider/ProductDetailsProvider';
-import { useProducts } from '../../provider/ProductsProvider';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
+import { useAppSelector } from '../../app/hooks';
+import {
+  selectProduct,
+  selectProducts,
+} from '../../features/products/selectors';
+import { useParams } from 'react-router-dom';
 export const ProductPage: FC = () => {
-  const { details } = useProductDetails();
-  const { products } = useProducts();
-
-  const product = useMemo(
-    () => products.find(p => p.itemId === details?.id),
-    [products, details],
+  const { id } = useParams();
+  const product = useAppSelector(state =>
+    selectProduct(state, p => p.itemId === id),
   );
+  const details = product?.item;
+
+  const recomended = useAppSelector(selectProducts);
 
   const category = useMemo(() => {
     if (details?.category?.includes('phones')) {
@@ -42,7 +46,7 @@ export const ProductPage: FC = () => {
         />
       )}
       <h1 className="ProductPage__title">{details?.name}</h1>
-      <ProductGallery />
+      <ProductGallery details={details} />
       <VariantsSection product={product} />
       <div className="ProductPage__short-specs short-specs">
         <div className="short-specs__spec">
@@ -63,11 +67,11 @@ export const ProductPage: FC = () => {
         </div>
       </div>
       <About />
-      <TechSpecs />
+      <TechSpecs details={details} />
 
       <div className="ProductPage__slider">
         <h1 className="title-slider">You may also like</h1>
-        <Slider />
+        <Slider products={recomended} />
       </div>
     </div>
   );

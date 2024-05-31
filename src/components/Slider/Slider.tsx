@@ -3,8 +3,8 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './Slider.scss';
-import { useEffect, useState } from 'react';
-import { useProducts } from '../../provider/ProductsProvider';
+import { FC, useEffect, useState } from 'react';
+import { Product } from '../../types/Product';
 
 const responsive = {
   superLargeDesktop: {
@@ -25,9 +25,12 @@ const responsive = {
   },
 };
 
-const Slider = () => {
+interface Props {
+  products: Product[];
+}
+
+const Slider: FC<Props> = ({ products }) => {
   const [cardWidth, setCardWidth] = useState(213);
-  const { products } = useProducts();
 
   useEffect(() => {
     const updateCardWidth = () => {
