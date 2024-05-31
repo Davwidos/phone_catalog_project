@@ -9,6 +9,7 @@ import {
 } from 'react';
 import { Product } from '../types/Product';
 import { ProductCategory as Category } from '../types/ProuductCategory';
+import { useProductDetails } from './ProductDetailsProvider';
 
 interface ProductsContextI {
   products: Product[];
@@ -42,7 +43,7 @@ export const ProductsProider: FC<Props> = ({ category, children }) => {
   const [productCategory, setProductCategory] = useState<Category | undefined>(
     category,
   );
-
+  const { details } = useProductDetails();
   const shuffleArray = (array: Product[]) => {
     const shuffledArray = array.slice();
 
@@ -69,16 +70,12 @@ export const ProductsProider: FC<Props> = ({ category, children }) => {
   );
 
   const youMayAlsoLikeProducts = useMemo(() => {
-    const referenceModels = allProducts.slice(0, 10);
-
     return shuffleArray(
-      allProducts.filter(p =>
-        referenceModels.some(
-          model => model.itemId.substring(0, 15) === p.itemId.substring(0, 15),
-        ),
+      allProducts.filter(
+        p => p.name.substring(0, 15) === details?.name.substring(0, 15),
       ),
     );
-  }, [allProducts]);
+  }, [allProducts, details]);
 
   useEffect(() => {
     setProductCategory(category);
