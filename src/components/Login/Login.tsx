@@ -39,7 +39,9 @@ const Login: React.FC = () => {
             />
           </div>
           {error && <p className="error">{error}</p>}
-          <button type="submit">Login</button>
+          <button type="submit" className="button-login">
+            Login
+          </button>
         </form>
       </div>
     </div>
