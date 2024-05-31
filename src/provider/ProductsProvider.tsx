@@ -10,6 +10,7 @@ import {
 import { Product } from '../types/Product';
 import { ProductCategory as Category } from '../types/ProuductCategory';
 import { useSearchParams } from 'react-router-dom';
+import { useProductDetails } from './ProductDetailsProvider';
 
 interface ProductsContextI {
   products: Product[];
@@ -17,6 +18,9 @@ interface ProductsContextI {
   error: boolean;
   category?: Category;
   setProductCategory: (category: Category) => void;
+  newModels: Product[];
+  hotPricesModels: Product[];
+  youMayAlsoLikeProducts: Product[];
 }
 
 const ProductsContext = createContext<ProductsContextI>({
@@ -24,6 +28,9 @@ const ProductsContext = createContext<ProductsContextI>({
   pending: false,
   error: false,
   setProductCategory: () => {},
+  newModels: [],
+  hotPricesModels: [],
+  youMayAlsoLikeProducts: [],
 });
 
 interface Props extends PropsWithChildren {
@@ -37,9 +44,45 @@ export const ProductsProider: FC<Props> = ({ category, children }) => {
   const [productCategory, setProductCategory] = useState<Category | undefined>(
     category,
   );
+  const { details } = useProductDetails();
   const [searchParams] = useSearchParams();
 
-  useEffect(() => setProductCategory(category), [category]);
+  const shuffleArray = (array: Product[]) => {
+    const shuffledArray = array.slice();
+
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+
+      [shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ];
+    }
+
+    return shuffledArray;
+  };
+
+  const newModels = useMemo(
+    () => shuffleArray(allProducts.filter(p => p.year >= 2022)),
+    [allProducts],
+  );
+
+  const hotPricesModels = useMemo(
+    () => shuffleArray(allProducts.filter(p => p.fullPrice - p.price > 50)),
+    [allProducts],
+  );
+
+  const youMayAlsoLikeProducts = useMemo(() => {
+    return shuffleArray(
+      allProducts.filter(
+        p => p.name.substring(0, 15) === details?.name.substring(0, 15),
+      ),
+    );
+  }, [allProducts, details]);
+
+  useEffect(() => {
+    setProductCategory(category);
+  }, [category]);
 
   const productsFromCategory = useMemo(() => {
     const filteredProducts = productCategory
@@ -94,8 +137,11 @@ export const ProductsProider: FC<Props> = ({ category, children }) => {
     products: productsFromCategory,
     error,
     pending,
-    category,
+    category: productCategory,
     setProductCategory,
+    newModels,
+    hotPricesModels,
+    youMayAlsoLikeProducts,
   };
 
   return (

@@ -8,6 +8,8 @@
   @include flex-col;
 
   align-items: flex-start;
+  justify-content: flex-start;
+  flex-grow: 1;
   margin: 0 auto;
   padding: 0 16px;
   width: 100%;
@@ -35,26 +37,29 @@
   &__products {
     @include flex-col;
 
-    gap: 16px 40px;
+    gap: 40px 16px;
     width: 100%;
     justify-content: flex-start;
 
     @include for-l-mobile {
       flex-flow: row wrap;
       & > * {
-        max-width: calc(50% - 16px);
+        min-width: 288px;
+        width: calc(50% - 16px);
       }
     }
 
     @media (min-width: 920px) {
       & > * {
-        max-width: calc(33.33% - 16px);
+        min-width: 229px;
+        width: calc(33.33% - 16px);
       }
     }
 
     @include for-desktop {
       & > * {
-        max-width: calc(25% - 16px);
+        min-width: 272px;
+        width: calc(25% - 16px);
       }
     }
   }
