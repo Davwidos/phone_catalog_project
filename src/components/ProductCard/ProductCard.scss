@@ -12,6 +12,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    min-height: 507px;
   }
   &__container + &__container {
     align-items: stretch;
