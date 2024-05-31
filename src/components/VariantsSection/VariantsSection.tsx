@@ -70,6 +70,25 @@ export const VariantsSection: FC<Props> = ({ product }) => {
           style={{ width: 48, height: 48 }}
         />
       </div>
+
+      <div className="ProdctPage__short-specs short-specs">
+        <div className="short-specs__spec">
+          <p className="short-specs__title">Screen</p>
+          <p className="short-specs__value">{details?.screen}</p>
+        </div>
+        <div className="short-specs__spec">
+          <p className="short-specs__title">Resolution</p>
+          <p className="short-specs__value">{details?.resolution}</p>
+        </div>
+        <div className="short-specs__spec">
+          <p className="short-specs__title">Processor</p>
+          <p className="short-specs__value">{details?.processor}</p>
+        </div>
+        <div className="short-specs__spec">
+          <p className="short-specs__title">RAM</p>
+          <p className="short-specs__value">{details?.ram}</p>
+        </div>
+      </div>
     </div>
   );
 };

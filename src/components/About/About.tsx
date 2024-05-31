@@ -1,8 +1,12 @@
-import { useProductDetails } from '../../provider/ProductDetailsProvider';
+import { FC } from 'react';
+import { Item } from '../../types/Product';
 import './About.scss';
 
-export const About = () => {
-  const { details } = useProductDetails();
+interface Props {
+  details?: Item;
+}
+
+export const About: FC<Props> = ({ details }) => {
 
   return (
     <div className="about">

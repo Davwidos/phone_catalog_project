@@ -46,28 +46,24 @@ export const ProductPage: FC = () => {
         />
       )}
       <h1 className="ProductPage__title">{details?.name}</h1>
-      <ProductGallery details={details} />
-      <VariantsSection product={product} />
-      <div className="ProductPage__short-specs short-specs">
-        <div className="short-specs__spec">
-          <p className="short-specs__title">Screen</p>
-          <p className="short-specs__value">{details?.screen}</p>
+
+      <div className="middle">
+        <div className="middle-1">
+          <ProductGallery details={details} />
         </div>
-        <div className="short-specs__spec">
-          <p className="short-specs__title">Resolution</p>
-          <p className="short-specs__value">{details?.resolution}</p>
-        </div>
-        <div className="short-specs__spec">
-          <p className="short-specs__title">Processor</p>
-          <p className="short-specs__value">{details?.processor}</p>
-        </div>
-        <div className="short-specs__spec">
-          <p className="short-specs__title">RAM</p>
-          <p className="short-specs__value">{details?.ram}</p>
+        <div className="middle-2">
+          <VariantsSection product={product} />
         </div>
       </div>
-      <About />
-      <TechSpecs details={details} />
+
+      <div className="info">
+        <div className="info-1">
+          <About details={details} />
+        </div>
+        <div className="info-2">
+          <TechSpecs details={details} />
+        </div>
+      </div>
 
       <div className="ProductPage__slider">
         <h1 className="title-slider">You may also like</h1>
