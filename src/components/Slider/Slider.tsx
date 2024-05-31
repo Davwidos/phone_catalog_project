@@ -55,7 +55,7 @@ const Slider = ({ models }: SliderProps) => {
 
   return (
     <>
-      <div>
+      <div className="carousel">
         <Carousel responsive={responsive}>
           {models.map(product => (
             <div className="item" key={product.id}>
