@@ -6,7 +6,7 @@ import leftArrow from '../../icons/leftArrow.svg';
 import rightArrow from '../../icons/rightArrow.svg';
 import { useEffect } from 'react';
 // eslint-disable-next-line max-len
-import { selectUniqueProductsByCategory } from '../../features/products/selectors';
+import { selectProductsByCategory } from '../../features/products/selectors';
 import { ProductCategory } from '../../types/ProuductCategory';
 import { useAppSelector } from '../../app/hooks';
 
@@ -37,7 +37,7 @@ interface Props {
 
 export const ProductList: React.FC<Props> = ({ category }) => {
   const products = useAppSelector(state =>
-    selectUniqueProductsByCategory(state, category),
+    selectProductsByCategory(state, category),
   );
   const location = useLocation();
   const path = getPathFromLocation(location.pathname);
