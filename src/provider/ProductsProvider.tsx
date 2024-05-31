@@ -47,7 +47,7 @@ export const ProductsProider: FC<Props> = ({ category, children }) => {
       : allProducts;
 
     const sortBy = searchParams.get('sortBy') || 'newest';
-    const perPage = parseInt(searchParams.get('perPage') || '8', 10);
+    // const perPage = parseInt(searchParams.get('perPage') || '8', 10);
     const sortedProducts = filteredProducts.sort((a, b) => {
       let aValue: string | number;
       let bValue: string | number;
@@ -78,7 +78,7 @@ export const ProductsProider: FC<Props> = ({ category, children }) => {
       }
     });
 
-    return sortedProducts.slice(0, perPage);
+    return sortedProducts;
   }, [productCategory, allProducts, searchParams]);
 
   useEffect(() => {
