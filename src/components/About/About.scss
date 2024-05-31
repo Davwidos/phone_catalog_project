@@ -26,7 +26,11 @@
   &__text {
     color: $secondary;
 
-    // @include bodytext14;
+    @include bodytext14;
+  }
+
+  .title {
+    margin: 0;
   }
 }
 

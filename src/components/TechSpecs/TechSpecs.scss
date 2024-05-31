@@ -22,11 +22,13 @@
     height: 21px;
     width: 100%;
     &--title {
-      // @include bodytext14;
+      @include bodytext14;
+
       color: $secondary;
     }
     &--value {
-      // @include bodytext14;
+      @include bodytext14;
+
       width: 50%;
       color: $primary;
       text-align: right;
@@ -57,11 +59,13 @@
       height: 21px;
       width: 100%;
       &--title {
-        // @include bodytext14;
+        @include bodytext14;
+
         color: $secondary;
       }
       &--value {
-        // @include bodytext14;
+        @include bodytext14;
+
         width: 50%;
         color: $primary;
         text-align: right;
@@ -93,11 +97,13 @@
       height: 21px;
       width: 100%;
       &--title {
-        // @include bodytext14;
+        @include bodytext14;
+
         color: $secondary;
       }
       &--value {
-        // @include bodytext14;
+        @include bodytext14;
+
         width: 50%;
         color: $primary;
         text-align: right;

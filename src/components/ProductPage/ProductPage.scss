@@ -22,6 +22,14 @@
   }
 }
 
+.info {
+  margin-bottom: 56px;
+
+  &-1 {
+    margin-bottom: 56px;
+  }
+}
+
 .short-specs {
   display: flex;
   flex-direction: column;
@@ -60,8 +68,8 @@
     flex-flow: row wrap;
     justify-content: start;
     margin-top: 0;
-
   }
+
   .ProductPage__title {
     flex: 1 0 100%;
   }
@@ -90,15 +98,75 @@
     align-items: baseline;
 
     &-1 {
-      width: 60%;
+      width: 70%;
       font-family: Mont, sans-serif;
       font-size: 14px;
       font-weight: 500;
       line-height: 21px;
       text-align: left;
-
     }
 
+    &-2 {
+      width: 30%;
+    }
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  .About,
+  .TechSpecs,
+  .VariantsSection,
+  .ProductGallery {
+    flex: 1 0 48%;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .ProductPage {
+    flex-flow: row wrap;
+    justify-content: start;
+    margin: 152px;
+    margin-top: 0;
+  }
+
+  .ProductPage__title {
+    flex: 1 0 100%;
+  }
+
+  .ProductPage__slider {
+    order: 3;
+    flex: 1 0 100%;
+  }
+
+  .short-specs {
+    flex: 1 0 48%;
+  }
+
+  .middle {
+    display: flex;
+    width: 100%;
+  }
+
+  .middle-1 {
+    width: 57%;
+  }
+
+  .info {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+
+    &-1 {
+      width: 50%;
+      font-family: Mont, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 21px;
+      text-align: left;
+      margin-right: 64px;
+    }
 
     &-2 {
       width: 45%;
@@ -109,7 +177,10 @@
     display: flex;
   }
 
-  .About, .TechSpecs, .VariantsSection, .ProductGallery {
+  .About,
+  .TechSpecs,
+  .VariantsSection,
+  .ProductGallery {
     flex: 1 0 48%;
   }
 }
@@ -146,11 +217,22 @@
     margin-left: 14px;
   }
 
+  .info {
+    margin-bottom: 80px;
+
+    &-1 {
+      margin-bottom: 64px;
+    }
+  }
+
   .bottom {
     display: flex;
   }
 
-  .About, .TechSpecs, .VariantsSection, .ProductGallery {
+  .About,
+  .TechSpecs,
+  .VariantsSection,
+  .ProductGallery {
     flex: 1 0 48%;
   }
 }
