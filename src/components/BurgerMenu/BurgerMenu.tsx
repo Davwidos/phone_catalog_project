@@ -2,6 +2,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './BurgerMenu.scss';
+import { FavouritesIcon } from '../FavoruitesIcon/FavouritesIcon';
+import { CartIcon } from '../CartIcon/CartIcon';
 
 interface BurgerProps {
   toggleMenu: () => void;
@@ -40,20 +42,12 @@ const BurgerMenu: React.FC<BurgerProps> = ({ toggleMenu }) => {
         </ul>
         <div className="bottom">
           <Link to="/favourites" onClick={handleLinkClick}>
-            <button>
-              <img
-                src={require('../../icons/favorite-icon.svg').default}
-                alt="Favourite"
-              />
-            </button>
+            <FavouritesIcon />
           </Link>
 
           <Link to="/cart" onClick={handleLinkClick}>
             <button>
-              <img
-                src={require('../../icons/shopbag-icon.svg').default}
-                alt="Cart"
-              />
+              <CartIcon />
             </button>
           </Link>
         </div>
