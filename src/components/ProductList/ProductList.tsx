@@ -1,12 +1,11 @@
-/* eslint-disable max-len */
-import React, { useState } from 'react';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './ProductList.scss';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useProducts } from '../../provider/ProductsProvider';
 import leftArrow from '../../icons/leftArrow.svg';
 import rightArrow from '../../icons/rightArrow.svg';
+import { useEffect } from 'react';
 
 const getPathFromLocation = (
   pathname: string,
@@ -27,10 +26,25 @@ export const ProductList: React.FC = () => {
   const { products } = useProducts();
   const location = useLocation();
   const path = getPathFromLocation(location.pathname);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const currentPage = parseInt(searchParams.get('page') || '1', 10);
+  const itemsPerPage = parseInt(searchParams.get('perPage') || '8', 10);
+  const sortType = searchParams.get('sortBy') || 'newest';
 
   const totalPages = Math.ceil(products.length / itemsPerPage);
+
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSearchParams({
+      sortBy: e.target.value,
+      perPage: itemsPerPage.toString(),
+      page: '1',
+    });
+  };
+
+  const handlePerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSearchParams({ sortBy: sortType, perPage: e.target.value, page: '1' });
+  };
 
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
@@ -44,8 +58,28 @@ export const ProductList: React.FC = () => {
   const endPage = Math.min(totalPages, startPage + pageRange - 1);
 
   const handleClick = (page: React.SetStateAction<number>) => {
-    setCurrentPage(page);
+    setSearchParams({
+      sortBy: sortType,
+      perPage: itemsPerPage.toString(),
+      page: page.toString(),
+    });
   };
+
+  useEffect(() => {
+    if (!searchParams.has('sortBy')) {
+      searchParams.set('sortBy', 'newest');
+    }
+
+    if (!searchParams.has('perPage')) {
+      searchParams.set('perPage', '8');
+    }
+
+    if (!searchParams.has('page')) {
+      searchParams.set('page', '1');
+    }
+
+    setSearchParams(searchParams);
+  }, [searchParams, setSearchParams]);
 
   return (
     <div className="container">
@@ -60,7 +94,13 @@ export const ProductList: React.FC = () => {
             <label className="productList__item-label" htmlFor="sort">
               Sort by
             </label>
-            <select className="productList__item-select" name="sort" id="sort">
+            <select
+              className="productList__item-select"
+              name="sort"
+              id="sort"
+              value={sortType}
+              onChange={handleSortChange}
+            >
               <option value="newest">Newest</option>
               <option value="oldest">Oldest</option>
               <option value="price-low">Low to High</option>
@@ -76,10 +116,7 @@ export const ProductList: React.FC = () => {
               name="itemsPerPage"
               id="itemsPerPage"
               value={itemsPerPage}
-              onChange={e => {
-                setItemsPerPage(Number(e.target.value));
-                setCurrentPage(1);
-              }}
+              onChange={handlePerPageChange}
             >
               <option value="8">8</option>
               <option value="16">16</option>
@@ -96,7 +133,7 @@ export const ProductList: React.FC = () => {
       <div className="productList__buttons">
         <button
           className="productList__button productList__button-arrow"
-          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+          onClick={() => handleClick(currentPage - 1)}
           disabled={currentPage === 1}
         >
           <img className="productList__icon" src={leftArrow} alt="left arrow" />
@@ -115,7 +152,7 @@ export const ProductList: React.FC = () => {
         ))}
         <button
           className="productList__button productList__button-arrow"
-          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+          onClick={() => handleClick(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
           <img
