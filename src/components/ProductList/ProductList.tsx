@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './ProductList.scss';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useProducts } from '../../provider/ProductsProvider';
 import leftArrow from '../../icons/leftArrow.svg';
 import rightArrow from '../../icons/rightArrow.svg';
 import { Product } from '../../types/Product';
+import { Search } from '../Search/Search';
 
 const getPathFromLocation = (
   pathname: string,
@@ -27,12 +28,11 @@ export const ProductList: React.FC = () => {
   const { products } = useProducts();
   const location = useLocation();
   const path = getPathFromLocation(location.pathname);
+  const [searchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [sortType, setSortType] = useState('newest');
   const [sortOrder, setSortOrder] = useState('desc');
-
-  const totalPages = Math.ceil(products.length / itemsPerPage);
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
@@ -87,9 +87,20 @@ export const ProductList: React.FC = () => {
 
   const sortedProducts = sortProducts(products, sortType, sortOrder);
 
+  const searchQuery = searchParams.get('search')?.toLowerCase() || '';
+  const searchTerms = searchQuery.split(' ').filter(term => term);
+
+  const filteredProducts = useMemo(() => {
+    return sortedProducts.filter(product =>
+      searchTerms.every(term => product.name.toLowerCase().includes(term)),
+    );
+  }, [sortedProducts, searchTerms]);
+
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = sortedProducts.slice(
+  const currentProducts = filteredProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct,
   );
@@ -104,11 +115,19 @@ export const ProductList: React.FC = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [sortType, sortOrder, itemsPerPage]);
+  }, [sortType, sortOrder, itemsPerPage, searchParams]);
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [totalPages]);
 
   return (
     <div className="container">
       <Breadcrumbs path={path} />
+      <Search path={path} />
       <div className="productList">
         <div>
           <h1 className="productList__title">Mobile phones</h1>
@@ -154,7 +173,6 @@ export const ProductList: React.FC = () => {
           </div>
         </div>
       </div>
-
       {currentProducts.map(p => (
         <ProductCard key={p.id} product={p} />
       ))}
