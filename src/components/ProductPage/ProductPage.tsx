@@ -9,7 +9,7 @@ import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 import { useAppSelector } from '../../app/hooks';
 import {
   selectProductByItemId,
-  selectProducts,
+  selectRecomended,
 } from '../../features/products/selectors';
 import { useParams } from 'react-router-dom';
 export const ProductPage: FC = () => {
@@ -19,7 +19,7 @@ export const ProductPage: FC = () => {
   );
   const details = product?.item;
 
-  const recomended = useAppSelector(selectProducts);
+  const recomended = useAppSelector(selectRecomended);
 
   const category = useMemo(() => {
     if (details?.category?.includes('phones')) {

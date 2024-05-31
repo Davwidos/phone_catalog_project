@@ -1,4 +1,4 @@
-import { FC, TouchEvent, useState } from 'react';
+import { FC, TouchEvent, useEffect, useState } from 'react';
 import './ProductGallery.scss';
 import classNames from 'classnames';
 import { ProductDetails } from '../../types/ProductDetails';
@@ -13,15 +13,13 @@ export const ProductGallery: FC<Props> = ({ details }) => {
 
   const images = details?.images || [];
 
-  const handleTouchStart = (e: TouchEvent) => {
-    e.preventDefault();
+  useEffect(() => setMainImageIndex(0), [details]);
 
+  const handleTouchStart = (e: TouchEvent) => {
     setTouchStartX(e.touches[0].clientX);
   };
 
   const handleTouchEnd = (e: TouchEvent) => {
-    e.preventDefault();
-
     const delta = e.changedTouches[0].clientX - touchStartX;
 
     if (delta < 0) {
