@@ -2,6 +2,7 @@
 import Burger from '../../icons/icon_burger.svg';
 import Logo from '../../icons/logo.png';
 import Close from '../../icons/Close-icon.svg';
+import LoginIcon from '../../icons/LoginIcon.svg';
 
 import './Header.scss';
 import { Link } from 'react-router-dom';
@@ -52,6 +53,9 @@ export const Header: React.FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
           </Link>
           <Link to="/cart" className="header__buttons--link">
             <CartIcon />
+          </Link>
+          <Link to="/login" className="header__buttons--link">
+            <img src={LoginIcon} alt="login-icon" className="login" />
           </Link>
         </div>
         <div className="header__burger-container">
