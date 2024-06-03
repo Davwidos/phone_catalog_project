@@ -5,6 +5,16 @@
 
 * {
   box-sizing: border-box;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  color: #313237;
+  background-color: #e2e6e9;
 }
 
 body {

@@ -1,30 +1,30 @@
-import { FC, useCallback, useState } from 'react';
+import { FC } from 'react';
 import { Button } from '../Buttons/Button';
 import './ParametrSelection.scss';
+import { ProductDetails } from '../../types/ProductDetails';
+import { createProductLink } from '../../utils/createProductLink';
 
 interface Props {
-  parametrs: string[];
+  details: ProductDetails;
 }
 
-export const ParametrSelection: FC<Props> = ({ parametrs }) => {
-  const [selected, setSelected] = useState(parametrs[0]);
-
-  const handleSelectParametr = useCallback(
-    (p: string) => () => setSelected(p),
-    [setSelected],
-  );
-
+export const ParametrSelection: FC<Props> = ({ details }) => {
   return (
     <div className="ParametrSelection">
       <h5 className="title">Select capacity</h5>
       <div className="ParametrSelection__container">
-        {parametrs.map(p => (
+        {details.capacityAvailable.map(p => (
           <Button
             key={p}
             className="ParametrSelection__item"
             square
-            onClick={handleSelectParametr(p)}
-            active={selected === p}
+            to={createProductLink(
+              details.category,
+              details.namespaceId,
+              p,
+              details.color,
+            )}
+            active={details.capacity === p}
           >
             {p}
           </Button>
