@@ -1,9 +1,14 @@
-import { useProductDetails } from '../../provider/ProductDetailsProvider';
+import { FC } from 'react';
 import './TechSpecs.scss';
+import { PhoneDetails } from '../../types/PhoneDetails';
+import { TabletDetails } from '../../types/TabletDetails';
+import { AccesoryDetails } from '../../types/AccesoryDetails';
 
-export const TechSpecs = () => {
-  const { details } = useProductDetails();
+interface Props {
+  details?: PhoneDetails | TabletDetails | AccesoryDetails;
+}
 
+export const TechSpecs: FC<Props> = ({ details }) => {
   return (
     <div className="techSpecs">
       <h1 className="techSpecs__title">Tech specs</h1>

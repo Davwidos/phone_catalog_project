@@ -4,19 +4,22 @@ import { ColorSelection } from '../ColorSelection/ColorSelection';
 import { ParametrSelection } from '../ParametrSelection';
 import { Button } from '../Buttons/Button';
 import { ButtonHeart } from '../Buttons/ButtonHeart';
-import { useProductDetails } from '../../provider/ProductDetailsProvider';
-import { useCart } from '../../provider/CartProvider';
 import { Product } from '../../types/Product';
-import { useFavourites } from '../../provider/FavouritesProvider';
+import { useAppSelector } from '../../app/hooks';
+import { useDispatch } from 'react-redux';
+// eslint-disable-next-line max-len
+import { toggle as toggleFavorites } from '../../features/favorites/favoritesSlice';
+import { toogleItem as toggleCart } from '../../features/cart/cartSlice';
 
 interface Props {
   product?: Product;
 }
 
 export const VariantsSection: FC<Props> = ({ product }) => {
-  const { details } = useProductDetails();
-  const { toggleAddToCart: addToCart, cartItems, removeItem } = useCart();
-  const { favourites, handleAddToFavourites: addToFavorites } = useFavourites();
+  const details = product?.item;
+  const cartItems = useAppSelector(store => store.cart);
+  const dispatch = useDispatch();
+  const favourites = useAppSelector(store => store.favorites);
 
   const inCart = useMemo(
     () => cartItems.some(p => p.id === product?.id),
@@ -33,24 +36,20 @@ export const VariantsSection: FC<Props> = ({ product }) => {
       return;
     }
 
-    if (!inCart) {
-      addToCart(product);
-    } else {
-      removeItem(product.id);
-    }
-  }, [addToCart, inCart, product, removeItem]);
+    dispatch(toggleCart(product));
+  }, [dispatch, product]);
 
   const handleAddToFavourites = useCallback(() => {
     if (product) {
-      addToFavorites(product);
+      dispatch(toggleFavorites(product));
     }
-  }, [addToFavorites, product]);
+  }, [dispatch, product]);
 
   return (
     <div className="VariantSection">
-      <ColorSelection colors={details?.colorsAvailable || []} />
+      {details && <ColorSelection details={details} />}
       <div className="VariantsSection__separator" />
-      <ParametrSelection parametrs={details?.capacityAvailable || []} />
+      {details && <ParametrSelection details={details} />}
       <div className="VariantsSection__separator" />
       <div className="price">
         <span className="price__actual">{details?.priceDiscount}</span>

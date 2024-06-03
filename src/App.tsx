@@ -1,4 +1,4 @@
-import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import { Page } from './components/Page/Page';
 import { NotFoundPage } from './components/NotFoundPage/NotFoundPage';
@@ -7,42 +7,16 @@ import { ProductList } from './components/ProductList/ProductList';
 import { FavouritesPage } from './components/FavouritesPage/FavouritesPage';
 import { Homepage } from './components/Homepage/Homepage';
 import { ProductPage } from './components/ProductPage';
-import { ProductsProider } from './provider/ProductsProvider';
-import { ProductDetailsProvider } from './provider/ProductDetailsProvider';
 import { productCategories } from './types/ProuductCategory';
 import Login from './components/Login/Login';
 export const App = () => (
   <Routes>
     <Route element={<Page />}>
-      <Route
-        index
-        element={
-          <ProductsProider>
-            <Homepage />
-          </ProductsProider>
-        }
-      />
+      <Route index element={<Homepage />} />
       {productCategories.map(category => (
-        <Route
-          key={category}
-          path={category}
-          element={
-            <ProductsProider category={category}>
-              <Outlet />
-            </ProductsProider>
-          }
-        >
-          <Route index element={<ProductList />} />
-          <Route
-            path=":id"
-            element={
-              <ProductDetailsProvider>
-                <ProductsProider>
-                  <ProductPage />
-                </ProductsProider>
-              </ProductDetailsProvider>
-            }
-          />
+        <Route key={category} path={category}>
+          <Route index element={<ProductList category={category} />} />
+          <Route path=":id" element={<ProductPage />} />
         </Route>
       ))}
       <Route path="favourites" element={<FavouritesPage />} />
