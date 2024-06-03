@@ -3,6 +3,7 @@ import Logo from '../../icons/logo.png';
 import Slider from '../../icons/slider-button-up.svg';
 import SliderHover from '../../icons/slider-button-up_hover.svg';
 import './Footer.scss';
+import { NavLink } from 'react-router-dom';
 
 export const Footer = () => {
   useEffect(() => {
@@ -48,12 +49,15 @@ export const Footer = () => {
 
   return (
     <div className="footer">
-      <a href="" className="footer__link link">
+      <NavLink to="/" className="footer__link link" onClick={scrollToTop}>
         <img src={Logo} alt="Logo" className="footer__logo logo" />
-      </a>
+      </NavLink>
 
       <div className="footer__links">
-        <a href="" className="footer__link footer__links--link link">
+        <a
+          href="https://github.com/NoPainNoMain/phone_catalog_project"
+          className="footer__link footer__links--link link"
+        >
           GITHUB
         </a>
         <a href="" className="footer__link footer__links--link link">

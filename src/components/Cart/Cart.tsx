@@ -10,7 +10,6 @@ import {
 import { clear } from '../../features/cart/cartSlice';
 
 export const Cart = () => {
-  // const { cartItems, removeItem, cartValue } = useCart();
   const cartItems = useAppSelector(state => state.cart);
   const cartValue = useAppSelector(state => selectCartValue(state));
   const totalItems = useAppSelector(selectTotalItems);
