@@ -36,7 +36,9 @@ export const App = () => (
             path=":id"
             element={
               <ProductDetailsProvider>
-                <ProductPage />
+                <ProductsProider>
+                  <ProductPage />
+                </ProductsProider>
               </ProductDetailsProvider>
             }
           />
