@@ -1,3 +1,5 @@
+@use '../../styles/utils/mixins' as *;
+
 .productCard {
   box-sizing: border-box;
   padding: 32px;
@@ -7,25 +9,32 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+  min-height: 440px;
   &__container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    justify-content: space-between;
+    @include for-desktop {
+      &:nth-child(1) {
+        height: 233px;
+      }
+    }
   }
   &__container + &__container {
     align-items: stretch;
   }
   &:hover {
-    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 15px 0 rgba(29, 26, 26, 0.05);
   }
 
   &__img {
     width: auto;
-    height: 130px;
+    min-height: 130px;
     object-fit: cover;
     margin-bottom: 16px;
-
+    flex-shrink: 1;
     @media (min-width: 640px) {
       height: 196px;
     }
@@ -37,6 +46,7 @@
     font-weight: 600;
     line-height: 21px;
     text-align: start;
+    flex-grow: 1;
   }
 
   &__prices {
@@ -53,7 +63,6 @@
     text-align: left;
   }
 
-  &__old-price {
   &__old-price {
     position: relative;
     color: #89939a;
@@ -128,7 +137,6 @@
     }
   }
 
-  &__btn {
   &__btn {
     &:active {
       transform: scale(0.9);
