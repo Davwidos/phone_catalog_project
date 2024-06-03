@@ -29,12 +29,12 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
 
   return (
     <div className="productCard" style={cardStyles}>
-      <div className="productCard__container">
-        <img
-          className="productCard__img"
-          src={product.image}
-          alt={product.name}
-        />
+      <img
+        className="productCard__img"
+        src={product.image}
+        alt={product.name}
+      />
+
       <h2 className="productCard__title">
         <Link
           className="productCard__title-link"
@@ -63,26 +63,11 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
         Capacity
         <span className="productCard__info-value">{product.capacity}</span>
       </div>
-      <div className="productCard__container">
-        <div className="productCard__prices">
-          ${product.price}
-          <div className="productCard__old-price">
-            ${product.fullPrice}
-            <span className="productCard__line-through">
-              ${product.fullPrice}
-            </span>
-          </div>
-        </div>
-        <div className="productCard__info--container">
-          <div className="productCard__info-row">
-            Screen
-            <span className="productCard__info-value">{product.screen}</span>
-          </div>
 
-          <div className="productCard__info-row">
-            Capacity
-            <span className="productCard__info-value">{product.capacity}</span>
-          </div>
+      <div className="productCard__info-row">
+        RAM
+        <span className="productCard__info-value">{product.ram}</span>
+      </div>
 
       <div className="productCard__btns">
         <button
@@ -98,9 +83,10 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
             ? 'Added to cart'
             : 'Add to cart'}
         </button>
-          <button
-            type="button"
-            className="
+
+        <button
+          type="button"
+          className="
              productCard__favorites
              productCard__btn"
           onClick={() => dispatch(toggleFavorites(product))}
