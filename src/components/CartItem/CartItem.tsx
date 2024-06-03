@@ -1,8 +1,13 @@
 import React from 'react';
 import './CartItem.scss';
 import Delete from '../../icons/Close.svg';
-import { useCart } from '../../provider/CartProvider';
 import { CartItem as Product } from '../../types/CartItem';
+import { useDispatch } from 'react-redux';
+import {
+  decreaseAmount,
+  increaseAmount,
+  removeItem,
+} from '../../features/cart/cartSlice';
 import { NavLink } from 'react-router-dom';
 
 type Props = {
@@ -10,18 +15,18 @@ type Props = {
 };
 
 export const CartItem: React.FC<Props> = ({ product }) => {
-  const { decreaseAmount, removeItem, increaseAmount } = useCart();
+  const dispatch = useDispatch();
 
   const handleIncrease = () => {
-    increaseAmount(product.id);
+    dispatch(increaseAmount(product.id));
   };
 
   const handleDecrease = () => {
-    decreaseAmount(product.id);
+    dispatch(decreaseAmount(product.id));
   };
 
   const handleDelete = () => {
-    removeItem(product.id);
+    dispatch(removeItem(product.id));
   };
 
   return (

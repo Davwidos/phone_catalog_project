@@ -2,10 +2,15 @@ import './Cart.scss';
 import LeftIcon from '../../icons/left.svg';
 import { useNavigate } from 'react-router-dom';
 import { CartItem } from '../CartItem';
-import { useCart } from '../../provider/CartProvider';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectCartValue } from '../../features/cart/selectors';
+import { clear } from '../../features/cart/cartSlice';
 
 export const Cart = () => {
-  const { cartItems, removeItem, cartValue } = useCart();
+  // const { cartItems, removeItem, cartValue } = useCart();
+  const cartItems = useAppSelector(state => state.cart);
+  const cartValue = useAppSelector(state => selectCartValue(state));
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleCheckout = () => {
@@ -14,7 +19,7 @@ export const Cart = () => {
     );
 
     if (userConfirmed) {
-      cartItems.forEach(item => removeItem(item.id));
+      dispatch(clear());
     }
   };
 
@@ -36,11 +41,7 @@ export const Cart = () => {
           ))}
         </div>
         <div className="cart__summary">
-          <span className="cart__summary-total">
-            $
-            {cartValue ||
-              cartItems.reduce((total, item) => total + item.price, 0)}
-          </span>
+          <span className="cart__summary-total">${cartValue}</span>
           <span className="cart__summary-label">
             Total for {cartItems.length} items
           </span>

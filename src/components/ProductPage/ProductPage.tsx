@@ -5,17 +5,21 @@ import './ProductPage.scss';
 import { ProductGallery } from '../ProductGallery';
 import { VariantsSection } from '../VariantsSection';
 import Slider from '../Slider/Slider';
-import { useProductDetails } from '../../provider/ProductDetailsProvider';
-import { useProducts } from '../../provider/ProductsProvider';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
+import { useAppSelector } from '../../app/hooks';
+import {
+  selectProductByItemId,
+  selectRecomended,
+} from '../../features/products/selectors';
+import { useParams } from 'react-router-dom';
 export const ProductPage: FC = () => {
-  const { details } = useProductDetails();
-  const { products, youMayAlsoLikeProducts } = useProducts();
-
-  const product = useMemo(
-    () => products.find(p => p.itemId === details?.id),
-    [products, details],
+  const { id } = useParams();
+  const product = useAppSelector(state =>
+    selectProductByItemId(state, id || ''),
   );
+  const details = product?.item;
+
+  const recomended = useAppSelector(selectRecomended);
 
   const category = useMemo(() => {
     if (details?.category?.includes('phones')) {
@@ -45,7 +49,7 @@ export const ProductPage: FC = () => {
 
       <div className="middle">
         <div className="middle-1">
-          <ProductGallery />
+          <ProductGallery details={details} />
         </div>
         <div className="middle-2">
           <VariantsSection product={product} />
@@ -54,16 +58,16 @@ export const ProductPage: FC = () => {
 
       <div className="info">
         <div className="info-1">
-          <About />
+          <About details={details} />
         </div>
         <div className="info-2">
-          <TechSpecs />
+          <TechSpecs details={details} />
         </div>
       </div>
 
       <div className="ProductPage__slider">
         <h1 className="title-slider">You may also like</h1>
-        <Slider models={youMayAlsoLikeProducts} />
+        <Slider models={recomended} />
       </div>
     </div>
   );
