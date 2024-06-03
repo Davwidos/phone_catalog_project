@@ -130,7 +130,6 @@ export const ProductList: React.FC<Props> = ({ category }) => {
   return (
     <div className="container">
       <Breadcrumbs path={path} />
-      <Search path={path} />
       <div className="productList">
         <div>
           <h1 className="productList__title">{TILTES[category]}</h1>
@@ -171,6 +170,7 @@ export const ProductList: React.FC<Props> = ({ category }) => {
               <option value="64">64</option>
             </select>
           </div>
+          <Search path={path} />
         </div>
       </div>
       {currentProducts.map(p => (
