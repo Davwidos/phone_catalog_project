@@ -3,15 +3,17 @@ import LeftIcon from '../../icons/left.svg';
 import { useNavigate } from 'react-router-dom';
 import { CartItem } from '../CartItem';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { selectCartValue } from '../../features/cart/selectors';
+import {
+  selectCartValue,
+  selectTotalItems,
+} from '../../features/cart/selectors';
 import { clear } from '../../features/cart/cartSlice';
 
 export const Cart = () => {
   const cartItems = useAppSelector(state => state.cart);
   const cartValue = useAppSelector(state => selectCartValue(state));
-  const totalItems = useAppSelector(selectTotalItems);
+  const totalItems = useAppSelector(state => selectTotalItems(state));
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const navigate = useNavigate();
 
   const handleCheckout = () => {
