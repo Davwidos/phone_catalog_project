@@ -33,6 +33,7 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
 
       <h2 className="productCard__title">
         <Link
+          className="productCard__title-link"
           to={`/${product.category}/${product.itemId}`}
           state={{ product }}
           onClick={handleGoToUpPage}
