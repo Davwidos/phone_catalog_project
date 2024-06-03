@@ -15,6 +15,7 @@ type ContextValueType = {
   decreaseAmount: (id: number, amount?: number) => void;
   removeItem: (id: number) => void;
   increaseAmount: (id: number, amount?: number) => void;
+  totalItems: number;
 };
 
 const CartContext = createContext<ContextValueType>({
@@ -24,6 +25,7 @@ const CartContext = createContext<ContextValueType>({
   decreaseAmount: () => {},
   removeItem: () => {},
   increaseAmount: () => {},
+  totalItems: 0,
 });
 
 type MyContextProviderProps = {
@@ -39,6 +41,11 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
         (prev, curr) => prev + curr.price * (curr.amount || 0),
         0,
       ),
+    [cartItems],
+  );
+
+  const totalItems = useMemo(
+    () => cartItems.reduce((total, item) => total + (item.amount || 0), 0),
     [cartItems],
   );
 
@@ -115,6 +122,7 @@ const CartProvider: React.FC<MyContextProviderProps> = ({ children }) => {
     decreaseAmount,
     removeItem,
     increaseAmount,
+    totalItems,
   };
 
   return (

@@ -5,7 +5,7 @@ import { CartItem } from '../CartItem';
 import { useCart } from '../../provider/CartProvider';
 
 export const Cart = () => {
-  const { cartItems, removeItem, cartValue } = useCart();
+  const { cartItems, removeItem, cartValue, totalItems } = useCart();
   const navigate = useNavigate();
 
   const handleCheckout = () => {
@@ -36,13 +36,9 @@ export const Cart = () => {
           ))}
         </div>
         <div className="cart__summary">
-          <span className="cart__summary-total">
-            $
-            {cartValue ||
-              cartItems.reduce((total, item) => total + item.price, 0)}
-          </span>
+          <span className="cart__summary-total">${cartValue}</span>
           <span className="cart__summary-label">
-            Total for {cartItems.length} items
+            Total for {totalItems} items
           </span>
           <div className="cart__summary-divider"></div>
           <button className="cart__checkout" onClick={handleCheckout}>
