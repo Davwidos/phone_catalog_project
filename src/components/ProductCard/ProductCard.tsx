@@ -33,6 +33,7 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
 
       <h2 className="productCard__title">
         <Link
+          className="productCard__title-link"
           to={`/${product.category}/${product.itemId}`}
           state={{ product }}
           onClick={handleGoToUpPage}
@@ -42,7 +43,7 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
       </h2>
 
       <div className="productCard__prices">
-        {product.price}
+        ${product.price}
         <div className="productCard__old-price">
           {product.fullPrice}
           <span className="productCard__line-through">{product.fullPrice}</span>
