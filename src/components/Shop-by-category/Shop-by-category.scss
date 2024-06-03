@@ -41,6 +41,7 @@
   }
   &__category {
     @include h4;
+    color: $primary;
   }
   &__models {
     @include bodytext14;
