@@ -4,7 +4,7 @@ import 'react-multi-carousel/lib/styles.css';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './Slider.scss';
 import { useEffect, useState } from 'react';
-import { useProducts } from '../../provider/ProductsProvider';
+import { Product } from '../../types/Product';
 
 const responsive = {
   superLargeDesktop: {
@@ -25,9 +25,12 @@ const responsive = {
   },
 };
 
-const Slider = () => {
+interface SliderProps {
+  models: Product[];
+}
+
+const Slider = ({ models }: SliderProps) => {
   const [cardWidth, setCardWidth] = useState(213);
-  const { products } = useProducts();
 
   useEffect(() => {
     const updateCardWidth = () => {
@@ -52,9 +55,9 @@ const Slider = () => {
 
   return (
     <>
-      <div>
+      <div className="carousel">
         <Carousel responsive={responsive}>
-          {products.map(product => (
+          {models.map(product => (
             <div className="item" key={product.id}>
               <ProductCard width={cardWidth} product={product} />
             </div>

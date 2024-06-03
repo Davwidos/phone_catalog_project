@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './ProductList.scss';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
@@ -6,7 +6,6 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { useProducts } from '../../provider/ProductsProvider';
 import leftArrow from '../../icons/leftArrow.svg';
 import rightArrow from '../../icons/rightArrow.svg';
-import { Product } from '../../types/Product';
 import { Search } from '../Search/Search';
 
 const getPathFromLocation = (
@@ -28,67 +27,47 @@ export const ProductList: React.FC = () => {
   const { products } = useProducts();
   const location = useLocation();
   const path = getPathFromLocation(location.pathname);
-  const [searchParams] = useSearchParams();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(8);
-  const [sortType, setSortType] = useState('newest');
-  const [sortOrder, setSortOrder] = useState('desc');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const currentPage = parseInt(searchParams.get('page') || '1', 10);
+  const itemsPerPage = parseInt(searchParams.get('perPage') || '8', 10);
+  const sortType = searchParams.get('sortBy') || 'newest';
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    let order = 'asc';
-
-    if (value.includes('high') || value === 'newest') {
-      order = 'desc';
-    }
-
-    setSortType(value);
-    setSortOrder(order);
-  };
-
-  const sortProducts = (
-    productsToSort: Product[],
-    sortBy: string,
-    order: string,
-  ) => {
-    const sortedProducts = [...productsToSort];
-
-    sortedProducts.sort((a, b) => {
-      let aValue: string | number;
-      let bValue: string | number;
-
-      switch (sortBy) {
-        case 'price-low':
-        case 'price-high':
-          aValue = a.price;
-          bValue = b.price;
-          break;
-
-        case 'newest':
-        case 'oldest':
-          aValue = a.year;
-          bValue = b.year;
-          break;
-
-        default:
-          aValue = a.name.toLowerCase();
-          bValue = b.name.toLowerCase();
-      }
-
-      if (order === 'asc') {
-        return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
-      } else {
-        return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
-      }
+    setSearchParams({
+      sortBy: e.target.value,
+      perPage: itemsPerPage.toString(),
+      page: '1',
     });
-
-    return sortedProducts;
   };
 
-  const sortedProducts = sortProducts(products, sortType, sortOrder);
+  const handlePerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSearchParams({ sortBy: sortType, perPage: e.target.value, page: '1' });
+  };
 
   const searchQuery = searchParams.get('search')?.toLowerCase() || '';
   const searchTerms = searchQuery.split(' ').filter(term => term);
+
+  const sortedProducts = useMemo(() => {
+    const sortedArray = [...products];
+
+    switch (sortType) {
+      case 'oldest':
+        sortedArray.sort((a, b) => a.year - b.year);
+        break;
+      case 'price-low':
+        sortedArray.sort((a, b) => a.price - b.price);
+        break;
+      case 'price-high':
+        sortedArray.sort((a, b) => b.price - a.price);
+        break;
+      default:
+        sortedArray.sort((a, b) => b.year - a.year);
+        break;
+    }
+
+    return sortedArray;
+  }, [products, sortType]);
 
   const filteredProducts = useMemo(() => {
     return sortedProducts.filter(product =>
@@ -109,20 +88,29 @@ export const ProductList: React.FC = () => {
   const startPage = Math.max(1, currentPage - Math.floor(pageRange / 2));
   const endPage = Math.min(totalPages, startPage + pageRange - 1);
 
-  const handleClick = (page: React.SetStateAction<number>) => {
-    setCurrentPage(page);
+  const handleClick = (page: number) => {
+    setSearchParams({
+      sortBy: sortType,
+      perPage: itemsPerPage.toString(),
+      page: page.toString(),
+    });
   };
 
   useEffect(() => {
-    setCurrentPage(1);
-  }, [sortType, sortOrder, itemsPerPage, searchParams]);
-
-  useEffect(() => {
-    if (currentPage > totalPages) {
-      setCurrentPage(totalPages);
+    if (!searchParams.has('sortBy')) {
+      searchParams.set('sortBy', 'newest');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [totalPages]);
+
+    if (!searchParams.has('perPage')) {
+      searchParams.set('perPage', '8');
+    }
+
+    if (!searchParams.has('page')) {
+      searchParams.set('page', '1');
+    }
+
+    setSearchParams(searchParams);
+  }, [searchParams, setSearchParams]);
 
   return (
     <div className="container">
@@ -160,10 +148,7 @@ export const ProductList: React.FC = () => {
               name="itemsPerPage"
               id="itemsPerPage"
               value={itemsPerPage}
-              onChange={e => {
-                setItemsPerPage(Number(e.target.value));
-                setCurrentPage(1);
-              }}
+              onChange={handlePerPageChange}
             >
               <option value="8">8</option>
               <option value="16">16</option>
@@ -179,7 +164,7 @@ export const ProductList: React.FC = () => {
       <div className="productList__buttons">
         <button
           className="productList__button productList__button-arrow"
-          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+          onClick={() => handleClick(currentPage - 1)}
           disabled={currentPage === 1}
         >
           <img className="productList__icon" src={leftArrow} alt="left arrow" />
@@ -198,7 +183,7 @@ export const ProductList: React.FC = () => {
         ))}
         <button
           className="productList__button productList__button-arrow"
-          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+          onClick={() => handleClick(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
           <img
