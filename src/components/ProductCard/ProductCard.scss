@@ -7,6 +7,7 @@
   align-items: center;
   gap: 8px;
   min-height: 507px;
+
   &:hover {
     box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
   }
@@ -30,7 +31,11 @@
     text-align: start;
 
     &-link {
-    color: #313237;
+      color: #313237;
+
+      &:hover {
+        color: #27ae60;
+      }
     }
   }
 
@@ -97,6 +102,7 @@
     border: none;
     cursor: pointer;
     transition: all 0.3s;
+
     &:hover {
       box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.26);
     }
