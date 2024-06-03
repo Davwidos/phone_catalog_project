@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './BurgerMenu.scss';
 import { FavouritesIcon } from '../FavoruitesIcon/FavouritesIcon';
 import { CartIcon } from '../CartIcon/CartIcon';
+import LoginIcon from '../../icons/LoginIcon.svg';
 
 interface BurgerProps {
   toggleMenu: () => void;
@@ -48,6 +49,12 @@ const BurgerMenu: React.FC<BurgerProps> = ({ toggleMenu }) => {
           <Link to="/cart" onClick={handleLinkClick}>
             <button>
               <CartIcon />
+            </button>
+          </Link>
+
+          <Link to="/login" onClick={handleLinkClick}>
+            <button>
+              <img src={LoginIcon} alt="Login-icon" className="logo-icon" />
             </button>
           </Link>
         </div>
