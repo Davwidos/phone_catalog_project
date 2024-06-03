@@ -2,10 +2,16 @@ import './Cart.scss';
 import LeftIcon from '../../icons/left.svg';
 import { useNavigate } from 'react-router-dom';
 import { CartItem } from '../CartItem';
-import { useCart } from '../../provider/CartProvider';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectCartValue } from '../../features/cart/selectors';
+import { clear } from '../../features/cart/cartSlice';
 
 export const Cart = () => {
-  const { cartItems, removeItem, cartValue, totalItems } = useCart();
+  const cartItems = useAppSelector(state => state.cart);
+  const cartValue = useAppSelector(state => selectCartValue(state));
+  const totalItems = useAppSelector(selectTotalItems);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const navigate = useNavigate();
 
   const handleCheckout = () => {
@@ -14,7 +20,7 @@ export const Cart = () => {
     );
 
     if (userConfirmed) {
-      cartItems.forEach(item => removeItem(item.id));
+      dispatch(clear());
     }
   };
 

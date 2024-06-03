@@ -1,0 +1,28 @@
+@import '../../styles/utils/vars';
+
+.search {
+  width: 100%;
+
+  input {
+    font-family: Mont, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    padding: 13px;
+    margin-top: 10px;
+    border: $icons 1px solid;
+    width: 100%;
+
+    &:hover {
+      border-color: $primary;
+      color: $primary;
+    }
+
+    &:focus {
+      border: $primary 1px solid;
+      background-color: $bg;
+      color: $primary;
+      outline: none;
+    }
+  }
+}

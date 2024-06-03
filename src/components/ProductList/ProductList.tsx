@@ -1,11 +1,15 @@
+import React, { useEffect, useMemo } from 'react';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './ProductList.scss';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { useProducts } from '../../provider/ProductsProvider';
 import leftArrow from '../../icons/leftArrow.svg';
 import rightArrow from '../../icons/rightArrow.svg';
-import { useEffect } from 'react';
+// eslint-disable-next-line max-len
+import { selectProductsByCategory } from '../../features/products/selectors';
+import { ProductCategory } from '../../types/ProuductCategory';
+import { useAppSelector } from '../../app/hooks';
+import { Search } from '../Search/Search';
 
 const getPathFromLocation = (
   pathname: string,
@@ -22,8 +26,20 @@ const getPathFromLocation = (
   }
 };
 
-export const ProductList: React.FC = () => {
-  const { products } = useProducts();
+const TILTES: Record<ProductCategory, string> = {
+  phones: 'Mobile phones',
+  tablets: 'Tablets',
+  accessories: 'Accessories',
+};
+
+interface Props {
+  category: ProductCategory;
+}
+
+export const ProductList: React.FC<Props> = ({ category }) => {
+  const products = useAppSelector(state =>
+    selectProductsByCategory(state, category),
+  );
   const location = useLocation();
   const path = getPathFromLocation(location.pathname);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -31,8 +47,6 @@ export const ProductList: React.FC = () => {
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const itemsPerPage = parseInt(searchParams.get('perPage') || '8', 10);
   const sortType = searchParams.get('sortBy') || 'newest';
-
-  const totalPages = Math.ceil(products.length / itemsPerPage);
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSearchParams({
@@ -46,9 +60,41 @@ export const ProductList: React.FC = () => {
     setSearchParams({ sortBy: sortType, perPage: e.target.value, page: '1' });
   };
 
+  const searchQuery = searchParams.get('search')?.toLowerCase() || '';
+  const searchTerms = searchQuery.split(' ').filter(term => term);
+
+  const sortedProducts = useMemo(() => {
+    const sortedArray = [...products];
+
+    switch (sortType) {
+      case 'oldest':
+        sortedArray.sort((a, b) => a.year - b.year);
+        break;
+      case 'price-low':
+        sortedArray.sort((a, b) => a.price - b.price);
+        break;
+      case 'price-high':
+        sortedArray.sort((a, b) => b.price - a.price);
+        break;
+      default:
+        sortedArray.sort((a, b) => b.year - a.year);
+        break;
+    }
+
+    return sortedArray;
+  }, [products, sortType]);
+
+  const filteredProducts = useMemo(() => {
+    return sortedProducts.filter(product =>
+      searchTerms.every(term => product.name.toLowerCase().includes(term)),
+    );
+  }, [sortedProducts, searchTerms]);
+
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = products.slice(
+  const currentProducts = filteredProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct,
   );
@@ -57,7 +103,7 @@ export const ProductList: React.FC = () => {
   const startPage = Math.max(1, currentPage - Math.floor(pageRange / 2));
   const endPage = Math.min(totalPages, startPage + pageRange - 1);
 
-  const handleClick = (page: React.SetStateAction<number>) => {
+  const handleClick = (page: number) => {
     setSearchParams({
       sortBy: sortType,
       perPage: itemsPerPage.toString(),
@@ -86,8 +132,8 @@ export const ProductList: React.FC = () => {
       <Breadcrumbs path={path} />
       <div className="productList">
         <div>
-          <h1 className="productList__title">Mobile phones</h1>
-          <span className="productList__title-info">95 models</span>
+          <h1 className="productList__title">{TILTES[category]}</h1>
+          <span className="productList__title-info">{`${products.length} models`}</span>
         </div>
         <div className="productList__sort">
           <div className="productList__item">
@@ -124,9 +170,9 @@ export const ProductList: React.FC = () => {
               <option value="64">64</option>
             </select>
           </div>
+          <Search path={path} />
         </div>
       </div>
-
       {currentProducts.map(p => (
         <ProductCard key={p.id} product={p} />
       ))}

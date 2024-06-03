@@ -5,10 +5,17 @@ import './Page.scss';
 import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
+import { fetchProducts } from '../../features/products/productsSlice';
+import { useAppDispatch } from '../../app/hooks';
 
 export const Page: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   useEffect(() => {
     const body = document.querySelector('body');
