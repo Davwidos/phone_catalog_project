@@ -6,11 +6,29 @@ import './Slider.scss';
 import { useEffect, useState } from 'react';
 import { useProducts } from '../../provider/ProductsProvider';
 
+interface ArrowProps {
+  onClick?: () => void;
+}
+
+const CustomLeftArrow: React.FC<ArrowProps> = ({ onClick }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="custom-arrow custom-arrow--left"
+    ></button>
+  );
+};
+
+const CustomRightArrow: React.FC<ArrowProps> = ({ onClick }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="custom-arrow custom-arrow--right"
+    ></button>
+  );
+};
+
 const responsive = {
-  superLargeDesktop: {
-    breakpoint: { max: 4000, min: 3000 },
-    items: 4,
-  },
   desktop: {
     breakpoint: { max: 3000, min: 1200 },
     items: 4,
@@ -20,7 +38,7 @@ const responsive = {
     items: 2.5,
   },
   mobile: {
-    breakpoint: { max: 639, min: 0 },
+    breakpoint: { max: 320, min: 0 },
     items: 1.3,
   },
 };
@@ -53,7 +71,11 @@ const Slider = () => {
   return (
     <>
       <div>
-        <Carousel responsive={responsive}>
+        <Carousel
+          responsive={responsive}
+          customLeftArrow={<CustomLeftArrow />}
+          customRightArrow={<CustomRightArrow />}
+        >
           {products.map(product => (
             <div className="item" key={product.id}>
               <ProductCard width={cardWidth} product={product} />
