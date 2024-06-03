@@ -15,9 +15,7 @@
 }
 
 .react-multi-carousel-track {
-  @media (min-width: 1200px) {
-    gap: 16px;
-  }
+  gap: 16px;
 }
 
 .react-multi-carousel-item {
@@ -49,6 +47,12 @@
 
   &:hover {
     border: 1px solid #313237;
+  }
+
+  &:disabled {
+    border: 1px solid #E2E6E9;
+    background-image: url('../../icons/slider-arr-right-disabled.svg');
+    cursor: default;
   }
 }
 

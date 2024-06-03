@@ -1,25 +1,26 @@
-/* eslint-disable no-console */
+import React, { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './Slider.scss';
-import { useEffect, useState } from 'react';
 import { useProducts } from '../../provider/ProductsProvider';
 
-interface ArrowProps {
-  onClick?: () => void;
+interface CustomArrowProps {
+  onClick: () => void;
+  disabled?: boolean;
 }
 
-const CustomLeftArrow: React.FC<ArrowProps> = ({ onClick }) => {
+const CustomLeftArrow: React.FC<CustomArrowProps> = ({ onClick, disabled }) => {
   return (
     <button
       onClick={onClick}
       className="custom-arrow custom-arrow--left"
+      disabled={disabled}
     ></button>
   );
 };
 
-const CustomRightArrow: React.FC<ArrowProps> = ({ onClick }) => {
+const CustomRightArrow: React.FC<CustomArrowProps> = ({ onClick }) => {
   return (
     <button
       onClick={onClick}
@@ -28,23 +29,9 @@ const CustomRightArrow: React.FC<ArrowProps> = ({ onClick }) => {
   );
 };
 
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1200 },
-    items: 4,
-  },
-  tablet: {
-    breakpoint: { max: 1199, min: 640 },
-    items: 2.5,
-  },
-  mobile: {
-    breakpoint: { max: 320, min: 0 },
-    items: 1.3,
-  },
-};
-
-const Slider = () => {
+const Slider: React.FC = () => {
   const [cardWidth, setCardWidth] = useState(213);
+  const [isLeftArrowDisabled, setIsLeftArrowDisabled] = useState(true);
   const { products } = useProducts();
 
   useEffect(() => {
@@ -69,21 +56,40 @@ const Slider = () => {
   }, []);
 
   return (
-    <>
-      <div>
-        <Carousel
-          responsive={responsive}
-          customLeftArrow={<CustomLeftArrow />}
-          customRightArrow={<CustomRightArrow />}
-        >
-          {products.map(product => (
-            <div className="item" key={product.id}>
-              <ProductCard width={cardWidth} product={product} />
-            </div>
-          ))}
-        </Carousel>
-      </div>
-    </>
+    <div>
+      <Carousel
+        responsive={{
+          desktop: {
+            breakpoint: { max: 3000, min: 1200 },
+            items: 4,
+          },
+          tablet: {
+            breakpoint: { max: 1199, min: 640 },
+            items: 2.5,
+          },
+          mobile: {
+            breakpoint: { max: 320, min: 0 },
+            items: 1.3,
+          },
+        }}
+        customLeftArrow={
+          <CustomLeftArrow
+            onClick={() => setIsLeftArrowDisabled(false)}
+            disabled={isLeftArrowDisabled}
+          />
+        }
+        customRightArrow={
+          <CustomRightArrow onClick={() => setIsLeftArrowDisabled(true)} />
+        }
+        renderArrowsWhenDisabled={true}
+      >
+        {products.map(product => (
+          <div className="item" key={product.id}>
+            <ProductCard width={cardWidth} product={product} />
+          </div>
+        ))}
+      </Carousel>
+    </div>
   );
 };
 
