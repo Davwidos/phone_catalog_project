@@ -14,7 +14,7 @@
   margin: 24px 16px 64px;
   &__title {
     align-self: flex-start;
-
+    margin-top: 32px;
     @include h1;
 
     @include for-l-mobile {
