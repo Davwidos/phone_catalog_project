@@ -26,12 +26,14 @@
     width: 100%;
     text-align: center;
     margin-bottom: 10px;
+    position: relative;
   }
 
   &__hot-prices {
     height: 495px;
     width: 100%;
     text-align: center;
+    position: relative;
   }
 
   @include for-desktop {
@@ -44,6 +46,11 @@
   font-size: 22px;
   text-align: left;
   margin-bottom: 24px;
+  width: 136px;
+
+  @media (min-width: 640px) {
+    width: 100%;
+  }
 
   @include for-l-mobile {
     @include d-t-h2;
