@@ -8,6 +8,7 @@ import {
   increaseAmount,
   removeItem,
 } from '../../features/cart/cartSlice';
+import { NavLink } from 'react-router-dom';
 
 type Props = {
   product: Product;
@@ -41,7 +42,12 @@ export const CartItem: React.FC<Props> = ({ product }) => {
 
         <img src={product.image} alt="Phone" className="cartItem__img" />
 
-        <span className="cartItem__title">{product.name}</span>
+        <NavLink
+          className="cartItem__title"
+          to={`/${product.category}/${product.itemId}`}
+        >
+          {product.name}
+        </NavLink>
       </div>
 
       <div className="cartItem__calculation">
