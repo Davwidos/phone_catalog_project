@@ -55,9 +55,9 @@
 
   &__sort {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    align-items: flex-end;
   }
 
   &__item {
