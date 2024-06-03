@@ -1,18 +1,16 @@
-import { FC, useCallback, useState } from 'react';
+import { FC } from 'react';
 import { ButtonCicirle } from '../Buttons/ButtonCircle';
 import './ColorSelection.scss';
+import { ProductDetails } from '../../types/ProductDetails';
+import { createProductLink } from '../../utils/createProductLink';
 
 interface Props {
-  colors: string[];
+  details: ProductDetails;
 }
 
-export const ColorSelection: FC<Props> = ({ colors }) => {
-  const [selectedColor, setSelectedColor] = useState(colors[0]);
-
-  const handleSelectColor = useCallback(
-    (color: string) => () => setSelectedColor(color),
-    [setSelectedColor],
-  );
+export const ColorSelection: FC<Props> = ({ details }) => {
+  const selectedColor = details.color;
+  const colors = details.colorsAvailable;
 
   return (
     <div className="ColorSelection">
@@ -25,7 +23,12 @@ export const ColorSelection: FC<Props> = ({ colors }) => {
           <ButtonCicirle
             key={color}
             color={color}
-            onClick={handleSelectColor(color)}
+            to={createProductLink(
+              details.category,
+              details.namespaceId,
+              details.capacity,
+              color,
+            )}
             active={selectedColor === color}
           />
         ))}

@@ -1,4 +1,9 @@
+import { AccesoryDetails } from './AccesoryDetails';
+import { PhoneDetails } from './PhoneDetails';
 import { ProductCategory } from './ProuductCategory';
+import { TabletDetails } from './TabletDetails';
+
+export type Item = PhoneDetails | TabletDetails | AccesoryDetails;
 
 export interface Product {
   id: number;
@@ -13,4 +18,5 @@ export interface Product {
   ram: string;
   year: number;
   image: string;
+  item?: Item;
 }

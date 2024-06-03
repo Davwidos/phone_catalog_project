@@ -47,6 +47,13 @@
     line-height: 21px;
     text-align: start;
     flex-grow: 1;
+    &-link {
+      color: #313237;
+
+      &:hover {
+        color: #27ae60;
+      }
+    }
   }
 
   &__prices {
@@ -117,6 +124,7 @@
     border: none;
     cursor: pointer;
     transition: all 0.3s;
+
     &:hover {
       box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.26);
     }
