@@ -46,14 +46,10 @@ export const selectHotPrices = createSelector([selectProducts], products =>
   shuffleArray(products.filter(p => p.fullPrice - p.price > 50)),
 );
 
-export const selectRecomended = createSelector([selectProducts], products => {
-  const referenceModels = products.slice(0, 10);
-
-  return shuffleArray(
-    products.filter(p =>
-      referenceModels.some(
-        model => model.itemId.substring(0, 15) === p.itemId.substring(0, 15),
-      ),
-    ),
-  );
-});
+export const selectRecomended = createSelector(
+  [selectProducts, (_state, itemId: Product['itemId']) => itemId],
+  (products, itemId) => {
+    const filteredProducts = products.filter(p => p.itemId.includes(itemId));
+    return shuffleArray(filteredProducts);
+  },
+);

@@ -19,7 +19,9 @@ export const ProductPage: FC = () => {
   );
   const details = product?.item;
 
-  const recomended = useAppSelector(selectRecomended);
+  const recomended = useAppSelector(state =>
+    selectRecomended(state, details?.namespaceId || ''),
+  );
 
   const category = useMemo(() => {
     if (details?.category?.includes('phones')) {
