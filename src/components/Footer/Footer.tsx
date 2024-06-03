@@ -53,7 +53,10 @@ export const Footer = () => {
       </a>
 
       <div className="footer__links">
-        <a href="" className="footer__link footer__links--link link">
+        <a
+          href="https://github.com/NoPainNoMain/phone_catalog_project"
+          className="footer__link footer__links--link link"
+        >
           GITHUB
         </a>
         <a href="" className="footer__link footer__links--link link">
