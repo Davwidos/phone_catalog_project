@@ -11,13 +11,11 @@
 
   align-items: flex-start;
   gap: 32px;
-  padding: 32px 16px 0;
-  margin: 32px 0;
-  padding-top: 32px;
+  padding: 32px 16px;
   box-shadow: 0 -1px 0 0 #e2e6e9;
 
   @include for-l-mobile {
-    padding: 32px 32px 0;
+    padding: 32px 32px;
     & > * {
       width: 33.3%;
     }
@@ -31,7 +29,7 @@
 
     align-items: flex-start;
     justify-content: space-between;
-    height: 65px;
+    height: 64px;
     color: $secondary;
 
     @include for-l-mobile {
