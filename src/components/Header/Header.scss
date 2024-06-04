@@ -22,7 +22,13 @@
     justify-content: flex-end;
     height: 100%;
     width: 100%;
-
+    &--NavLink {
+      border-bottom: 3px solid transparent;
+      &:hover {
+        color: $primary;
+        border-bottom: 3px solid $primary;
+      }
+    }
     &--desktop {
       @include flex-row;
 
@@ -121,4 +127,9 @@ button {
 .login {
   width: 16px;
   height: 16px;
+}
+
+.is-active {
+  border-bottom: 3px solid $primary;
+  color: $primary;
 }

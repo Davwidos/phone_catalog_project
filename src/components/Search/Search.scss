@@ -8,10 +8,10 @@
     font-size: 14px;
     font-weight: 600;
     text-align: left;
-    height: 40px;
-    padding-left: 12px;
-    margin-top: 10px;
+    padding: 13px;
+    margin: 0;
     border: $icons 1px solid;
+    width: 100%;
 
     &:hover {
       border-color: $primary;

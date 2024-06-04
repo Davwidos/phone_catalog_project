@@ -5,7 +5,7 @@ import Close from '../../icons/Close-icon.svg';
 import LoginIcon from '../../icons/LoginIcon.svg';
 
 import './Header.scss';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { CartIcon } from '../CartIcon/CartIcon';
 import { FavouritesIcon } from '../FavoruitesIcon/FavouritesIcon';
 
@@ -20,7 +20,7 @@ export const Header: React.FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
 
   return (
     <div className="header">
-      <Link to="/" onClick={handleGoToUpPage}>
+      <NavLink to="/" onClick={handleGoToUpPage}>
         <img
           src={Logo}
           alt="nice-gadgets-logo"
@@ -31,32 +31,81 @@ export const Header: React.FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
             }
           }}
         />
-      </Link>
+      </NavLink>
       <div className="header__menu-items">
-        <Link to="/" className="header__menu-items--item">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? 'header__menu-items--item is-active'
+              : 'header__menu-items--item'
+          }
+        >
           HOME
-        </Link>
-        <Link to="/phones" className="header__menu-items--item">
+        </NavLink>
+        <NavLink
+          to="/phones"
+          className={({ isActive }) =>
+            isActive
+              ? 'header__menu-items--item is-active'
+              : 'header__menu-items--item'
+          }
+        >
           PHONES
-        </Link>
-        <Link to="/tablets" className="header__menu-items--item">
+        </NavLink>
+        <NavLink
+          to="/tablets"
+          className={({ isActive }) =>
+            isActive
+              ? 'header__menu-items--item is-active'
+              : 'header__menu-items--item'
+          }
+        >
           TABLETS
-        </Link>
-        <Link to="/accessories" className="header__menu-items--item">
+        </NavLink>
+        <NavLink
+          to="/accessories"
+          className={({ isActive }) =>
+            isActive
+              ? 'header__menu-items--item is-active'
+              : 'header__menu-items--item'
+          }
+        >
           ACCESSORIES
-        </Link>
+        </NavLink>
       </div>
       <div className="header__buttons">
         <div className="header__buttons--desktop">
-          <Link to="/favourites" className="header__buttons--link">
+          <NavLink
+            to="/favourites"
+            className={({ isActive }) =>
+              isActive
+                ? 'header__buttons--NavLink is-active'
+                : 'header__buttons--NavLink'
+            }
+          >
             <FavouritesIcon />
-          </Link>
-          <Link to="/cart" className="header__buttons--link">
+          </NavLink>
+          <NavLink
+            to="/cart"
+            className={({ isActive }) =>
+              isActive
+                ? 'header__buttons--NavLink is-active'
+                : 'header__buttons--NavLink'
+            }
+          >
             <CartIcon />
-          </Link>
-          <Link to="/login" className="header__buttons--link">
+          </NavLink>
+          <NavLink
+            to="/login"
+            className={({ isActive }) =>
+              isActive
+                ? 'header__buttons--NavLink is-active'
+                : 'header__buttons--NavLink'
+            }
+          >
             <img src={LoginIcon} alt="login-icon" className="login" />
-          </Link>
+          </NavLink>
         </div>
         <div className="header__burger-container">
           <button onClick={toggleMenu} className="burger">

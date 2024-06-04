@@ -1,16 +1,20 @@
-/* eslint-disable no-console */
+import React, { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './Slider.scss';
-import { useEffect, useState } from 'react';
 import { Product } from '../../types/Product';
 
+interface CustomArrowProps {
+  onClick: () => void;
+  disabled?: boolean;
+}
+
+interface SliderProps {
+  models: Product[];
+}
+
 const responsive = {
-  superLargeDesktop: {
-    breakpoint: { max: 4000, min: 3000 },
-    items: 4,
-  },
   desktop: {
     breakpoint: { max: 3000, min: 1200 },
     items: 4,
@@ -20,17 +24,33 @@ const responsive = {
     items: 2.5,
   },
   mobile: {
-    breakpoint: { max: 639, min: 0 },
+    breakpoint: { max: 320, min: 0 },
     items: 1.3,
   },
 };
 
-interface SliderProps {
-  models: Product[];
-}
+const CustomLeftArrow: React.FC<CustomArrowProps> = ({ onClick, disabled }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="custom-arrow custom-arrow--left"
+      disabled={disabled}
+    ></button>
+  );
+};
+
+const CustomRightArrow: React.FC<CustomArrowProps> = ({ onClick }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="custom-arrow custom-arrow--right"
+    ></button>
+  );
+};
 
 const Slider = ({ models }: SliderProps) => {
   const [cardWidth, setCardWidth] = useState(213);
+  const [isLeftArrowDisabled, setIsLeftArrowDisabled] = useState(true);
 
   useEffect(() => {
     const updateCardWidth = () => {
@@ -56,7 +76,19 @@ const Slider = ({ models }: SliderProps) => {
   return (
     <>
       <div className="carousel">
-        <Carousel responsive={responsive}>
+        <Carousel
+          responsive={responsive}
+          customLeftArrow={
+            <CustomLeftArrow
+              onClick={() => setIsLeftArrowDisabled(false)}
+              disabled={isLeftArrowDisabled}
+            />
+          }
+          customRightArrow={
+            <CustomRightArrow onClick={() => setIsLeftArrowDisabled(true)} />
+          }
+          renderArrowsWhenDisabled={true}
+        >
           {models.map(product => (
             <div className="item" key={product.id}>
               <ProductCard width={cardWidth} product={product} />

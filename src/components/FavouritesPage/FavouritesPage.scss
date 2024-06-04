@@ -22,16 +22,22 @@
     text-align: left;
     color: $secondary;
     margin: 8px 0 32px;
+
+    @include for-l-mobile {
+      margin-bottom: 40px;
+    }
   }
 
   &__title {
     @include h1;
 
+    margin-top: 24px;
+
     @include for-l-mobile {
       @include d-t-h1;
-    }
 
-    margin-top: 24px;
+      margin-top: 40px;
+    }
   }
 
   &__products {
