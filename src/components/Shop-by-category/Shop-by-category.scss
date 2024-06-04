@@ -8,6 +8,7 @@
 
 .shop-by-category {
   width: 100%;
+
   @include for-desktop {
     max-width: 1200px;
   }
@@ -44,6 +45,7 @@
   }
   &__category {
     @include d-t-h4;
+
     color: $primary;
   }
   &__models {

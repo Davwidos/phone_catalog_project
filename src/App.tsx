@@ -8,6 +8,7 @@ import { FavouritesPage } from './components/FavouritesPage/FavouritesPage';
 import { Homepage } from './components/Homepage/Homepage';
 import { ProductPage } from './components/ProductPage';
 import { productCategories } from './types/ProuductCategory';
+import Login from './components/Login/Login';
 export const App = () => (
   <Routes>
     <Route element={<Page />}>
@@ -21,6 +22,7 @@ export const App = () => (
       <Route path="favourites" element={<FavouritesPage />} />
       <Route path="home" element={<Navigate to="/" />} />
       <Route path="cart" element={<Cart />} />
+      <Route path="login" element={<Login />} />
       <Route path="*" element={<NotFoundPage />} />
     </Route>
   </Routes>

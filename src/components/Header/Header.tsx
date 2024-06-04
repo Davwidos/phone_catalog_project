@@ -2,6 +2,7 @@
 import Burger from '../../icons/icon_burger.svg';
 import Logo from '../../icons/logo.png';
 import Close from '../../icons/Close-icon.svg';
+import LoginIcon from '../../icons/LoginIcon.svg';
 
 import './Header.scss';
 import { NavLink } from 'react-router-dom';
@@ -94,6 +95,16 @@ export const Header: React.FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
             }
           >
             <CartIcon />
+          </NavLink>
+          <NavLink
+            to="/login"
+            className={({ isActive }) =>
+              isActive
+                ? 'header__buttons--NavLink is-active'
+                : 'header__buttons--NavLink'
+            }
+          >
+            <img src={LoginIcon} alt="login-icon" className="login" />
           </NavLink>
         </div>
         <div className="header__burger-container">
