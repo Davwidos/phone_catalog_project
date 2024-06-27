@@ -13,7 +13,7 @@ export const FavouritesPage = () => {
     <div className="favouritesPage">
       <Breadcrumbs path="Favourites" />
       <h1 className="favouritesPage__title">Favourites</h1>
-      <p className="favouritesPage__text"> {favorites?.length} items</p>
+      <p className="favouritesPage__text"> {favorites?.length || 0} items</p>
       <div className="favouritesPage__products">
         {favorites?.map(p => <ProductCard key={p.id} product={p} />)}
       </div>
