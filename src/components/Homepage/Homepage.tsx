@@ -1,16 +1,12 @@
-import { useAppSelector } from '../../app/hooks';
-import {
-  selectHotPrices,
-  selectNewModels,
-} from '../../features/products/selectors';
+import { api } from '../../services/api';
 import { ShopByCategory } from '../Shop-by-category/Shop-by-category';
 import Slider from '../Slider/Slider';
 import SliderHomePage from '../SliderHomePage/SliderHomePage';
 import './Homepage.scss';
 
 export const Homepage = () => {
-  const newModels = useAppSelector(selectNewModels);
-  const hotPrices = useAppSelector(selectHotPrices);
+  const { data: newModels = [] } = api.useGetNewModelsQuery();
+  const { data: hotPrices = [] } = api.useGetHotPricesQuery();
 
   return (
     <div className="main">

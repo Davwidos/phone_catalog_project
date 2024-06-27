@@ -7,11 +7,10 @@ import { VariantsSection } from '../VariantsSection';
 import Slider from '../Slider/Slider';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
 import { useAppSelector } from '../../app/hooks';
-import {
-  selectProductByItemId,
-  selectRecomended,
-} from '../../features/products/selectors';
+import { selectProductByItemId } from '../../features/products/selectors';
 import { useParams } from 'react-router-dom';
+import { api } from '../../services/api';
+
 export const ProductPage: FC = () => {
   const { id } = useParams();
   const product = useAppSelector(state =>
@@ -19,7 +18,7 @@ export const ProductPage: FC = () => {
   );
   const details = product?.item;
 
-  const recomended = useAppSelector(selectRecomended);
+  const { data: recommended = [] } = api.useGetRecommendedQuery(id || '-');
 
   const category = useMemo(() => {
     if (details?.category?.includes('phones')) {
@@ -67,7 +66,7 @@ export const ProductPage: FC = () => {
 
       <div className="ProductPage__slider">
         <h1 className="title-slider">You may also like</h1>
-        <Slider models={recomended} />
+        <Slider models={recommended} />
       </div>
     </div>
   );
