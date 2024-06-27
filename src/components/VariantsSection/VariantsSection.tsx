@@ -4,7 +4,7 @@ import { ColorSelection } from '../ColorSelection/ColorSelection';
 import { ParametrSelection } from '../ParametrSelection';
 import { Button } from '../Buttons/Button';
 import { ButtonHeart } from '../Buttons/ButtonHeart';
-import { Product } from '../../types/Product';
+import { ItemWithProduct } from '../../types/Product';
 import { useAppSelector } from '../../app/hooks';
 import { useDispatch } from 'react-redux';
 // eslint-disable-next-line max-len
@@ -12,11 +12,11 @@ import { toggle as toggleFavorites } from '../../features/favorites/favoritesSli
 import { toogleItem as toggleCart } from '../../features/cart/cartSlice';
 
 interface Props {
-  product?: Product;
+  details?: ItemWithProduct;
 }
 
-export const VariantsSection: FC<Props> = ({ product }) => {
-  const details = product?.item;
+export const VariantsSection: FC<Props> = ({ details }) => {
+  const product = details?.product;
   const cartItems = useAppSelector(store => store.cart);
   const dispatch = useDispatch();
   const favourites = useAppSelector(store => store.favorites);

@@ -20,3 +20,7 @@ export interface Product {
   image: string;
   item?: Item;
 }
+
+export type ItemWithProduct = Item & {
+  product: Product;
+}

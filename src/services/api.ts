@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Product } from '../types/Product';
+import { ItemWithProduct, Product } from '../types/Product';
 
 const API_URL = 'http://localhost:3000';
 
@@ -19,6 +19,9 @@ export const api = createApi({
   endpoints: builder => ({
     getProducts: builder.query<PaginatedData<Product>, string>({
       query: searchQery => `products?${searchQery}`,
+    }),
+    getProductDetails: builder.query<ItemWithProduct, string>({
+      query: id => `products/${id}`,
     }),
   }),
 });
