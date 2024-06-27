@@ -7,7 +7,6 @@ interface Props {
 }
 
 export const About: FC<Props> = ({ details }) => {
-
   return (
     <div className="about">
       <h1 className="about__title title">About</h1>

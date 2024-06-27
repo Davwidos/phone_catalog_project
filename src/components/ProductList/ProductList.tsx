@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './ProductList.scss';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
@@ -6,10 +6,9 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import leftArrow from '../../icons/leftArrow.svg';
 import rightArrow from '../../icons/rightArrow.svg';
 // eslint-disable-next-line max-len
-import { selectProductsByCategory } from '../../features/products/selectors';
 import { ProductCategory } from '../../types/ProuductCategory';
-import { useAppSelector } from '../../app/hooks';
 import { Search } from '../Search/Search';
+import { api } from '../../services/api';
 
 const getPathFromLocation = (
   pathname: string,
@@ -37,95 +36,58 @@ interface Props {
 }
 
 export const ProductList: React.FC<Props> = ({ category }) => {
-  const products = useAppSelector(state =>
-    selectProductsByCategory(state, category),
-  );
   const location = useLocation();
   const path = getPathFromLocation(location.pathname);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams({
+    sortBy: 'newest',
+    perPage: '8',
+    page: '1',
+  });
+  const apiParams = useMemo(() => {
+    const sortBy = searchParams.get('sortBy') || 'newest';
+    const perPage = searchParams.get('perPage') || '8';
+    const page = searchParams.get('page') || '1';
+    const params = new URLSearchParams({ sortBy, perPage, page, category });
 
-  const currentPage = parseInt(searchParams.get('page') || '1', 10);
-  const itemsPerPage = parseInt(searchParams.get('perPage') || '8', 10);
-  const sortType = searchParams.get('sortBy') || 'newest';
+    return params;
+  }, [category, searchParams]);
+
+  const { data } = api.useGetProductsQuery(apiParams.toString());
+  const products = data?.data || [];
+  const { totalPages, currentPage } = data?.pagination || {
+    totalPages: 1,
+    currentPage: 1,
+  };
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSearchParams({
-      sortBy: e.target.value,
-      perPage: itemsPerPage.toString(),
-      page: '1',
+    setSearchParams(prev => {
+      prev.set('sortBy', e.target.value);
+      prev.set('page', '1');
+
+      return prev;
     });
   };
 
   const handlePerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSearchParams({ sortBy: sortType, perPage: e.target.value, page: '1' });
+    setSearchParams(prev => {
+      prev.set('perPage', e.target.value);
+      prev.set('page', '1');
+
+      return prev;
+    });
   };
-
-  const searchQuery = searchParams.get('search')?.toLowerCase() || '';
-  const searchTerms = searchQuery.split(' ').filter(term => term);
-
-  const sortedProducts = useMemo(() => {
-    const sortedArray = [...products];
-
-    switch (sortType) {
-      case 'oldest':
-        sortedArray.sort((a, b) => a.year - b.year);
-        break;
-      case 'price-low':
-        sortedArray.sort((a, b) => a.price - b.price);
-        break;
-      case 'price-high':
-        sortedArray.sort((a, b) => b.price - a.price);
-        break;
-      default:
-        sortedArray.sort((a, b) => b.year - a.year);
-        break;
-    }
-
-    return sortedArray;
-  }, [products, sortType]);
-
-  const filteredProducts = useMemo(() => {
-    return sortedProducts.filter(product =>
-      searchTerms.every(term => product.name.toLowerCase().includes(term)),
-    );
-  }, [sortedProducts, searchTerms]);
-
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-
-  const indexOfLastProduct = currentPage * itemsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = filteredProducts.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct,
-  );
 
   const pageRange = 4;
   const startPage = Math.max(1, currentPage - Math.floor(pageRange / 2));
   const endPage = Math.min(totalPages, startPage + pageRange - 1);
 
   const handleClick = (page: number) => {
-    setSearchParams({
-      sortBy: sortType,
-      perPage: itemsPerPage.toString(),
-      page: page.toString(),
+    setSearchParams(prev => {
+      prev.set('page', page.toString());
+
+      return prev;
     });
   };
-
-  useEffect(() => {
-    if (!searchParams.has('sortBy')) {
-      searchParams.set('sortBy', 'newest');
-    }
-
-    if (!searchParams.has('perPage')) {
-      searchParams.set('perPage', '8');
-    }
-
-    if (!searchParams.has('page')) {
-      searchParams.set('page', '1');
-    }
-
-    setSearchParams(searchParams);
-  }, [searchParams, setSearchParams]);
 
   return (
     <div className="container">
@@ -144,7 +106,7 @@ export const ProductList: React.FC<Props> = ({ category }) => {
               className="productList__item-select"
               name="sort"
               id="sort"
-              value={sortType}
+              value={searchParams.get('sortType') || ''}
               onChange={handleSortChange}
             >
               <option value="newest">Newest</option>
@@ -161,7 +123,7 @@ export const ProductList: React.FC<Props> = ({ category }) => {
               className="productList__item-select"
               name="itemsPerPage"
               id="itemsPerPage"
-              value={itemsPerPage}
+              value={searchParams.get('perPage') || ''}
               onChange={handlePerPageChange}
             >
               <option value="8">8</option>
@@ -173,7 +135,7 @@ export const ProductList: React.FC<Props> = ({ category }) => {
           <Search path={path} />
         </div>
       </div>
-      {currentProducts.map(p => (
+      {products.map(p => (
         <ProductCard key={p.id} product={p} />
       ))}
       <div className="productList__buttons">
