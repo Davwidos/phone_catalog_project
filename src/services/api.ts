@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Product } from '../types/Product';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://phone-catalog-project-backend.onrender.com';
 
 interface Pagination {
   totalRecords: number;
