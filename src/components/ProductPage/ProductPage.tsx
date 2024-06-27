@@ -6,17 +6,11 @@ import { ProductGallery } from '../ProductGallery';
 import { VariantsSection } from '../VariantsSection';
 import Slider from '../Slider/Slider';
 import { Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
-import { useAppSelector } from '../../app/hooks';
-import { selectProductByItemId } from '../../features/products/selectors';
 import { useParams } from 'react-router-dom';
 import { api } from '../../services/api';
-
 export const ProductPage: FC = () => {
   const { id } = useParams();
-  const product = useAppSelector(state =>
-    selectProductByItemId(state, id || ''),
-  );
-  const details = product?.item;
+  const { data: details } = api.useGetProductDetailsQuery(id || '-');
 
   const { data: recommended = [] } = api.useGetRecommendedQuery(id || '-');
 
@@ -51,7 +45,7 @@ export const ProductPage: FC = () => {
           <ProductGallery details={details} />
         </div>
         <div className="middle-2">
-          <VariantsSection product={product} />
+          <VariantsSection details={details} />
         </div>
       </div>
 

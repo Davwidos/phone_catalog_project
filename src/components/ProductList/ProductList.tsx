@@ -56,7 +56,7 @@ export const ProductList: React.FC<Props> = ({ category }) => {
     });
 
     if (search) {
-      params.set('search', search)
+      params.set('search', search);
     }
 
     return params;

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Product } from '../types/Product';
+import { ItemWithProduct, Product } from '../types/Product';
 
 const API_URL = 'https://phone-catalog-project-backend.onrender.com';
 
@@ -28,6 +28,9 @@ export const api = createApi({
     }),
     getHotPrices: builder.query<Product[], void>({
       query: () => 'products/discount',
+    }),
+    getProductDetails: builder.query<ItemWithProduct, string>({
+      query: id => `products/${id}`,
     }),
   }),
 });
