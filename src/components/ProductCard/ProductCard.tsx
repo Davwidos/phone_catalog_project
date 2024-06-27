@@ -3,11 +3,12 @@ import favorites from '../../images/icons/favorites.svg';
 import { Link } from 'react-router-dom';
 import favoritesRed from '../../icons/favorite-icon-red.svg';
 import { Product } from '../../types/Product';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 // eslint-disable-next-line max-len
-import { toggle as toggleFavorites } from '../../features/favorites/favoritesSlice';
-import { toogleItem as toggleCart } from '../../features/cart/cartSlice';
+// import { toggle as toggleFavorites } from '../../features/favorites/favoritesSlice';
+// import { toogleItem as toggleCart } from '../../features/cart/cartSlice';
 import { useAppSelector } from '../../app/hooks';
+import { api } from '../../services/api';
 
 type Props = {
   product: Product;
@@ -17,7 +18,7 @@ type Props = {
 export const ProductCard: React.FC<Props> = ({ product, width }) => {
   const favourites = useAppSelector(store => store.favorites);
   const cartItems = useAppSelector(store => store.cart);
-  const dispatch = useDispatch();
+  const [addToCart] = api.usePostQueryCartMutation();
 
   const cardStyles = {
     width: `${width}px`,
@@ -77,7 +78,7 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
               ? 'Button--primary active'
               : ''
           }`}
-          onClick={() => dispatch(toggleCart(product))}
+          onClick={() => addToCart({ userId: 1, productId: product.id })}
         >
           {cartItems.some(i => i.id === product.id)
             ? 'Added to cart'
@@ -89,7 +90,7 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
           className="
              productCard__favorites
              productCard__btn"
-          onClick={() => dispatch(toggleFavorites(product))}
+          // onClick={() => deleteFromCart({ userId: 1, productId: product.id })}
         >
           <img
             src={

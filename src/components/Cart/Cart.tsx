@@ -8,9 +8,10 @@ import {
   selectTotalItems,
 } from '../../features/cart/selectors';
 import { clear } from '../../features/cart/cartSlice';
+import { api } from '../../services/api';
 
 export const Cart = () => {
-  const cartItems = useAppSelector(state => state.cart);
+  const { data: cartItems } = api.useGetCartItemsQuery('1');
   const cartValue = useAppSelector(state => selectCartValue(state));
   const totalItems = useAppSelector(selectTotalItems);
   const dispatch = useAppDispatch();
@@ -39,9 +40,7 @@ export const Cart = () => {
       <h1 className="cart__title">Cart</h1>
       <div className="cart__container">
         <div className="cart__items">
-          {cartItems.map(item => (
-            <CartItem key={item.id} product={item} />
-          ))}
+          {cartItems?.map(item => <CartItem key={item.id} cartData={item} />)}
         </div>
         <div className="cart__summary">
           <span className="cart__summary-total">${cartValue}</span>

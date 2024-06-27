@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Product } from '../types/Product';
-import { CartItem } from '../types/CartItem';
+import { CartItemTemp } from '../types/CartItem';
 
 const API_URL = 'http://localhost:3000';
 
@@ -17,15 +17,25 @@ export interface PaginatedData<T> {
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
+  tagTypes: ['Cart'],
   endpoints: builder => ({
     getProducts: builder.query<PaginatedData<Product>, string>({
       query: searchQery => `products?${searchQery}`,
     }),
     getFavorites: builder.query<Product[], string>({
-      query: userId => `favorites?userId=${userId}}`,
+      query: userId => `/favorites?userId=${userId}`,
     }),
-    getCartItems: builder.query<CartItem[], string>({
-      query: userId => `cart?userId=${userId}`,
+    getCartItems: builder.query<CartItemTemp[], string>({
+      query: userId => `/cart?userId=${userId}`,
+      providesTags: ['Cart'],
+    }),
+    postQueryCart: builder.mutation<CartItemTemp, Partial<CartItemTemp>>({
+      query: body => ({ url: `/cart`, method: 'POST', body }),
+      invalidatesTags: ['Cart'],
+    }),
+    deleteFromCart: builder.mutation<CartItemTemp, number>({
+      query: id => ({ url: `/cart/${id}`, method: 'DELETE' }),
+      invalidatesTags: ['Cart'],
     }),
   }),
 });
