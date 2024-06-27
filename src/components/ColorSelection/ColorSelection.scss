@@ -1,0 +1,29 @@
+@import '../../styles/utils';
+
+.ColorSelection {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  &__container {
+    display: flex;
+
+    &--1 {
+      justify-content: space-between;
+    }
+  }
+}
+
+.color-title {
+  @include smalltext;
+
+  color: #89939A;
+}
+
+.color-id {
+  @include smalltext;
+
+  font-weight: 700;
+
+  color: #B4BDC3;
+}

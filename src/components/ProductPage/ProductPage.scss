@@ -1,0 +1,238 @@
+.ProductPage {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  padding: 16px;
+
+  &__title {
+    font-family: Mont, sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 30.8px;
+  }
+
+  &__slider {
+    width: 100%;
+    height: 440px;
+    text-align: center;
+  }
+
+  &__short-specs {
+    margin-top: -24px;
+  }
+}
+
+.info {
+  margin-bottom: 56px;
+
+  &-1 {
+    margin-bottom: 56px;
+  }
+}
+
+.short-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__spec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    font-family: Mont, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15.34px;
+    color: #89939A;
+  }
+
+  &__value {
+    font-family: Mont, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15.34px;
+  }
+}
+
+.title-slider {
+  font-size: 22px;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+@media screen and (min-width: 1200px) {
+  .ProductPage {
+    flex-flow: row wrap;
+    justify-content: start;
+    margin-top: 0;
+  }
+
+  .ProductPage__title {
+    flex: 1 0 100%;
+  }
+
+  .ProductPage__slider {
+    order: 3;
+    flex: 1 0 100%;
+  }
+
+  .short-specs {
+    flex: 1 0 48%;
+  }
+
+  .middle {
+    display: flex;
+    width: 100%;
+  }
+
+  .middle-1 {
+    width: 57%;
+  }
+
+  .info {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+
+    &-1 {
+      width: 70%;
+      font-family: Mont, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 21px;
+      text-align: left;
+    }
+
+    &-2 {
+      width: 30%;
+    }
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  .About,
+  .TechSpecs,
+  .VariantsSection,
+  .ProductGallery {
+    flex: 1 0 48%;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .ProductPage {
+    flex-flow: row wrap;
+    justify-content: start;
+    margin: 152px;
+    margin-top: 0;
+  }
+
+  .ProductPage__title {
+    flex: 1 0 100%;
+  }
+
+  .ProductPage__slider {
+    order: 3;
+    flex: 1 0 100%;
+  }
+
+  .short-specs {
+    flex: 1 0 48%;
+  }
+
+  .middle {
+    display: flex;
+    width: 100%;
+  }
+
+  .middle-1 {
+    width: 57%;
+  }
+
+  .info {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+
+    &-1 {
+      width: 60%;
+      font-family: Mont, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 21px;
+      text-align: left;
+      margin-right: 64px;
+    }
+
+    &-2 {
+      width: 40%;
+    }
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  .About,
+  .TechSpecs,
+  .VariantsSection,
+  .ProductGallery {
+    flex: 1 0 48%;
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 1199px) {
+  .ProductPage {
+    justify-content: space-between;
+  }
+
+  .ProductPage__title {
+    flex: 1 0 100%;
+  }
+
+  .ProductPage__slider {
+    order: 3;
+    flex: 1 0 100%;
+  }
+
+  .short-specs {
+    flex: 1 0 48%;
+  }
+
+  .middle {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .middle-1 {
+    width: 50%;
+  }
+
+  .middle-2 {
+    margin-left: 14px;
+  }
+
+  .info {
+    margin-bottom: 80px;
+
+    &-1 {
+      margin-bottom: 64px;
+    }
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  .About,
+  .TechSpecs,
+  .VariantsSection,
+  .ProductGallery {
+    flex: 1 0 48%;
+  }
+}

@@ -1,4 +1,22 @@
 // not empty
+@import './styles/utils/reset';
+@import './generalStyles/fonts';
+
+
 * {
   box-sizing: border-box;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  color: #313237;
+  background-color: #e2e6e9;
+}
+
+body {
+  font-family: Mont, sans-serif;
 }

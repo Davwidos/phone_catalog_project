@@ -1,0 +1,44 @@
+.Button {
+  font-size: 14px;
+  line-height: 21px;
+  border: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: none;
+
+  &--primary {
+    color: white;
+    background-color: #313237;
+    &:hover {
+      box-shadow: 0 3px 13px #17203166;
+    }
+
+    &.active {
+      background-color: #e2e6e9;
+      color: #27ae60;
+    }
+  }
+
+  &--square {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #e2e6e9;
+
+    &:hover {
+      border-color: #313237;
+    }
+
+    &.active {
+      background-color: #313237;
+      color: white;
+    }
+
+    &:disabled {
+      border-color: #e2e6e9;
+      color: #b4bdc3;
+    }
+  }
+}

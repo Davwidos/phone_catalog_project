@@ -1,0 +1,21 @@
+.ButtonCircle {
+  border-radius: 50%;
+  border-color: #E2E6E9;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #B4BDC3;
+  }
+
+  &.active {
+    border-color: #313237;
+    background-color: white;
+  }
+
+  &__inside {
+    width: 90%;
+    height: 90%;
+    background-color: #FCDBC1;
+    border-radius: 50%;
+  }
+}

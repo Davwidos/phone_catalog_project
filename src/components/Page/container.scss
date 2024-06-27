@@ -1,0 +1,9 @@
+@import './grid';
+
+.container {
+  padding: 0 16px 56px;
+  font-size: 12px;
+  font-weight: 600;
+
+  @include page-grid;
+}

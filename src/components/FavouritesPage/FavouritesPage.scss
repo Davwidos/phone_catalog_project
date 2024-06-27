@@ -1,0 +1,72 @@
+@use '../../styles/utils/mixins' as *;
+@import '../../styles/utils/vars';
+@import '../../generalStyles/fonts';
+
+.favouritesPage {
+  max-width: 1200px;
+
+  @include flex-col;
+
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-grow: 1;
+  margin: 0 auto;
+  padding: 0 16px;
+  width: 100%;
+  &__text {
+    // @include bodytext14;
+    font-family: Mont, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    text-align: left;
+    color: $secondary;
+    margin: 8px 0 32px;
+
+    @include for-l-mobile {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__title {
+    @include h1;
+
+    margin-top: 24px;
+
+    @include for-l-mobile {
+      @include d-t-h1;
+
+      margin-top: 40px;
+    }
+  }
+
+  &__products {
+    @include flex-col;
+
+    gap: 40px 16px;
+    width: 100%;
+    justify-content: flex-start;
+
+    @include for-l-mobile {
+      flex-flow: row wrap;
+      & > * {
+        min-width: 288px;
+        width: calc(50% - 16px);
+      }
+    }
+
+    @media (min-width: 920px) {
+      & > * {
+        min-width: 229px;
+        width: calc(33.33% - 16px);
+      }
+    }
+
+    @include for-desktop {
+      & > * {
+        min-width: 272px;
+        width: calc(25% - 16px);
+      }
+    }
+  }
+}

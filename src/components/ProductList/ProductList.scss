@@ -1,0 +1,130 @@
+@import '../Page/grid';
+
+.container {
+  @include page-grid;
+
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.productList {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  line-height: 16px;
+  margin-bottom: 16px;
+  grid-column: 1 /-1;
+
+  &__wrapper {
+    margin-bottom: 24px;
+  }
+
+  &__icon {
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    &-home {
+      margin-right: 8px;
+    }
+  }
+
+  &__text {
+    color: #89939a;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 32px;
+    line-height: 41px;
+    color: #313237;
+    margin-bottom: 8px;
+    margin-top: 16px;
+
+    &-info {
+      color: #89939a;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px;
+    }
+  }
+
+  &__sort {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    align-items: flex-end;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    &-label {
+      color: #89939a;
+      font-size: 12px;
+      margin-top: 32px;
+    }
+
+    &-select {
+      margin-top: 4px;
+      text-align: left;
+      padding: 13px;
+      font-size: 14px;
+      width: 100%;
+      border: 1px solid #b4bdc3;
+      color: #313237;
+      background-color: transparent;
+      appearance: none;
+      background-image: url(../../icons/ArrowDown.svg);
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__button {
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    border: 1px solid #e2e6e9;
+    color: #313237;
+
+    &-arrow {
+      margin: 0 8px;
+    }
+  }
+}
+
+.productList__button.active {
+  background-color: #313237;
+  color: #fff;
+}
+
+@media screen and (min-width: 640px) {
+  .productList {
+    &__title {
+      font-size: 48px;
+    }
+
+    &__buttons {
+      position: absolute;
+      bottom: -20px;
+    }
+  }
+}

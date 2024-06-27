@@ -1,0 +1,135 @@
+@use '../../styles/utils/mixins' as *;
+@import '../../styles/utils/vars';
+
+.header {
+  @include flex-row;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #fff;
+  justify-content: space-between;
+  height: 48px;
+  box-shadow: 0 1px 0 0 #e2e6e9;
+  gap: 16px;
+
+  @include for-desktop {
+    height: 64px;
+  }
+  &__buttons {
+    @include flex-row;
+
+    justify-content: flex-end;
+    height: 100%;
+    width: 100%;
+    &--NavLink {
+      border-bottom: 3px solid transparent;
+      &:hover {
+        color: $primary;
+        border-bottom: 3px solid $primary;
+      }
+    }
+    &--desktop {
+      @include flex-row;
+
+      align-items: center;
+      justify-content: center;
+      display: none;
+
+      @include for-l-mobile {
+        display: flex;
+      }
+      & > * {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: -1px 0 0 0 #e2e6e9;
+
+        @include for-desktop {
+          height: 64px;
+          width: 64px;
+        }
+      }
+    }
+  }
+
+  &__burger {
+    &-container {
+      padding: 0 16px;
+      box-shadow: -1px 0 0 0 #e2e6e9;
+
+      @include flex-col;
+
+      height: 100%;
+      width: 48px;
+
+      @include for-l-mobile {
+        display: none;
+      }
+
+      @include for-desktop {
+        display: none;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__logo {
+    height: 22px;
+    padding: 0 16px;
+
+    @include for-desktop {
+      height: 28px;
+    }
+  }
+
+  &__menu-items {
+    @include flex-row;
+
+    height: 100%;
+    gap: 32px;
+    box-sizing: border-box;
+    display: none;
+    width: 0;
+
+    @include for-l-mobile {
+      display: flex;
+      width: auto;
+    }
+    &--item {
+      display: flex;
+      text-decoration: none;
+      color: $secondary;
+      height: 100%;
+      align-items: center;
+      padding-top: 3px;
+      border-bottom: 3px solid transparent;
+      &:hover {
+        color: $primary;
+        border-bottom: 3px solid $primary;
+      }
+    }
+  }
+}
+
+.burger {
+  background-color: transparent;
+}
+
+button {
+  border: 0;
+}
+
+.login {
+  width: 16px;
+  height: 16px;
+}
+
+.is-active {
+  border-bottom: 3px solid $primary;
+  color: $primary;
+}

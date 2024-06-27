@@ -1,0 +1,32 @@
+@import '../../styles/utils/vars';
+
+.icon-wrapper {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.icon-container--amount {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  background-color: $red;
+  border: 2px solid white;
+  border-radius: 50%;
+  top: -7px;
+  left: 7px;
+  color: white;
+  font-family: Mont, Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 11.5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.tooManyItems {
+  font-size: 5px;
+}
