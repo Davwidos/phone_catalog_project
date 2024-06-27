@@ -17,13 +17,14 @@ export interface PaginatedData<T> {
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
-  tagTypes: ['Cart'],
+  tagTypes: ['Cart', 'Favs'],
   endpoints: builder => ({
     getProducts: builder.query<PaginatedData<Product>, string>({
       query: searchQery => `products?${searchQery}`,
     }),
     getFavorites: builder.query<Product[], string>({
       query: userId => `/favorites?userId=${userId}`,
+      providesTags: ['Favs'],
     }),
     getCartItems: builder.query<CartItemTemp[], string>({
       query: userId => `/cart?userId=${userId}`,
@@ -36,6 +37,14 @@ export const api = createApi({
     deleteFromCart: builder.mutation<CartItemTemp, number>({
       query: id => ({ url: `/cart/${id}`, method: 'DELETE' }),
       invalidatesTags: ['Cart'],
+    }),
+    postQueryFavorites: builder.mutation<Product[], Partial<Product>>({
+      query: body => ({ url: `/favorites`, method: 'POST', body }),
+      invalidatesTags: ['Favs'],
+    }),
+    deleteFromFavourites: builder.mutation<Product[], number>({
+      query: id => ({ url: `/favorites/${id}`, method: 'DELETE' }),
+      invalidatesTags: ['Favs'],
     }),
   }),
 });

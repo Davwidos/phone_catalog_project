@@ -19,4 +19,6 @@ export interface Product {
   year: number;
   image: string;
   item?: Item;
+  userId: number;
+  productId: number;
 }

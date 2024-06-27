@@ -19,6 +19,7 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
   const favourites = useAppSelector(store => store.favorites);
   const cartItems = useAppSelector(store => store.cart);
   const [addToCart] = api.usePostQueryCartMutation();
+  const [addToFavs] = api.usePostQueryFavoritesMutation();
 
   const cardStyles = {
     width: `${width}px`,
@@ -90,7 +91,7 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
           className="
              productCard__favorites
              productCard__btn"
-          // onClick={() => deleteFromCart({ userId: 1, productId: product.id })}
+          onClick={() => addToFavs({ userId: 1, productId: product.id })}
         >
           <img
             src={
