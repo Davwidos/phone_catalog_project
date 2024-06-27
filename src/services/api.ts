@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Product } from '../types/Product';
+import { ItemWithProduct, Product } from '../types/Product';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://phone-catalog-project-backend.onrender.com';
 
 interface Pagination {
   totalRecords: number;
@@ -19,6 +19,18 @@ export const api = createApi({
   endpoints: builder => ({
     getProducts: builder.query<PaginatedData<Product>, string>({
       query: searchQery => `products?${searchQery}`,
+    }),
+    getRecommended: builder.query<Product[], string>({
+      query: id => `products/${id}/recommended`,
+    }),
+    getNewModels: builder.query<Product[], void>({
+      query: () => 'products/new',
+    }),
+    getHotPrices: builder.query<Product[], void>({
+      query: () => 'products/discount',
+    }),
+    getProductDetails: builder.query<ItemWithProduct, string>({
+      query: id => `products/${id}`,
     }),
   }),
 });
