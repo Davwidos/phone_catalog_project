@@ -1,18 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ItemWithProduct, Product } from '../types/Product';
+import { PaginatedData } from '../types/Pagination';
 
 const API_URL = 'https://phone-catalog-project-backend.onrender.com';
-
-interface Pagination {
-  totalRecords: number;
-  totalPages: number;
-  currentPage: number;
-}
-
-interface PaginatedData<T> {
-  data: T[];
-  pagination: Pagination;
-}
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
