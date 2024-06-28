@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Product } from '../types/Product';
 import { CartItemTemp } from '../types/CartItem';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://phone-catalog-project-backend.onrender.com';
 
 interface Pagination {
   totalRecords: number;
@@ -45,6 +45,10 @@ export const api = createApi({
     deleteFromFavourites: builder.mutation<void, number>({
       query: id => ({ url: `/favorites/${id}`, method: 'DELETE' }),
       invalidatesTags: ['Favs'],
+    }),
+    updateCartItem: builder.mutation<CartItemTemp, CartItemTemp>({
+      query: body => ({ url: `/cart/${body.id}`, method: 'PUT', body }),
+      invalidatesTags: ['Cart'],
     }),
   }),
 });

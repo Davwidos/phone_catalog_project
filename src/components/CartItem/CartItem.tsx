@@ -2,12 +2,6 @@ import React from 'react';
 import './CartItem.scss';
 import Delete from '../../icons/Close.svg';
 import { CartItemTemp as Product } from '../../types/CartItem';
-// import { useDispatch } from 'react-redux';
-// import {
-//   decreaseAmount,
-//   increaseAmount,
-//   removeItem,
-// } from '../../features/cart/cartSlice';
 import { NavLink } from 'react-router-dom';
 import { api } from '../../services/api';
 
@@ -17,14 +11,14 @@ type Props = {
 
 export const CartItem: React.FC<Props> = ({ cartData }) => {
   const [deleteFromCart] = api.useDeleteFromCartMutation();
-  // const dispatch = useDispatch();
+  const [updateCartItem] = api.useUpdateCartItemMutation();
 
   const handleIncrease = () => {
-    // dispatch(increaseAmount(product.id));
+    updateCartItem({ ...cartData, quantity: cartData.quantity + 1 });
   };
 
   const handleDecrease = () => {
-    // dispatch(decreaseAmount(product.id));
+    updateCartItem({ ...cartData, quantity: cartData.quantity - 1 });
   };
 
   const handleDelete = () => {

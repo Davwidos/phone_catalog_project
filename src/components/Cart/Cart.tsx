@@ -5,13 +5,20 @@ import { CartItem } from '../CartItem';
 import { useAppDispatch } from '../../app/hooks';
 import { clear } from '../../features/cart/cartSlice';
 import { api } from '../../services/api';
+import { useMemo } from 'react';
 
 export const Cart = () => {
-  const { data: cartItems } = api.useGetCartItemsQuery('1');
+  const { data: cartItemsPreSort = [] } = api.useGetCartItemsQuery('1');
+  const cartItems = useMemo(() => {
+    return [...cartItemsPreSort].sort((a, b) => a.id - b.id);
+  }, [cartItemsPreSort]);
   const cartValue = cartItems?.reduce((acc, curr) => {
     return acc + curr.product.price * curr.quantity;
   }, 0);
-  const totalItems = cartItems?.length || 0;
+  const totalItems =
+    cartItems?.reduce((acc, curr) => {
+      return acc + curr.quantity;
+    }, 0) || 0;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
