@@ -15,7 +15,7 @@ export const FavouritesPage = () => {
       <h1 className="favouritesPage__title">Favourites</h1>
       <p className="favouritesPage__text"> {favorites?.length || 0} items</p>
       <div className="favouritesPage__products">
-        {favorites?.map(p => <ProductCard key={p.id} product={p} />)}
+        {favorites?.map(p => <ProductCard key={p.id} product={p.product} />)}
       </div>
     </div>
   );

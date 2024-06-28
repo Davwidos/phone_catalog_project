@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ItemWithProduct, Product } from '../types/Product';
 import { CartItemTemp } from '../types/CartItem';
 import { PaginatedData } from '../types/Pagination';
+import { FavritesItem } from '../types/FavoritesItem';
 
 const API_URL = 'https://phone-catalog-project-backend.onrender.com';
 
@@ -12,7 +13,7 @@ export const api = createApi({
     getProducts: builder.query<PaginatedData<Product>, string>({
       query: searchQery => `products?${searchQery}`,
     }),
-    getFavorites: builder.query<Product[], string>({
+    getFavorites: builder.query<FavritesItem[], string>({
       query: userId => `/favorites?userId=${userId}`,
       providesTags: ['Favs'],
     }),
@@ -28,7 +29,7 @@ export const api = createApi({
       query: id => ({ url: `/cart/${id}`, method: 'DELETE' }),
       invalidatesTags: ['Cart'],
     }),
-    postQueryFavorites: builder.mutation<Product[], Partial<Product>>({
+    postQueryFavorites: builder.mutation<FavritesItem[], Partial<Product>>({
       query: body => ({ url: `/favorites`, method: 'POST', body }),
       invalidatesTags: ['Favs'],
     }),
