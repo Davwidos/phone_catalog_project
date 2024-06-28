@@ -47,7 +47,17 @@ export const ProductList: React.FC<Props> = ({ category }) => {
     const sortBy = searchParams.get('sortBy') || 'newest';
     const perPage = searchParams.get('perPage') || '8';
     const page = searchParams.get('page') || '1';
-    const params = new URLSearchParams({ sortBy, perPage, page, category });
+    const search = searchParams.get('search');
+    const params = new URLSearchParams({
+      sortBy,
+      perPage,
+      page,
+      category,
+    });
+
+    if (search) {
+      params.set('search', search);
+    }
 
     return params;
   }, [category, searchParams]);

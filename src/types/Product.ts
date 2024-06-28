@@ -22,3 +22,7 @@ export interface Product {
   userId: number;
   productId: number;
 }
+
+export type ItemWithProduct = Item & {
+  product: Product;
+}
