@@ -5,3 +5,11 @@ export interface CartItem extends Product {
   price: number;
   amount?: number;
 }
+
+export interface CartItemTemp {
+  id: number;
+  quantity: number;
+  product: Product;
+  userId: number;
+  productId: number;
+}

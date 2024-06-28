@@ -2,17 +2,23 @@ import './Cart.scss';
 import LeftIcon from '../../icons/left.svg';
 import { useNavigate } from 'react-router-dom';
 import { CartItem } from '../CartItem';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import {
-  selectCartValue,
-  selectTotalItems,
-} from '../../features/cart/selectors';
+import { useAppDispatch } from '../../app/hooks';
 import { clear } from '../../features/cart/cartSlice';
+import { api } from '../../services/api';
+import { useMemo } from 'react';
 
 export const Cart = () => {
-  const cartItems = useAppSelector(state => state.cart);
-  const cartValue = useAppSelector(state => selectCartValue(state));
-  const totalItems = useAppSelector(selectTotalItems);
+  const { data: cartItemsPreSort = [] } = api.useGetCartItemsQuery('1');
+  const cartItems = useMemo(() => {
+    return [...cartItemsPreSort].sort((a, b) => a.id - b.id);
+  }, [cartItemsPreSort]);
+  const cartValue = cartItems?.reduce((acc, curr) => {
+    return acc + curr.product.price * curr.quantity;
+  }, 0);
+  const totalItems =
+    cartItems?.reduce((acc, curr) => {
+      return acc + curr.quantity;
+    }, 0) || 0;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -39,9 +45,7 @@ export const Cart = () => {
       <h1 className="cart__title">Cart</h1>
       <div className="cart__container">
         <div className="cart__items">
-          {cartItems.map(item => (
-            <CartItem key={item.id} product={item} />
-          ))}
+          {cartItems?.map(item => <CartItem key={item.id} cartData={item} />)}
         </div>
         <div className="cart__summary">
           <span className="cart__summary-total">${cartValue}</span>

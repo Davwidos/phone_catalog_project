@@ -1,33 +1,31 @@
 import React from 'react';
 import './CartItem.scss';
 import Delete from '../../icons/Close.svg';
-import { CartItem as Product } from '../../types/CartItem';
-import { useDispatch } from 'react-redux';
-import {
-  decreaseAmount,
-  increaseAmount,
-  removeItem,
-} from '../../features/cart/cartSlice';
+import { CartItemTemp as Product } from '../../types/CartItem';
 import { NavLink } from 'react-router-dom';
+import { api } from '../../services/api';
 
 type Props = {
-  product: Product;
+  cartData: Product;
 };
 
-export const CartItem: React.FC<Props> = ({ product }) => {
-  const dispatch = useDispatch();
+export const CartItem: React.FC<Props> = ({ cartData }) => {
+  const [deleteFromCart] = api.useDeleteFromCartMutation();
+  const [updateCartItem] = api.useUpdateCartItemMutation();
 
   const handleIncrease = () => {
-    dispatch(increaseAmount(product.id));
+    updateCartItem({ ...cartData, quantity: cartData.quantity + 1 });
   };
 
   const handleDecrease = () => {
-    dispatch(decreaseAmount(product.id));
+    updateCartItem({ ...cartData, quantity: cartData.quantity - 1 });
   };
 
   const handleDelete = () => {
-    dispatch(removeItem(product.id));
+    deleteFromCart(cartData.id);
   };
+
+  const product = cartData.product;
 
   return (
     <div className="cartItem">
@@ -56,12 +54,12 @@ export const CartItem: React.FC<Props> = ({ product }) => {
             type="button"
             className="cartItem__btn"
             onClick={handleDecrease}
-            disabled={!product.amount || product.amount === 1}
+            disabled={!cartData.quantity || cartData.quantity === 1}
           >
             -
           </button>
 
-          <span className="cartItem__number">{product.amount}</span>
+          <span className="cartItem__number">{cartData.quantity}</span>
 
           <button
             type="button"
@@ -73,7 +71,7 @@ export const CartItem: React.FC<Props> = ({ product }) => {
         </div>
 
         <div className="cartItem__price">
-          ${product.price * (product.amount || 0)}
+          ${product.price * (cartData.quantity || 0)}
         </div>
       </div>
     </div>

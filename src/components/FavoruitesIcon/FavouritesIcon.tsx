@@ -1,21 +1,22 @@
-import { useAppSelector } from '../../app/hooks';
+// import { useAppSelector } from '../../app/hooks';
 import favouritesIcon from '../../icons/favorite-icon.svg';
+import { api } from '../../services/api';
 
 export const FavouritesIcon = () => {
-  const favourites = useAppSelector(store => store.favorites);
+  const { data: favorites } = api.useGetFavoritesQuery('1');
 
   return (
     <div className="icon-wrapper">
       <img src={favouritesIcon} alt="cart-icon" className="icon-container" />
-      {favourites.length !== 0 && (
+      {favorites && favorites.length !== 0 && (
         <div
           className={
-            favourites.length <= 99
+            favorites?.length <= 99
               ? 'icon-container--amount'
               : 'icon-container--amount tooManyItems'
           }
         >
-          {favourites.length <= 99 ? favourites.length : '99+'}
+          {favorites?.length <= 99 ? favorites?.length : '99+'}
         </div>
       )}
     </div>
