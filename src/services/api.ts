@@ -3,7 +3,7 @@ import { ItemWithProduct, Product } from '../types/Product';
 import { CartItemTemp } from '../types/CartItem';
 import { PaginatedData } from '../types/Pagination';
 
-const API_URL = 'http://phone-catalog-project-backend.onrender.com';
+const API_URL = 'https://phone-catalog-project-backend.onrender.com';
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
