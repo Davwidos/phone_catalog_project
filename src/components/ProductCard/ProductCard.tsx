@@ -1,14 +1,10 @@
 import './ProductCard.scss';
-import favorites from '../../images/icons/favorites.svg';
+import favIcon from '../../images/icons/favorites.svg';
 import { Link } from 'react-router-dom';
 import favoritesRed from '../../icons/favorite-icon-red.svg';
 import { Product } from '../../types/Product';
-// import { useDispatch } from 'react-redux';
-// eslint-disable-next-line max-len
-// import { toggle as toggleFavorites } from '../../features/favorites/favoritesSlice';
-// import { toogleItem as toggleCart } from '../../features/cart/cartSlice';
-import { useAppSelector } from '../../app/hooks';
 import { api } from '../../services/api';
+import { useMemo } from 'react';
 
 type Props = {
   product: Product;
@@ -16,10 +12,45 @@ type Props = {
 };
 
 export const ProductCard: React.FC<Props> = ({ product, width }) => {
-  const favourites = useAppSelector(store => store.favorites);
-  const cartItems = useAppSelector(store => store.cart);
   const [addToCart] = api.usePostQueryCartMutation();
   const [addToFavs] = api.usePostQueryFavoritesMutation();
+  const [deleteFromCart] = api.useDeleteFromCartMutation();
+  const [deleteFromFavorites] = api.useDeleteFromFavouritesMutation();
+
+  const { data: cartItems } = api.useGetCartItemsQuery('1');
+  const { data: favorites } = api.useGetFavoritesQuery('1');
+
+  const cartItem = useMemo(() => {
+    return cartItems?.find(el => el.productId === product.id);
+  }, [cartItems]);
+
+  const favItem = useMemo(() => {
+    return favorites?.find(el => el.productId === product.id);
+  }, [favorites]);
+
+  const handleToggleCart = () => {
+    if (!cartItems) {
+      return;
+    }
+
+    if (cartItem) {
+      deleteFromCart(cartItem.id);
+    } else {
+      addToCart({ userId: 1, productId: product.id });
+    }
+  };
+
+  const handleToggleFavs = () => {
+    if (!favorites) {
+      return;
+    }
+
+    if (favItem) {
+      deleteFromFavorites(favItem.id);
+    } else {
+      addToFavs({ userId: 1, productId: product.id });
+    }
+  };
 
   const cardStyles = {
     width: `${width}px`,
@@ -75,15 +106,11 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
         <button
           type="button"
           className={`productCard__addToCart productCard__btn + ${
-            cartItems.some(i => i.id === product.id)
-              ? 'Button--primary active'
-              : ''
+            cartItem ? 'Button--primary active' : ''
           }`}
-          onClick={() => addToCart({ userId: 1, productId: product.id })}
+          onClick={handleToggleCart}
         >
-          {cartItems.some(i => i.id === product.id)
-            ? 'Added to cart'
-            : 'Add to cart'}
+          {cartItem ? 'Added to cart' : 'Add to cart'}
         </button>
 
         <button
@@ -91,16 +118,9 @@ export const ProductCard: React.FC<Props> = ({ product, width }) => {
           className="
              productCard__favorites
              productCard__btn"
-          onClick={() => addToFavs({ userId: 1, productId: product.id })}
+          onClick={handleToggleFavs}
         >
-          <img
-            src={
-              favourites.some(p => p.id === product.id)
-                ? favoritesRed
-                : favorites
-            }
-            alt="favorites"
-          />
+          <img src={favItem ? favoritesRed : favIcon} alt="favorites" />
         </button>
       </div>
     </div>

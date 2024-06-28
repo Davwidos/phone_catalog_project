@@ -2,18 +2,16 @@ import './Cart.scss';
 import LeftIcon from '../../icons/left.svg';
 import { useNavigate } from 'react-router-dom';
 import { CartItem } from '../CartItem';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import {
-  selectCartValue,
-  selectTotalItems,
-} from '../../features/cart/selectors';
+import { useAppDispatch } from '../../app/hooks';
 import { clear } from '../../features/cart/cartSlice';
 import { api } from '../../services/api';
 
 export const Cart = () => {
   const { data: cartItems } = api.useGetCartItemsQuery('1');
-  const cartValue = useAppSelector(state => selectCartValue(state));
-  const totalItems = useAppSelector(selectTotalItems);
+  const cartValue = cartItems?.reduce((acc, curr) => {
+    return acc + curr.product.price * curr.quantity;
+  }, 0);
+  const totalItems = cartItems?.length || 0;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

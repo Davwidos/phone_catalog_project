@@ -34,7 +34,7 @@ export const api = createApi({
       query: body => ({ url: `/cart`, method: 'POST', body }),
       invalidatesTags: ['Cart'],
     }),
-    deleteFromCart: builder.mutation<CartItemTemp, number>({
+    deleteFromCart: builder.mutation<void, number>({
       query: id => ({ url: `/cart/${id}`, method: 'DELETE' }),
       invalidatesTags: ['Cart'],
     }),
@@ -42,7 +42,7 @@ export const api = createApi({
       query: body => ({ url: `/favorites`, method: 'POST', body }),
       invalidatesTags: ['Favs'],
     }),
-    deleteFromFavourites: builder.mutation<Product[], number>({
+    deleteFromFavourites: builder.mutation<void, number>({
       query: id => ({ url: `/favorites/${id}`, method: 'DELETE' }),
       invalidatesTags: ['Favs'],
     }),
